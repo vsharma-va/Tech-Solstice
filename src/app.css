@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+    font-family: "Walsheim";
+    src: url(./lib/assets/fonts/GTWalsheimPro.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Allura";
+    src: url(./lib/assets/fonts/Allura-Regular.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Rhizome";
+    src: url(./lib/assets/fonts/Rhizome-RegularTrial.otf) format("opentype");
+}
+
+@font-face {
+    font-family: "Murmure";
+    src: url(./lib/assets/fonts/Le_Murmure-Regular_web.otf) format("opentype");
+}
+
+.heading-font {
+    font-family: "Walsheim";
+}
+
+.regular-font {
+    font-family: "Rhizome";
+}
+
+.brand-font {
+    font-family: "Murmure";
+}
+
+.style-font {
+    font-family: "Allura";
+}
