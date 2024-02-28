@@ -13,6 +13,11 @@
     src: url(./lib/assets/fonts/Allura-Regular.ttf) format("truetype");
 }
 
+/*@font-face {*/
+/*    font-family: "Cyber";*/
+/*    src: url(./lib/assets/fonts/Demosdcyberglitch-yw6GM.ttf) format("truetype");*/
+/*}*/
+
 @font-face {
     font-family: "Rhizome";
     src: url(./lib/assets/fonts/Rhizome-RegularTrial.otf) format("opentype");
