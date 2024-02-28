@@ -29,7 +29,7 @@
             minHeight: 200.00,
             minWidth: 200.00,
             scale: 1.00,
-            scaleMobile: 1.00,
+            scaleMobile: 10.00,
             color: primaryContainer,
             backgroundColor: "transparent",
             p5
@@ -54,7 +54,7 @@
                     topologyHomeEffect.destroy();
                 },
                 onReverseComplete: () => {
-                    console.debug("Topology Restored"),
+                    console.debug("Topology Restored");
                         topologyHomeEffect = VANTA.TOPOLOGY({
                             el: ".topology-animation-home",
                             mouseControls: false,
@@ -63,7 +63,7 @@
                             minHeight: 200.0,
                             minWidth: 200.0,
                             scale: 1.0,
-                            scaleMobile: 210.0,
+                            scaleMobile: 10.0,
                             color: primaryContainer,
                             backgroundColor: "transparent",
                             p5,
@@ -632,9 +632,8 @@
                     <span class="translate-y-[190px] opacity-0 letter-up-1 leading-[0.88]">E</span>
                 </div>
             </div>
-            <svg version="1.1" id="Group_1" xmlns="http://www.w3.org/2000/svg"
+            <svg id="Group_1" xmlns="http://www.w3.org/2000/svg"
                  class="h-32 w-32 fill-primary-container col-start-3 absolute right-5 top-5"
-                 xmlns:xlink="http://www.w3.org/1999/xlink"
                  x="0px" y="0px" viewBox="0 0 287.54 354.05" style="" xml:space="preserve">
         <g>
 	        <path class="st0" d="M239.18,185.7c-44.05-23-98.34-5.89-121.29,38.2c-10.2,19.61-12.47,41.22-8.02,61.2
