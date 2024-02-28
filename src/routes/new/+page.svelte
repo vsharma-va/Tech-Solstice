@@ -21,6 +21,8 @@
     // let onSurface = "#ede0dd";
 
     onMount(() => {
+        let p5 = window.p5;
+        let THREE = window.THREE;
         topologyHomeEffect = VANTA.TOPOLOGY({
             el: ".topology-animation-home",
             mouseControls: false,
@@ -29,14 +31,16 @@
             minHeight: 200.00,
             minWidth: 200.00,
             scale: 1.00,
-            scaleMobile: 10.00,
+            scaleMobile: 100.00,
             color: primaryContainer,
             backgroundColor: "transparent",
+            THREE,
             p5
         });
-
+        console.log(ScrollTrigger.isTouch === 1);
         if (ScrollTrigger.isTouch === 1) {
-            console.debug("TOUCH DEVICE FOUND");
+            console.log("HELLO WORLD");
+            console.log("TOUCH DEVICE FOUND");
             let destroyTopologyTimeline = gsap.timeline(
                 {
                     scrollTrigger: {
@@ -44,7 +48,7 @@
                         start: "top top",
                         end: "top -10%",
                         scrub: true,
-                        markers: true,
+                        markers: false,
                     },
                 },
             );
@@ -63,9 +67,10 @@
                             minHeight: 200.0,
                             minWidth: 200.0,
                             scale: 1.0,
-                            scaleMobile: 10.0,
+                            scaleMobile: 100.0,
                             color: primaryContainer,
                             backgroundColor: "transparent",
+                            THREE,
                             p5,
                         });
                 }
