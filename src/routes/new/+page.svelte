@@ -29,7 +29,7 @@
             minHeight: 200.0,
             minWidth: 200.0,
             scale: 1.0,
-            scaleMobile: 210.0,
+            scaleMobile: 2000.0,
             color: primaryContainer,
             backgroundColor: "transparent",
             p5,
