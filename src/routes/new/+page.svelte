@@ -38,38 +38,40 @@
         gsap.registerPlugin(ScrollTrigger);
 
         if (ScrollTrigger.isTouch === 1) {
+            console.debug("TOUCH DEVICE FOUND");
             let destroyTopologyTimeline = gsap.timeline(
                 {
-                    onComplete: () => {
-                        topologyHomeEffect.destroy();
-                    },
-                    onReverseComplete: () => {
-                        topologyHomeEffect = VANTA.TOPOLOGY({
-                            el: ".topology-animation-home",
-                            mouseControls: false,
-                            touchControls: false,
-                            gyroControls: false,
-                            minHeight: 200.0,
-                            minWidth: 200.0,
-                            scale: 1.0,
-                            scaleMobile: 210.0,
-                            color: primaryContainer,
-                            backgroundColor: "transparent",
-                            p5,
-                        });
-                    }
-                },
-                {
                     scrollTrigger: {
-                        trigger: ".basic-scroll-animation",
-                        start: "50% top",
-                        end: "50% top",
-                        scrub: false,
-                        markers: false,
+                        trigger: ".featured-events-trigger",
+                        start: "top top",
+                        end: "top -10%",
+                        scrub: true,
+                        markers: true,
                     },
                 },
             );
-            destroyTopologyTimeline.to({});
+            destroyTopologyTimeline.to('.featured-events-trigger', {
+                onComplete: () => {
+                    console.debug("Topology Destoryed");
+                    topologyHomeEffect.destroy();
+                },
+                onReverseComplete: () => {
+                    console.debug("Topology Restored"),
+                    topologyHomeEffect = VANTA.TOPOLOGY({
+                        el: ".topology-animation-home",
+                        mouseControls: false,
+                        touchControls: false,
+                        gyroControls: false,
+                        minHeight: 200.0,
+                        minWidth: 200.0,
+                        scale: 1.0,
+                        scaleMobile: 210.0,
+                        color: primaryContainer,
+                        backgroundColor: "transparent",
+                        p5,
+                    });
+                }
+            })
         }
 
         let waitTimeline = gsap.timeline({
@@ -392,7 +394,7 @@
                 start: "top top",
                 end: "top -200%",
                 scrub: true,
-                markers: true,
+                markers: false,
             },
         });
         techEventsTimeline.to(".tech-rotate-d-3", {
