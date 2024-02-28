@@ -148,7 +148,7 @@
             scrollTrigger: {
                 trigger: '.featured-events-trigger',
                 start: 'top top',
-                end: 'top -200%',
+                end: 'top -700%',
                 scrub: true,
                 markers: false,
             }
@@ -277,9 +277,9 @@
             scrollTrigger: {
                 trigger: '.tech-events-trigger',
                 start: 'top top',
-                end: 'top -200%',
+                end: 'top -800%',
                 scrub: true,
-                markers: true,
+                markers: false,
             }
         });
         techEventsTimeline.to('.tech-rotate-d-3', {
@@ -365,6 +365,186 @@
         techEventsTimeline.to('.laptop-card-solstice', {
             bottom: "-100%",
         })
+
+
+        let esportsEventsHeadingTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".esports-events-trigger",
+                start: 'top top',
+                end: 'top -25%',
+                scrub: true,
+                markers: false,
+            }
+        })
+        esportsEventsHeadingTimeline.to('.esports-letter-down', {
+            y: 0,
+        });
+        esportsEventsHeadingTimeline.to('.esports-events-tagline-div', {
+            opacity: 1,
+        }, "<");
+
+        let esportsEventImmediate = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".esports-events-trigger",
+                start: "top top",
+                end: "top -15%",
+                scrub: true,
+                markers: false,
+            }
+        });
+        esportsEventImmediate.to('.laptop-card-solstice', {
+            backgroundColor: surface,
+        });
+        esportsEventImmediate.to('.laptop-solstice-heading', {
+            color: onSurface,
+        }, "<");
+
+
+        let esportsEventsTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.esports-events-trigger',
+                start: 'top top',
+                end: 'top -800%',
+                scrub: true,
+                markers: false,
+            }
+        });
+        esportsEventsTimeline.to('.esports-rotate-d-3', {
+            top: "49%",
+            left: "50%",
+            x: "-50%",
+            y: "-50%",
+            rotate: "-3deg",
+            height: 200,
+            opacity: 0,
+            // width: "25%",
+        });
+        esportsEventsTimeline.to('.esports-rotate-d-3-reveal', {
+            rotate: "-6deg",
+            opacity: 1
+        }, ">");
+        esportsEventsTimeline.to('.esports-events-initial', {
+            top: 0,
+            left: 0,
+            scale: 0.7,
+            transform: "none",
+        }, "<")
+        esportsEventsTimeline.to('.esports-events-d-3', {
+            display: "flex",
+            opacity: 1,
+        }, "<");
+        esportsEventsTimeline.to('.esports-rotate-d-6', {
+            top: "49%",
+            left: "50%",
+            x: "-50%",
+            y: "-50%",
+            rotate: "-6deg",
+            height: 200,
+            opacity: 0,
+            // width: "25%",
+        })
+        esportsEventsTimeline.to('.esports-rotate-d-6-reveal', {
+            rotate: "-12deg",
+            opacity: 1
+        }, ">")
+        esportsEventsTimeline.to('.esports-events-d-6', {
+            display: "flex",
+            opacity: 1,
+        }, "<");
+        esportsEventsTimeline.to('.esports-rotate-d-9', {
+            top: "49%",
+            left: "50%",
+            x: "-50%",
+            y: "-50%",
+            rotate: "-6deg",
+            height: 200,
+            opacity: 0,
+            // width: "25%",
+        })
+        esportsEventsTimeline.to('.esports-rotate-d-9-reveal', {
+            rotate: "-18deg",
+            opacity: 1
+        }, ">")
+        esportsEventsTimeline.to('.esports-events-d-9', {
+            display: "flex",
+            opacity: 1,
+        }, "<");
+        esportsEventsTimeline.to('.laptop-card-solstice', {
+            bottom: 5,
+        });
+        esportsEventsTimeline.to('.esports-convert-to-laptop-card', {
+            right: 12,
+            bottom: 50,
+            scale: 0.5,
+            opacity: 0,
+            transform: "none",
+        });
+        esportsEventsTimeline.to(".esports-letter-down", {
+            opacity: 0,
+        }, "<");
+        esportsEventsTimeline.to(".esports-events-tagline-div", {
+            opacity: 0,
+        }, "<");
+        esportsEventsTimeline.to('.esports-events-card-on-laptop', {
+            display: "flex",
+            opacity: 1,
+        }, "<");
+        esportsEventsTimeline.to('.laptop-card-solstice', {
+            bottom: "-28%",
+        })
+
+        let callToActionHeadingTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".call-to-action-trigger",
+                start: 'top top',
+                end: 'top -70%',
+                scrub: true,
+                markers: false,
+            }
+        })
+        // callToActionHeadingTimeline.to(".laptop-card-solstice", {
+        //     // clearProps: "left,top,translate,transform"
+        // });
+        callToActionHeadingTimeline.to('.call-to-action-letter-down', {
+            y: 0,
+        });
+
+        let callToActionTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".call-to-action-trigger",
+                start: "35% top",
+                end: "top -400%",
+                scrub: true,
+                markers: false,
+            }
+        });
+        callToActionTimeline.to(".laptop-card-solstice", {
+            display: "flex",
+            translateX: 0,
+            bottom: "50%",
+            right: "50%",
+            xPercent: 50,
+            yPercent: 50,
+        });
+        callToActionTimeline.to(".laptop-card-solstice", {
+            // scale: 1.05,
+            border: "2",
+            borderColor: onSurface,
+        }, "<");
+        callToActionTimeline.to(".call-to-action-button-div", {
+            display: "flex",
+        });
+        callToActionTimeline.to(".call-to-action-button", {
+            y: 0,
+            opacity: 1,
+        });
+        callToActionTimeline.to(".laptop-card-solstice", {
+            scale: 0,
+            opacity: 0,
+        }, ">2");
+        // callToActionTimeline.to(".laptop-card-solstice", {
+        //
+        // });
 
     });
 
@@ -466,13 +646,32 @@
                                     Event 3</p>
                             </div>
                         </div>
+                        <div class="h-full w-full col-start-1 row-start-2 relative rounded-2xl esports-events-card-on-laptop hidden opacity-0">
+                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-2xl -rotate-[9deg] z-[0]"></div>
+                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary rounded-2xl -rotate-6 z-[0]"></div>
+                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface rounded-2xl -rotate-3 z-[0]"></div>
+                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container rounded-2xl flex flex-col items-center justify-center">
+                                <p class="style-font text-3xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
+                                    Nirvana</p>
+                                <p class="brand-font text-xl mt-2 sm:mt-0 text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
+                                    Event 1</p>
+                                <p class="brand-font text-xl text-on-primary-container tracking-wide hidden featured-events-d-6 opacity-0">
+                                    Event 2</p>
+                                <p class="brand-font text-xl text-on-primary-container tracking-wide hidden featured-events-d-9 opacity-0">
+                                    Event 3</p>
+                            </div>
+                        </div>
+                        <div class="h-full w-full col-start-2 row-start-2 items-center justify-center relative rounded-xl call-to-action-button-div hidden">
+                            <button class="bg-primary brand-font text-2xl rounded-2xl -translate-y-24 opacity-0 call-to-action-button py-1 h-fit w-full text-on-primary">
+                                Passes
+                            </button>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-    <div class="h-[300vh] w-full sticky top-0 bg-on-surface featured-events-trigger">
+    <div class="h-[800vh] w-full sticky top-0 bg-on-surface featured-events-trigger">
         <div class="h-screen w-full flex sticky top-0 items-center justify-center featured-events-main-container">
             <div class="lg:h-[250px] h-[200px] sm:h-[225px] xl:h-[250px] w-[85%] sm:w-[45%] lg:w-[35%] xl:w-[30%] bg-primary-container rounded-2xl flex flex-col justify-center items-center z-[2] absolute convert-to-laptop-card">
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-2xl rotate-d-9-reveal opacity-0 "></div>
@@ -538,7 +737,7 @@
             </div>
         </div>
     </div>
-    <div class="h-[300vh] w-full sticky top-0 bg-surface tech-events-trigger z-[2]">
+    <div class="h-[800vh] w-full sticky top-0 bg-surface tech-events-trigger z-[2]">
         <div class="h-screen w-full flex sticky top-0 items-center justify-center">
             <div class="lg:h-[250px] h-[200px] sm:h-[225px] xl:h-[250px] w-[85%] sm:w-[45%] lg:w-[35%] xl:w-[30%] bg-primary-container rounded-2xl flex flex-col justify-center items-center z-[2] absolute tech-convert-to-laptop-card">
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-2xl tech-rotate-d-9-reveal opacity-0 "></div>
@@ -602,6 +801,106 @@
                     featuring three flagship events that redefine the boundaries of technology and celebration!
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="h-[800vh] w-full sticky top-0 bg-on-surface esports-events-trigger z-[2]">
+        <div class="h-screen w-full flex sticky top-0 items-center justify-center">
+            <div class="lg:h-[250px] h-[200px] sm:h-[225px] xl:h-[250px] w-[85%] sm:w-[45%] lg:w-[35%] xl:w-[30%] bg-primary-container rounded-2xl flex flex-col justify-center items-center z-[2] absolute esports-convert-to-laptop-card">
+                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-2xl esports-rotate-d-9-reveal opacity-0 "></div>
+                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary rounded-2xl esports-rotate-d-6-reveal opacity-0"></div>
+                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface rounded-2xl esports-rotate-d-3-reveal"></div>
+                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container rounded-2xl flex flex-col items-center justify-center">
+                    <p class="style-font text-5xl lg:text-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide esports-events-initial">
+                        Nirvana</p>
+                    <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden esports-events-d-3 opacity-0">
+                        Event 1</p>
+                    <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden esports-events-d-6 opacity-0">
+                        Event 2</p>
+                    <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden esports-events-d-9 opacity-0">
+                        Event 3</p>
+                </div>
+            </div>
+            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] h-[70px] w-[70%] sm:w-[37%] bg-primary/90 rounded-2xl absolute bottom-24 sm:bottom-30 left-2 xl:left-14 flex flex-col items-start justify-center px-5 esports-rotate-d-9">
+                <p class="brand-font text-2xl lg:text-3xl text-on-primary tracking-wide">
+                    Event Name
+                </p>
+                <p class="regular-font text-sm text-on-primary tracking-wide">
+                    Event Description Here
+                </p>
+            </div>
+            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[37%] bg-on-primary/90 rounded-2xl absolute top-32 xl:top-28 xl:right-14 right-2 lg:right-5 flex flex-col items-start justify-center px-5 esports-rotate-d-6">
+                <p class="brand-font text-2xl lg:text-3xl text-primary tracking-wide">
+                    Event Name
+                </p>
+                <p class="regular-font text-sm text-primary tracking-wide">
+                    Event Description Here
+                </p>
+            </div>
+            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[40%] bg-surface rounded-2xl absolute top-10 left-2 lg:left-9 xl:bottom-32 xl:right-24 flex flex-col items-start justify-center px-5 esports-rotate-d-3">
+                <p class="brand-font text-2xl lg:text-3xl text-on-surface tracking-wide">
+                    Event Name
+                </p>
+                <p class="regular-font text-sm text-on-surface tracking-wide">
+                    Event Description Here
+                </p>
+            </div>
+            <div class="h-full w-full flex flex-col absolute top-0 items-center justify-end">
+                <div class="brand-font h-fit w-full font-bold flex flex-row items-end justify-center text-6xl sm:text-7xl lg:text-8xl text-surface overflow-y-clip">
+                    <span class="esports-letter-down -translate-y-[70px]">E</span>
+                    <span class="esports-letter-down -translate-y-[90px]">S</span>
+                    <span class="esports-letter-down -translate-y-[110px]">P</span>
+                    <span class="esports-letter-down -translate-y-[130px]">O</span>
+                    <span class="esports-letter-down -translate-y-[150px]">R</span>
+                    <span class="esports-letter-down -translate-y-[170px]">T</span>
+                    <span class="esports-letter-down -translate-y-[180px]">S</span>
+                    <span class="esports-letter-down -translate-y-[200px]">&nbsp;</span>
+                    <span class="esports-letter-down -translate-y-[220px]">E</span>
+                    <span class="esports-letter-down -translate-y-[240px]">V</span>
+                    <span class="esports-letter-down -translate-y-[260px]">E</span>
+                    <span class="esports-letter-down -translate-y-[280px]">N</span>
+                    <span class="esports-letter-down -translate-y-[300px]">T</span>
+                    <span class="esports-letter-down -translate-y-[320px]">S</span>
+                </div>
+                <div class="regular-font text-center font-thin h-fit w-full tracking-wide flex flex-col text-surface capitalize items-center justify-center pb-2 sm:pb-4 lg:pb-9 text-sm opacity-0 esports-events-tagline-div">
+                    featuring three flagship events that redefine the boundaries of technology and celebration!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="h-[400vh] w-full sticky top-0 bg-surface call-to-action-trigger z-[2]">
+        <div class="h-screen w-full sticky top-0 flex flex-col items-center justify-center">
+            <div class="brand-font h-fit w-full font-bold flex flex-row items-end justify-center text-[14vw] text-on-surface overflow-y-clip">
+                <span class="call-to-action-letter-down -translate-y-[70px]">G</span>
+                <span class="call-to-action-letter-down -translate-y-[90px]">E</span>
+                <span class="call-to-action-letter-down -translate-y-[110px]">T</span>
+                <span class="call-to-action-letter-down -translate-y-[130px]">&nbsp;</span>
+                <span class="call-to-action-letter-down -translate-y-[150px]">Y</span>
+                <span class="call-to-action-letter-down -translate-y-[170px]">O</span>
+                <span class="call-to-action-letter-down -translate-y-[190px]">U</span>
+                <span class="call-to-action-letter-down -translate-y-[210px]">R</span>
+                <span class="call-to-action-letter-down -translate-y-[230px]">&nbsp;</span>
+                <span class="call-to-action-letter-down -translate-y-[250px]">T</span>
+                <span class="call-to-action-letter-down -translate-y-[270px]">I</span>
+                <span class="call-to-action-letter-down -translate-y-[290px]">C</span>
+                <span class="call-to-action-letter-down -translate-y-[310px]">K</span>
+                <span class="call-to-action-letter-down -translate-y-[330px]">E</span>
+                <span class="call-to-action-letter-down -translate-y-[350px]">T</span>
+                <span class="call-to-action-letter-down -translate-y-[370px]">S</span>
+                <span class="call-to-action-letter-down -translate-y-[390px]">&nbsp;</span>
+                <span class="call-to-action-letter-down -translate-y-[410px]">N</span>
+                <span class="call-to-action-letter-down -translate-y-[430px]">O</span>
+                <span class="call-to-action-letter-down -translate-y-[450px]">W</span>
+                <span class="call-to-action-letter-down -translate-y-[450px]">!</span>
+            </div>
+        </div>
+    </div>
+    <div class="h-[475vh] w-full sticky top-0 bg-on-surface z-[2] faq-trigger">
+        <div class="h-screen w-full sticky top-0 flex flex-col items-center justify-center">
+            <p class="brand-font text-2xl text-surface font-bold tracking-wide">
+                FAQs
+            </p>
         </div>
     </div>
 </div>
