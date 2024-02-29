@@ -10,6 +10,8 @@ export default {
         "on-primary-container": "#f2daff",
         "surface": "#1d1b1e",
         "on-surface": "#e7e1e5",
+        "error": "#d32f2f",
+        "success": "#66bb6a",
       }
       // colors: {
       //   "primary": "#80d998",
