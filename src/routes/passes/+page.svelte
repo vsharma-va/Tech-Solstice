@@ -83,7 +83,7 @@
         </div>
         <div class="h-full box-border relative py-[120px] md:py-[130px] pl-5">
                 <div
-                        class="relative w-full h-full flex flex-row items-center justify-start lg:justify-center flex-nowrap box-border gap-0 px-5 horizontal-scroll-element overflow-x-scroll py-9"
+                        class="relative w-full h-full flex flex-row items-center justify-start lg:justify-center flex-nowrap box-border gap-0 px-5 horizontal-scroll-element overflow-x-scroll py-9 no-scrollbar"
                         on:mouseenter={flagshipCardHovered}
                         on:mouseleave={flagshipCardInactive}
                 >
@@ -167,3 +167,16 @@
         </div>
     </div>
 </div>
+
+
+<style>
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+</style>
