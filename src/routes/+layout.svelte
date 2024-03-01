@@ -2,6 +2,7 @@
     import "../app.css";
     import Lenis from '@studio-freight/lenis';
     import {onMount} from "svelte";
+    import AuthNotif from "$lib/common/AuthNotif.svelte";
 
     onMount(() => {
         let isMobile = function () {
@@ -23,4 +24,6 @@
         }
     })
 </script>
+
+<AuthNotif/>
 <slot/>
