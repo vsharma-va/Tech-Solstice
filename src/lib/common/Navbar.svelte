@@ -2,6 +2,8 @@
     import {gsap} from "gsap/dist/gsap";
     import {onMount} from "svelte";
     import {goto} from "$app/navigation";
+    import {signIn, signOut} from "@auth/sveltekit/client";
+    import {page} from '$app/stores';
 
     let navOpen = false;
     let navBarOpenTimeline;
@@ -81,7 +83,13 @@
     function navClickAnimation() {
         let homeScreenNavTimeline = gsap.timeline({
             onComplete: () => {
-                goto(travelTo);
+                if (travelTo !== "/login") {
+                    if(travelTo === $page.url.pathname) {
+                        homeScreenNavTimeline.reverse();
+                    } else {
+                        goto(travelTo);
+                    }
+                }
             }
         });
         homeScreenNavTimeline.to('.to-scale-nav-link', {
@@ -197,13 +205,30 @@
                 <span class="nav-letter-down -translate-y-[130px]">S</span>
             </button>
             <button class="brand-font text-3xl font-thin tracking-wide text-on-primary flex flex-row h-fit w-full overflow-hidden items-center justify-center login-nav-link"
+                    on:click={async () => {
+                        if($page.data.session?.user){
+                            await signOut({ callbackUrl: '/?signedOut'});
+                        } else {
+                            console.debug("SOMETHING HERE");
+                            await signIn('google', {callbackUrl: `${$page.url.pathname}?signedIn`})
+                        }
+                    }}
                     on:click={loginButtonClicked}
                     bind:this={loginNavLink}>
-                <span class="nav-letter-down -translate-y-[30px]">L</span>
-                <span class="nav-letter-down -translate-y-[50px]">O</span>
-                <span class="nav-letter-down -translate-y-[70px]">G</span>
-                <span class="nav-letter-down -translate-y-[90px]">I</span>
-                <span class="nav-letter-down -translate-y-[1100px]">N</span>
+                {#if $page.data.session?.user}
+                    <span class="nav-letter-down -translate-y-[30px]">L</span>
+                    <span class="nav-letter-down -translate-y-[50px]">O</span>
+                    <span class="nav-letter-down -translate-y-[70px]">G</span>
+                    <span class="nav-letter-down -translate-y-[90px]">O</span>
+                    <span class="nav-letter-down -translate-y-[110px]">U</span>
+                    <span class="nav-letter-down -translate-y-[1100px]">T</span>
+                {:else}
+                    <span class="nav-letter-down -translate-y-[30px]">L</span>
+                    <span class="nav-letter-down -translate-y-[50px]">O</span>
+                    <span class="nav-letter-down -translate-y-[70px]">G</span>
+                    <span class="nav-letter-down -translate-y-[90px]">I</span>
+                    <span class="nav-letter-down -translate-y-[1100px]">N</span>
+                {/if}
             </button>
         </div>
         <div class="h-fit w-[7%] absolute left-1/2 -translate-x-1/2 -bottom-[9%] rounded-full bg-primary cursor-pointer z-[10]"
