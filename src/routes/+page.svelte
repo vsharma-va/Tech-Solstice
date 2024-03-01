@@ -681,11 +681,11 @@
 </script>
 <div class="h-screen w-full bg-primary flex flex-col items-center justify-center load-background">
     <p class="brand-font font-bold text-[140px] sm:text-[160px] md:text-[195px] lg:text-[210px] xl:text-[233px] scale-[1.4] hidden text-primary-container tracking-wide main-text leading-[0.78]">
-        Welcome</p>
+        WELCOME</p>
     <p class="brand-font font-bold text-[140px] sm:text-[160px] md:text-[195px] lg:text-[210px] xl:text-[233px] scale-[1.4] hidden text-primary-container tracking-wide main-text-1 leading-[0.98]">
-        To</p>
+        TO</p>
     <p class="brand-font text-[140px] sm:text-[160px] md:text-[195px] lg:text-[210px] xl:text-[233px] scale-[1.4] hidden text-primary-container main-text-2 tracking-wide leading-[0.78]">
-        Solstice</p>
+        SOLSTICE</p>
 </div>
 <div class="h-fit w-full absolute top-0 basic-scroll-animation">
     <div class="h-screen w-full sticky top-0 first-division-container">
@@ -698,27 +698,28 @@
             <!--            <div class="h-[140%] w-full bg-transparent hidden absolute top-0 left-1/2 -translate-x-1/2 spotlight spot-center"></div>-->
             <!--            <div class="h-[140%] w-full bg-transparent hidden absolute top-0 left-1/2 -translate-x-1/2 spotlight spot-right -rotate-[20deg]"></div>-->
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div class="h-fit w-full brand-font text-[140px] sm:text-[160px] md:text-[195px] lg:text-[210px] xl:text-[233px] tracking-wide hidden text-primary-container minus-blur overflow-y-clip flex-row items-center justify-start first-division-tech-container">
-                    <span class="translate-y-14 opacity-0 letter-up-1 left-of-make-italic leading-[0.88]">T</span><span
-                        class="translate-y-[70px] opacity-0 letter-up-2 make-italic leading-[0.88]">E</span><span
-                        class="translate-y-[90px] opacity-0 letter-up-3 leading-[0.88]">C</span><span
-                        class="translate-y-[110px] opacity-0 letter-up-4 leading-[0.88]">H</span>
+                <div class="h-fit w-full brand-font text-[140px] sm:text-[160px] md:text-[195px] lg:text-[210px] xl:text-[233px] tracking-wide hidden text-primary-container minus-blur overflow-y-clip flex-row items-center justify-between first-division-tech-container">
+                    <div class="w-full h-full flex flex-row">
+                        <span class="translate-y-14 opacity-0 letter-up-1 left-of-make-italic leading-[0.88]">T</span><span
+                            class="translate-y-[70px] opacity-0 letter-up-2 make-italic leading-[0.88]">E</span><span
+                            class="translate-y-[90px] opacity-0 letter-up-3 leading-[0.88]">C</span><span
+                            class="translate-y-[110px] opacity-0 letter-up-4 leading-[0.88]">H</span>
+                    </div>
                     <div class="flex flex-col w-full h-[40px] sm:h-[50px] md:h-[60px] ml-2 overflow-hidden relative z-[2] blur-sm minus-blur">
                         <p class="style-font text-[40px] sm:text-[50px] md:text-[60px] font-[300] text-primary absolute top-0">
-                            Nirvana
+                            Solstice
                         </p>
                     </div>
                 </div>
                 <div class="h-fit w-full brand-font text-[155px] sm:text-[175px] md:text-[210px] lg:text-[210px] xl:text-[275px] tracking-wide hidden text-primary minus-blur overflow-y-clip flex-row items-center justify-center first-division-solstice-container">
-                    <span class="translate-y-14 opacity-0 letter-up-1 leading-[0.88]">S</span>
+                    <span class="translate-y-14 opacity-0 letter-up-1 leading-[0.88]">N</span>
                     <span
-                            class="translate-y-[70px] opacity-0 letter-up-2 left-of-make-italic leading-[0.88]">O</span><span
-                        class="translate-y-[90px] opacity-0 letter-up-3 make-italic leading-[0.88]">L</span><span
-                        class="translate-y-[110px] opacity-0 letter-up-4 leading-[0.88]">S</span>
-                    <span class="translate-y-[130px] opacity-0 letter-up-1 leading-[0.88]">T</span>
-                    <span class="translate-y-[150px] opacity-0 letter-up-1 left-of-make-italic leading-[0.88]">I</span>
-                    <span class="translate-y-[170px] opacity-0 letter-up-1 make-italic leading-[0.88]">C</span>
-                    <span class="translate-y-[190px] opacity-0 letter-up-1 leading-[0.88]">E</span>
+                            class="translate-y-[70px] opacity-0 letter-up-2 left-of-make-italic leading-[0.88]">I</span><span
+                        class="translate-y-[90px] opacity-0 letter-up-3 make-italic leading-[0.88]">R</span><span
+                        class="translate-y-[110px] opacity-0 letter-up-4 leading-[0.88]">V</span>
+                    <span class="translate-y-[130px] opacity-0 letter-up-1 leading-[0.88]">A</span>
+                    <span class="translate-y-[150px] opacity-0 letter-up-1 left-of-make-italic leading-[0.88]">N</span>
+                    <span class="translate-y-[170px] opacity-0 letter-up-1 make-italic leading-[0.88]">A</span>
                 </div>
             </div>
             <svg id="Group_1" xmlns="http://www.w3.org/2000/svg"
@@ -735,7 +736,7 @@
         </div>
     </div>
     <div class="h-fit w-full">
-        <Navbar />
+        <Navbar/>
         <div class="h-screen w-full bg-transparent fixed top-0 z-[3]">
             <div class="h-full w-full sticky top-0">
                 <div class="h-[350px] xl:w-[450px] w-[95%] sm:w-[80%] md:w-[65%] lg:w-[45%] absolute right-1/2 translate-x-1/2 lg:right-3 xl:right-3 lg:translate-x-0 -bottom-[100%] xl:-bottom-[100%] rounded-2xl bg-surface flex flex-col items-center justify-start p-5 laptop-card-solstice hidden">

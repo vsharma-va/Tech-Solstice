@@ -160,7 +160,7 @@
 </script>
 
 <div class="h-fit w-full fixed flex flex-col items-center justify-center top-0 -translate-y-[100%] z-[5] px-5 pt-2 navbar-div">
-    <div class="h-[250px] bg-primary w-full sm:w-[57%] md:w-[45%] lg:w-[33%] xl:w-[28%] 2xl:w-[24%] rounded-2xl relative z-[5]">
+    <div class="h-[250px] bg-primary w-full sm:w-[57%] md:w-[45%] lg:w-[33%] xl:w-[28%] 2xl:w-[24%] rounded-2xl relative z-[3]">
         <svg width="521" height="170" viewBox="0 0 521 170"
              class="fill-primary h-fit w-full absolute -bottom-[17%] z-[2] nav-svg" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 52V50C0 22.3858 22.3858 0 50 0H471C498.614 0 521 22.3858 521 50V52C521 79.6142 498.614 102 471 102H404C385.222 102 370 117.222 370 136C370 154.778 354.778 170 336 170H186C167.222 170 152 154.778 152 136C152 117.222 136.778 102 118 102H50C22.3858 102 0 79.6142 0 52Z"/>
@@ -206,7 +206,7 @@
                 <span class="nav-letter-down -translate-y-[1100px]">N</span>
             </button>
         </div>
-        <div class="h-fit w-[7%] absolute left-1/2 -translate-x-1/2 -bottom-[9%] rounded-full bg-primary cursor-pointer z-[3]"
+        <div class="h-fit w-[7%] absolute left-1/2 -translate-x-1/2 -bottom-[9%] rounded-full bg-primary cursor-pointer z-[10]"
              on:click={animateNavButton}>
             <div class="h-[1px] w-full bg-surface top-line-nav"></div>
             <div class="h-[1px] mt-1 w-full bg-surface mid-line-nav"></div>
