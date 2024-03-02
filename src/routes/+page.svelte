@@ -12,6 +12,11 @@
     let onPrimaryContainer = "#612c8a";
     let surface = "#1d1b1e";
     let onSurface = "#e7e1e5";
+    // let primary = "#d2cb00";
+    // let primaryContainer = "#4b4900";
+    // let onPrimaryContainer = "#f0e81e";
+    // let surface = "#1c1c16";
+    // let onSurface = "#e6e2d9";
     // let primary = "#80d998";
     // let primaryContainer = "#005228";
     // let onPrimaryContainer = "#9bf6b2";
@@ -102,7 +107,7 @@
             }
         })
         waitTimeline.to('#body', {
-            duration: 10,
+            duration: 5,
         })
 
         let onLoadTimeline = gsap.timeline({

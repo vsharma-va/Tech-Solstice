@@ -25,6 +25,52 @@
         onLoadTimeline.to('.letter-down', {
             y: 0,
         });
+        onLoadTimeline.to('.typewriter-1', {
+            opacity: 1,
+            duration: 0.25,
+        })
+        onLoadTimeline.to('.typewriter-2', {
+            opacity: 1,
+            duration: 0.25,
+        })
+        onLoadTimeline.to('.typewriter-3', {
+            opacity: 1,
+            duration: 0.25,
+        })
+        onLoadTimeline.to('.typewriter-4', {
+            opacity: 1,
+            duration: 0.25,
+        })
+        onLoadTimeline.to('.typewriter-5', {
+            opacity: 1,
+            duration: 0.25,
+        })
+        onLoadTimeline.to('.typewriter-6', {
+            opacity: 1,
+            duration: 0.25,
+        })
+        onLoadTimeline.to('.typewriter-7', {
+            opacity: 1,
+            duration: 0.25,
+        })
+        onLoadTimeline.to('.typewriter-8', {
+            opacity: 1,
+        })
+
+        let eventsBannerTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.main-events-trigger',
+                start: 'top top',
+                end: 'top -60%',
+                scrub: true,
+                markers: false,
+            }
+        });
+        eventsBannerTl.to('.intro-banner', {
+            opacity: 0.6,
+            scale: 0.75,
+            yPercent: 10,
+        });
     });
 
     function moveCarouselRight(trigger, scrollToClass) {
@@ -45,7 +91,7 @@
     function moveCarouselLeft(trigger, scrollToClass) {
         gsap.to(`.${trigger}`, {
             duration: 1,
-            scrollTo: {x: `.${scrollToClass}`, offsetX: 20},
+            scrollTo: {x: `.${scrollToClass}`, offsetX: 176},
         })
         let tl = gsap.timeline();
         tl.to('.on-left-indicator', {
@@ -57,33 +103,51 @@
     }
 </script>
 
-<div class="h-fit w-full bg-surface">
+<div class="h-fit w-full bg-surface main-events-trigger">
     <Navbar/>
     <div class="h-[800vh] w-full flex flex-col gap-10">
-        <div
-                class="pt-14 px-5 brand-font text-left h-fit w-full font-bold flex flex-row items-center justify-start text-6xl sm:text-7xl lg:text-8xl text-on-surface overflow-y-clip sticky top-0">
-            <span class="letter-down -translate-y-[70px]">F</span>
-            <span class="letter-down -translate-y-[90px]">E</span>
-            <span class="letter-down -translate-y-[110px]">A</span>
-            <span class="letter-down -translate-y-[130px]">T</span>
-            <span class="letter-down -translate-y-[150px]">U</span>
-            <span class="letter-down -translate-y-[170px]">R</span>
-            <span class="letter-down -translate-y-[180px]">E</span>
-            <span class="letter-down -translate-y-[200px]">D</span>
-            <span class="letter-down -translate-y-[220px]">&nbsp;</span>
-            <span class="letter-down -translate-y-[240px]">E</span>
-            <span class="letter-down -translate-y-[260px]">V</span>
-            <span class="letter-down -translate-y-[280px]">E</span>
-            <span class="letter-down -translate-y-[300px]">N</span>
-            <span class="letter-down -translate-y-[320px]">T</span>
-            <span class="letter-down -translate-y-[340px]">S</span>
+        <div class="h-[90vh] w-full flex flex-col items-center justify-center sticky top-0 intro-banner">
+            <div class="h-fit w-full flex flex-col">
+                <div
+                        class="pt-14 px-5 brand-font text-left h-fit w-full -translate-x-9 font-bold flex flex-row items-center justify-center text-6xl sm:text-7xl lg:text-8xl text-on-surface overflow-y-clip">
+                    <span class="letter-down -translate-y-[70px]">F</span>
+                    <span class="letter-down -translate-y-[90px]">E</span>
+                    <span class="letter-down -translate-y-[110px]">A</span>
+                    <span class="letter-down -translate-y-[130px]">T</span>
+                    <span class="letter-down -translate-y-[150px]">U</span>
+                    <span class="letter-down -translate-y-[170px]">R</span>
+                    <span class="letter-down -translate-y-[180px]">E</span>
+                    <span class="letter-down -translate-y-[200px]">D</span>
+                    <span class="letter-down -translate-y-[220px]">&nbsp;</span>
+
+                </div>
+                <div
+                        class="px-5 brand-font text-right h-fit w-full translate-x-9 font-bold flex flex-row items-center justify-center text-6xl sm:text-7xl lg:text-8xl text-on-surface overflow-y-clip">
+                    <span class="letter-down -translate-y-[240px]">E</span>
+                    <span class="letter-down -translate-y-[260px]">V</span>
+                    <span class="letter-down -translate-y-[280px]">E</span>
+                    <span class="letter-down -translate-y-[300px]">N</span>
+                    <span class="letter-down -translate-y-[320px]">T</span>
+                    <span class="letter-down -translate-y-[340px]">S</span>
+                </div>
+            </div>
+            <div class="h-fit w-full flex flex-col items-center justify-center px-5 mt-24">
+                <p class="brand-font text-3xl text-primary tracking-wide text-center">
+                    <span class="typewriter-1 opacity-0">INNOVATE</span><span
+                        class="typewriter-2 opacity-0">, CELEBRATE</span><span
+                        class="typewriter-3 opacity-0">, ILLUMINATE : </span><span class="typewriter-4 opacity-0"> UNLEASH</span><span
+                        class="typewriter-5 opacity-0">&nbsp;THE</span><span
+                        class="typewriter-6 opacity-0">&nbsp;FUTURE</span><span
+                        class="typewriter-7 opacity-0">&nbsp;AT</span><span class="typewriter-8 opacity-0">&nbsp;SOLSTICE</span>
+                </p>
+            </div>
         </div>
         <div class="h-fit w-full flex flex-col">
-            <div class="h-[71vh] w-full flex flex-row px-5 flex-nowrap overflow-x-scroll overflow-y-visible gap-2 no-scrollbar relative event-carousel-1 lg:gap-10">
+            <div class="h-[85vh] w-full flex flex-row px-5 lg:px-36 flex-nowrap overflow-x-scroll overflow-y-visible gap-2 no-scrollbar relative event-carousel-1 lg:gap-10">
                 <div class="w-full h-full sm:w-[75%] rounded-2xl relative text-on-surface flex-shrink-0 image-div-event-1">
                     <img src="{eventBackground}" alt=""
                          class="h-full w-full object-cover inline-block display-image rounded-2xl absolute top-0 bottom-0 z-0">
-                    <div class="absolute bottom-2 left-2 h-[25%] w-[60%] rounded-2xl flex flex-col items-start justify-center p-5 bg-surface gap-1">
+                    <div class="absolute bottom-2 left-2 h-fit w-[75%] rounded-2xl flex flex-col items-start justify-center p-5 bg-surface gap-1">
                         <div class="brand-font text-4xl sm:text-5xl tracking-wide text-on-surface leading-[1] h-fit max-w-prose relative">
                             <p>EVENT NAME</p>
                             <div class="absolute bottom-0 h-[10px] w-full bg-primary/70"></div>
@@ -91,17 +155,18 @@
                         <p class="brand-font text-2xl lg:text-3xl tracking-wide text-on-surface/80">Tagline Here</p>
                     </div>
                 </div>
-                <div class="w-full h-full sm:w-[75%] rounded-2xl border-2 border-on-surface relative text-on-surface flex-shrink-0 flex flex-col p-5 gap-5 description-div-event-1 items-start justify-between">
+                <div class="w-full h-full sm:w-[75%] rounded-2xl border-[1.5px] border-on-surface relative text-on-surface flex-shrink-0 flex flex-col p-5 gap-5 lg:gap-9 description-div-event-1 items-start justify-start">
                     <div class="w-full h-fit flex flex-col gap-2 lg:gap-4">
                         <div class="brand-font text-4xl sm:text-5xl lg:text-6xl text-on-surface h-fit w-fit relative">
                             <p>Description</p>
                             <div class="absolute bottom-0 w-full bg-primary/70 h-[10px]"></div>
                         </div>
-                        <p class="regular-font text-sm sm:text-lg lg:text-xl sm:leading-[1.2] text-on-surface/80">Lorem ipsum dolor sit amet, consectetur
+                        <p class="regular-font text-sm sm:text-lg lg:text-xl sm:leading-[1.2] text-on-surface/80">Lorem
+                            ipsum dolor sit amet, consectetur
                             adipisicing elit. Accusantium aliquam animi assumenda aut dolorem eum exercitationem fugiat,
                             harum necessitatibus nisi, nobis non nostrum odit officiis quia quo recusandae unde vel?
                         </p>
-                        <button class="px-3 py-1 bg-primary w-full text-on-primary brand-font text-2xl sm:text-3xl rounded-2xl">
+                        <button class="px-4 py-1 bg-primary w-fit text-on-primary brand-font text-2xl sm:text-3xl rounded-2xl flex flex-row">
                             Handbook
                         </button>
                     </div>
