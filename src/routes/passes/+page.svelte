@@ -19,6 +19,63 @@
         onLoadTimeline.to(".letter-down", {
             y: 0,
         });
+        onLoadTimeline.to('.passes-div', {
+            x: 0,
+            ease: "back.out(1.7)",
+            duration: 1.25,
+        });
+        onLoadTimeline.to('.typewriter-1', {
+            opacity: 1,
+            duration: 0.25,
+        });
+        onLoadTimeline.to('.typewriter-2', {
+            opacity: 1,
+            duration: 0.25,
+        });
+        onLoadTimeline.to('.typewriter-3', {
+            opacity: 1,
+            duration: 0.25,
+        });
+        onLoadTimeline.to('.typewriter-4', {
+            opacity: 1,
+            duration: 0.25,
+        });
+        onLoadTimeline.to('.typewriter-5', {
+            opacity: 1,
+            duration: 0.25,
+        });
+        onLoadTimeline.to('.typewriter-6', {
+            opacity: 1,
+            duration: 0.25,
+        });
+        onLoadTimeline.to('.typewriter-7', {
+            opacity: 1,
+            duration: 0.25,
+        });
+        onLoadTimeline.to('.typewriter-8', {
+            opacity: 1,
+            duration: 0.25,
+        });
+        onLoadTimeline.to('.typewriter-9', {
+            opacity: 1,
+            duration: 0.25,
+        });
+
+        let eventsBannerTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.pass-trigger',
+                start: 'top top',
+                end: 'top -60%',
+                scrub: true,
+                markers: false,
+            }
+        });
+        eventsBannerTl.to('.intro-banner', {
+            opacity: 0.6,
+            scale: 0.75,
+            yPercent: 10,
+        });
+
 
         flagshipCardTimeline = gsap.timeline();
         flagshipCardTimeline.to('.pass-1', {
@@ -47,6 +104,7 @@
     function flagshipCardHovered() {
         flagshipCardTimeline.play(0);
     }
+
     function flagshipCardInactive() {
         flagshipCardTimeline.reverse();
     }
@@ -54,34 +112,76 @@
     function flagshipBuyHovered() {
         flagshipBuyTimeline.play(0);
     }
+
     function flagshipBuyExit() {
         flagshipBuyTimeline.reverse();
     }
 </script>
 
 <Navbar/>
-<div class="h-screen w-full pass-trigger">
-    <div class="h-screen w-full bg-surface flex flex-col sticky top-0 overflow-y-hidden">
-        <div
-                class="pt-14 px-5 brand-font text-left h-fit w-full font-bold flex flex-row items-center justify-start text-6xl sm:text-7xl lg:text-8xl text-on-surface overflow-y-clip">
-            <span class="letter-down -translate-y-[70px]">A</span>
-            <span class="letter-down -translate-y-[90px]">V</span>
-            <span class="letter-down -translate-y-[110px]">A</span>
-            <span class="letter-down -translate-y-[130px]">I</span>
-            <span class="letter-down -translate-y-[150px]">L</span>
-            <span class="letter-down -translate-y-[170px]">A</span>
-            <span class="letter-down -translate-y-[180px]">B</span>
-            <span class="letter-down -translate-y-[200px]">L</span>
-            <span class="letter-down -translate-y-[220px]">E</span>
-            <span class="letter-down -translate-y-[240px]">&nbsp;</span>
-            <span class="letter-down -translate-y-[260px]">P</span>
-            <span class="letter-down -translate-y-[280px]">A</span>
-            <span class="letter-down -translate-y-[300px]">S</span>
-            <span class="letter-down -translate-y-[320px]">S</span>
-            <span class="letter-down -translate-y-[340px]">E</span>
-            <span class="letter-down -translate-y-[360px]">S</span>
+<div class="h-fit w-full pass-trigger bg-surface">
+    <div class="h-[150vh] w-full flex flex-col">
+        <div class="h-[90vh] w-full flex flex-col items-center justify-center intro-banner sticky top-0">
+            <div class="h-fit w-full flex flex-col overflow-hidden">
+                <div
+                        class="pt-14 px-5 brand-font text-left h-fit w-full -translate-x-9 font-bold flex flex-row items-center justify-center text-6xl sm:text-7xl lg:text-9xl text-on-surface overflow-y-clip">
+                    <span class="letter-down -translate-y-[70px]">A</span>
+                    <span class="letter-down -translate-y-[90px]">V</span>
+                    <span class="letter-down -translate-y-[110px]">A</span>
+                    <span class="letter-down -translate-y-[130px]">I</span>
+                    <span class="letter-down -translate-y-[150px]">L</span>
+                    <span class="letter-down -translate-y-[170px]">A</span>
+                    <span class="letter-down -translate-y-[180px]">B</span>
+                    <span class="letter-down -translate-y-[200px]">L</span>
+                    <span class="letter-down -translate-y-[220px]">E</span>
+                    <span class="letter-down -translate-y-[240px]">&nbsp;</span>
+
+                </div>
+                <div
+                        class="px-5 brand-font text-right h-fit w-full translate-x-9 lg:translate-x-24 font-bold flex flex-row items-center justify-center text-6xl sm:text-7xl lg:text-9xl text-on-surface overflow-y-clip">
+                    <span class="letter-down -translate-y-[260px]">P</span>
+                    <span class="letter-down -translate-y-[280px]">A</span>
+                    <span class="letter-down -translate-y-[300px]">S</span>
+                    <span class="letter-down -translate-y-[320px]">S</span>
+                    <span class="letter-down -translate-y-[340px]">E</span>
+                    <span class="letter-down -translate-y-[360px]">S</span>
+                </div>
+            </div>
+            <div class="h-fit w-full flex flex-col items-center justify-center px-5 mt-24">
+                <p class="brand-font text-3xl sm:text-4xl lg:text-5xl text-primary tracking-wide text-center">
+                    <span class="typewriter-1 opacity-0">SECURE</span>
+                    <span class="typewriter-2 opacity-0">YOUR</span>
+                    <span class="typewriter-3 opacity-0">TECH</span>
+                    <span class="typewriter-4 opacity-0">VOYAGE: </span>
+                    <span class="typewriter-5 opacity-0">PASSES</span>
+                    <span class="typewriter-6 opacity-0">FOR</span>
+                    <span class="typewriter-7 opacity-0">LIMITLESS</span>
+                    <span class="typewriter-8 opacity-0">FESTIVAL</span>
+                    <span class="typewriter-9 opacity-0">THRILLS!</span>
+                </p>
+            </div>
         </div>
-        <div class="h-full box-border relative py-[120px] md:py-[130px] pl-5">
+        <!--        <div-->
+        <!--                class="pt-14 px-5 brand-font text-left h-1/2 w-full font-bold flex flex-row items-center justify-center text-6xl sm:text-7xl lg:text-8xl text-on-surface overflow-y-clip">-->
+        <!--            <span class="letter-down -translate-y-[70px]">A</span>-->
+        <!--            <span class="letter-down -translate-y-[90px]">V</span>-->
+        <!--            <span class="letter-down -translate-y-[110px]">A</span>-->
+        <!--            <span class="letter-down -translate-y-[130px]">I</span>-->
+        <!--            <span class="letter-down -translate-y-[150px]">L</span>-->
+        <!--            <span class="letter-down -translate-y-[170px]">A</span>-->
+        <!--            <span class="letter-down -translate-y-[180px]">B</span>-->
+        <!--            <span class="letter-down -translate-y-[200px]">L</span>-->
+        <!--            <span class="letter-down -translate-y-[220px]">E</span>-->
+        <!--            <span class="letter-down -translate-y-[240px]">&nbsp;</span>-->
+        <!--            <span class="letter-down -translate-y-[260px]">P</span>-->
+        <!--            <span class="letter-down -translate-y-[280px]">A</span>-->
+        <!--            <span class="letter-down -translate-y-[300px]">S</span>-->
+        <!--            <span class="letter-down -translate-y-[320px]">S</span>-->
+        <!--            <span class="letter-down -translate-y-[340px]">E</span>-->
+        <!--            <span class="letter-down -translate-y-[360px]">S</span>-->
+        <!--        </div>-->
+        <div class="h-[60vh] w-full overflow-x-hidden">
+            <div class="h-[60vh] box-border relative pl-5 py-[10px] translate-x-[100%] passes-div">
                 <div
                         class="relative w-full h-full flex flex-row items-center justify-start lg:justify-center flex-nowrap box-border gap-0 px-5 horizontal-scroll-element overflow-x-scroll py-9 no-scrollbar"
                         on:mouseenter={flagshipCardHovered}
@@ -162,8 +262,9 @@
                     <div
                             class="w-[90%] min-[410px]:w-[80%] min-[500px]:w-[60%] min-[600px]:w-[48%] sm:w-[45%] md:w-[35%] lg:w-[25%] xl:w-[20%] h-full flex-shrink-0 rounded-2xl bg-on-primary -rotate-[4deg] z-[2] pass-3"
                     ></div>
-            </div>
+                </div>
 
+            </div>
         </div>
     </div>
 </div>
@@ -176,7 +277,7 @@
 
     /* Hide scrollbar for IE, Edge and Firefox */
     .no-scrollbar {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
     }
 </style>

@@ -55,6 +55,7 @@
         })
         onLoadTimeline.to('.typewriter-8', {
             opacity: 1,
+            duration: 0.25,
         })
 
         let eventsBannerTl = gsap.timeline({
@@ -107,9 +108,9 @@
     <Navbar/>
     <div class="h-[800vh] w-full flex flex-col gap-10">
         <div class="h-[90vh] w-full flex flex-col items-center justify-center sticky top-0 intro-banner">
-            <div class="h-fit w-full flex flex-col">
+            <div class="h-fit w-full flex flex-col overflow-hidden">
                 <div
-                        class="pt-14 px-5 brand-font text-left h-fit w-full -translate-x-9 font-bold flex flex-row items-center justify-center text-6xl sm:text-7xl lg:text-8xl text-on-surface overflow-y-clip">
+                        class="pt-14 px-5 brand-font text-left h-fit w-full -translate-x-9 font-bold flex flex-row items-center justify-center text-6xl sm:text-7xl lg:text-9xl text-on-surface overflow-y-clip">
                     <span class="letter-down -translate-y-[70px]">F</span>
                     <span class="letter-down -translate-y-[90px]">E</span>
                     <span class="letter-down -translate-y-[110px]">A</span>
@@ -122,7 +123,7 @@
 
                 </div>
                 <div
-                        class="px-5 brand-font text-right h-fit w-full translate-x-9 font-bold flex flex-row items-center justify-center text-6xl sm:text-7xl lg:text-8xl text-on-surface overflow-y-clip">
+                        class="px-5 brand-font text-right h-fit w-full translate-x-9 lg:translate-x-24 font-bold flex flex-row items-center justify-center text-6xl sm:text-7xl lg:text-9xl text-on-surface overflow-y-clip">
                     <span class="letter-down -translate-y-[240px]">E</span>
                     <span class="letter-down -translate-y-[260px]">V</span>
                     <span class="letter-down -translate-y-[280px]">E</span>
@@ -132,7 +133,7 @@
                 </div>
             </div>
             <div class="h-fit w-full flex flex-col items-center justify-center px-5 mt-24">
-                <p class="brand-font text-3xl text-primary tracking-wide text-center">
+                <p class="brand-font text-3xl sm:text-4xl lg:text-5xl text-primary tracking-wide text-center">
                     <span class="typewriter-1 opacity-0">INNOVATE</span><span
                         class="typewriter-2 opacity-0">, CELEBRATE</span><span
                         class="typewriter-3 opacity-0">, ILLUMINATE : </span><span class="typewriter-4 opacity-0"> UNLEASH</span><span
@@ -155,7 +156,7 @@
                         <p class="brand-font text-2xl lg:text-3xl tracking-wide text-on-surface/80">Tagline Here</p>
                     </div>
                 </div>
-                <div class="w-full h-full sm:w-[75%] rounded-2xl border-[1.5px] border-on-surface relative text-on-surface flex-shrink-0 flex flex-col p-5 gap-5 lg:gap-9 description-div-event-1 items-start justify-start">
+                <div class="w-full h-full sm:w-[75%] rounded-2xl border-[1.5px] border-on-surface relative text-on-surface flex-shrink-0 flex flex-col p-5 lg:p-10 gap-5 lg:gap-9 description-div-event-1 items-start justify-start">
                     <div class="w-full h-fit flex flex-col gap-2 lg:gap-4">
                         <div class="brand-font text-4xl sm:text-5xl lg:text-6xl text-on-surface h-fit w-fit relative">
                             <p>Description</p>
