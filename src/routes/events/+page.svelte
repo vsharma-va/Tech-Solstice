@@ -156,7 +156,7 @@
                         <p class="brand-font text-2xl lg:text-3xl tracking-wide text-on-surface/80">Tagline Here</p>
                     </div>
                 </div>
-                <div class="w-full h-full sm:w-[75%] rounded-2xl border-[1.5px] border-on-surface relative text-on-surface flex-shrink-0 flex flex-col p-5 lg:p-10 gap-5 lg:gap-9 description-div-event-1 items-start justify-start">
+                <div class="w-full h-full sm:w-[75%] rounded-2xl border-[1.5px] border-on-surface relative text-on-surface flex-shrink-0 flex flex-col p-5 lg:p-10 gap-5 lg:gap-9 description-div-event-1 items-start justify-start backdrop-blur-lg">
                     <div class="w-full h-fit flex flex-col gap-2 lg:gap-4">
                         <div class="brand-font text-4xl sm:text-5xl lg:text-6xl text-on-surface h-fit w-fit relative">
                             <p>Description</p>

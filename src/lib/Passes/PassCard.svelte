@@ -1,0 +1,90 @@
+<script>
+    import {goto} from "$app/navigation";
+
+    export let displayName;
+    export let rotateClass;
+    export let cardBackgroundColorClass;
+    export let headingTextColorClass;
+    export let headingTextUnderlineColorClass;
+    export let entryTextColorClass;
+    export let buttonBgColorClass;
+    export let buttonTextColorClass;
+    export let buttonPriceBgColorClass;
+    export let buttonPriceTextColorClass;
+    export let includesArray;
+    export let excludedArray;
+    export let price;
+    export let redirectToken;
+    export let owned;
+    export let token;
+</script>
+
+<div
+        class="w-[81%] min-[410px]:w-[71%] min-[500px]:w-[56%] min-[600px]:w-[45%] sm:w-[43%] md:w-[34%] lg:w-[23%] xl:w-[19%] h-full flex-shrink-0 flex flex-col items-start justify-start rounded-2xl border-2 border-surface {cardBackgroundColorClass} {rotateClass} pass-1 p-5 hover:-translate-y-[8px] hover:scale-[1.01] transition-all duration-300"
+>
+    <div
+            class="h-fit w-fit brand-font text-4xl {headingTextColorClass} relative"
+    >
+        {displayName}
+        <div
+                class="h-[10px] w-full absolute bottom-0 {headingTextUnderlineColorClass}"
+        ></div>
+    </div>
+    {#if !owned}
+        <div
+                class="h-full w-full flex flex-col items-start justify-between"
+        >
+            <div
+                    class="h-full w-full flex flex-col items-start justify-center p-4"
+            >
+                <div
+                        class="h-fit w-full flex flex-col items-start justify-center py-2"
+                >
+                    {#each includesArray as includeValue}
+                        <div
+                                class="relative brand-font text-2xl tracking-wide {entryTextColorClass} flex flex-row items-center justify-start gap-1"
+                        >
+                            <div
+                                    class="h-3 w-3 rounded-full bg-success/70"
+                            ></div>
+                            <p>{includeValue}</p>
+                        </div>
+                    {/each}
+                    {#each excludedArray as excludedValue}
+                        <div
+                                class="relative brand-font text-2xl tracking-wide {entryTextColorClass} flex flex-row items-center justify-start gap-1"
+                        >
+                            <div
+                                    class="h-3 rounded-full bg-error/70 w-3 flex items-center justify-center"
+                            ></div>
+                            {excludedValue}
+                            <div
+                                    class="absolute top-1/2 -translate-y-1/2 h-[4px] w-full bg-error/60 left-0"
+                            ></div>
+                        </div>
+                    {/each}
+                </div>
+            </div>
+            <button
+                    class="rounded-2xl {buttonBgColorClass} text-2xl flex flex-row items-center justify-center gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface hover:text-surface"
+                    on:click={() => {
+                    goto(`/payment/${redirectToken}`)
+                }}
+            >
+                BUY
+                <div class="{buttonPriceBgColorClass} {buttonPriceTextColorClass} group-hover:bg-primary group-hover:text-on-primary brand-font text-2x rounded-2xl flex flex-row items-center justify-center px-4 py-1 flagship-buy-text">
+                    <p>₹{price}</p>
+                </div>
+            </button>
+        </div>
+    {:else}
+        <div class="h-full w-full flex flex-col">
+            <div class="h-full w-full flex flex-col items-center justify-end">
+                <p class="brand-font text-4xl tracking-wider {buttonTextColorClass}">{token}</p>
+            </div>
+            <div class="h-full w-full flex flex-col items-end justify-end">
+                <p class="brand-font text-2xl tracking-wider {buttonPriceTextColorClass}">Thank You!</p>
+            </div>
+        </div>
+    {/if}
+</div>

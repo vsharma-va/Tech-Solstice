@@ -14,6 +14,7 @@
     let passesNavLink;
     let eventsNavLink;
     let travelTo;
+    let myPassNavLink;
 
     onMount(() => {
         navBarOpenTimeline = gsap.timeline({
@@ -84,7 +85,7 @@
         let homeScreenNavTimeline = gsap.timeline({
             onComplete: () => {
                 if (travelTo !== "/login") {
-                    if(travelTo === $page.url.pathname) {
+                    if (travelTo === $page.url.pathname) {
                         homeScreenNavTimeline.reverse();
                     } else {
                         goto(travelTo);
@@ -123,6 +124,9 @@
         loginNavLink.classList.add("to-hide-nav-link");
         passesNavLink.classList.add("to-hide-nav-link");
         eventsNavLink.classList.add("to-hide-nav-link");
+        if (myPassNavLink) {
+            myPassNavLink.classList.add("to-hide-nav-link");
+        }
         travelTo = "/";
         navClickAnimation();
     }
@@ -136,6 +140,9 @@
         homeNavLink.classList.add("to-hide-nav-link");
         passesNavLink.classList.add("to-hide-nav-link");
         eventsNavLink.classList.add("to-hide-nav-link");
+        if (myPassNavLink) {
+            myPassNavLink.classList.add("to-hide-nav-link");
+        }
         travelTo = "/login";
         navClickAnimation();
     }
@@ -149,7 +156,24 @@
         homeNavLink.classList.add("to-hide-nav-link");
         loginNavLink.classList.add("to-hide-nav-link");
         eventsNavLink.classList.add("to-hide-nav-link");
+        if (myPassNavLink) {
+            myPassNavLink.classList.add("to-hide-nav-link");
+        }
         travelTo = "/passes";
+        navClickAnimation();
+    }
+
+    function myPassButtonClicked() {
+        clearSpecialNavClasses(homeNavLink);
+        clearSpecialNavClasses(loginNavLink);
+        clearSpecialNavClasses(passesNavLink);
+        clearSpecialNavClasses(eventsNavLink);
+        myPassNavLink.classList.add("to-scale-nav-link");
+        homeNavLink.classList.add("to-hide-nav-link");
+        loginNavLink.classList.add("to-hide-nav-link");
+        eventsNavLink.classList.add("to-hide-nav-link");
+        passesNavLink.classList.add("to-hide-nav-link");
+        travelTo = "/my-passes";
         navClickAnimation();
     }
 
@@ -162,6 +186,9 @@
         homeNavLink.classList.add("to-hide-nav-link");
         loginNavLink.classList.add("to-hide-nav-link");
         passesNavLink.classList.add("to-hide-nav-link");
+        if (myPassNavLink) {
+            myPassNavLink.classList.add("to-hide-nav-link");
+        }
         travelTo = "/events";
         navClickAnimation();
     }
@@ -204,6 +231,22 @@
                 <span class="nav-letter-down -translate-y-[110px]">T</span>
                 <span class="nav-letter-down -translate-y-[130px]">S</span>
             </button>
+            {#if $page.data.session?.user}
+                <button
+                        class="brand-font text-3xl font-thin tracking-wide text-on-primary flex flex-row h-fit w-full overflow-hidden items-center justify-center events-nav-link"
+                        on:click={myPassButtonClicked}
+                        bind:this={myPassNavLink}>
+                    <span class="nav-letter-down -translate-y-[30px]">M</span>
+                    <span class="nav-letter-down -translate-y-[50px]">Y</span>
+                    <span class="nav-letter-down -translate-y-[70px]">&nbsp;</span>
+                    <span class="nav-letter-down -translate-y-[90px]">P</span>
+                    <span class="nav-letter-down -translate-y-[110px]">A</span>
+                    <span class="nav-letter-down -translate-y-[130px]">S</span>
+                    <span class="nav-letter-down -translate-y-[150px]">S</span>
+                    <span class="nav-letter-down -translate-y-[170px]">E</span>
+                    <span class="nav-letter-down -translate-y-[190px]">S</span>
+                </button>
+            {/if}
             <button class="brand-font text-3xl font-thin tracking-wide text-on-primary flex flex-row h-fit w-full overflow-hidden items-center justify-center login-nav-link"
                     on:click={async () => {
                         if($page.data.session?.user){
@@ -230,6 +273,7 @@
                     <span class="nav-letter-down -translate-y-[1100px]">N</span>
                 {/if}
             </button>
+
         </div>
         <div class="h-fit w-[7%] absolute left-1/2 -translate-x-1/2 -bottom-[9%] rounded-full bg-primary cursor-pointer z-[10]"
              on:click={animateNavButton}>

@@ -3,6 +3,8 @@
     import Lenis from '@studio-freight/lenis';
     import {onMount} from "svelte";
     import AuthNotif from "$lib/common/AuthNotif.svelte";
+    import InvalidPassTokenNotif from "$lib/common/InvalidPassTokenNotif.svelte";
+    import AlreadyOwnedNotif from "$lib/common/AlreadyOwnedNotif.svelte";
 
     onMount(() => {
         let isMobile = function () {
@@ -26,4 +28,6 @@
 </script>
 
 <AuthNotif/>
+<AlreadyOwnedNotif />
+<InvalidPassTokenNotif />
 <slot/>

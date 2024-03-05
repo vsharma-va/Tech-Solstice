@@ -23,6 +23,10 @@
 		"@auth/sveltekit": "^0.13.0",
 		"@studio-freight/lenis": "^1.0.39",
 		"dotenv": "^16.4.5",
-		"gsap": "^3.12.5"
+		"gsap": "^3.12.5",
+		"jsonwebtoken": "^9.0.2",
+		"mongodb": "^6.4.0",
+		"razorpay": "^2.9.2",
+		"uuid": "^9.0.1"
 	}
 }

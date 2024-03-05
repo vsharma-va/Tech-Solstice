@@ -3,6 +3,10 @@
     import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
     import {onMount} from "svelte";
     import Navbar from "$lib/common/Navbar.svelte";
+    import PassCard from "$lib/Passes/PassCard.svelte";
+    import {goto} from "$app/navigation";
+
+    export let data;
 
     let flagshipCardTimeline;
     let flagshipBuyTimeline;
@@ -11,6 +15,35 @@
     let onPrimaryContainer = "#612c8a";
     let surface = "#1d1b1e";
     let onSurface = "#e7e1e5";
+
+    let cardColorPallets = [{
+        cardBackgroundColorClass: "bg-on-surface",
+        headingTextColorClass: "text-surface",
+        headingTextUnderlineColorClass: "bg-primary/80",
+        entryTextColorClass: "text-surface",
+        buttonBgColorClass: "bg-primary",
+        buttonTextColorClass: "text-on-primary",
+        buttonPriceBgColorClass: "bg-on-surface",
+        buttonPriceTextColorClass: "text-surface",
+    }, {
+        cardBackgroundColorClass: "bg-primary-container",
+        headingTextColorClass: "text-on-primary-container",
+        headingTextUnderlineColorClass: "bg-on-primary-container/80",
+        entryTextColorClass: "text-on-primary-container",
+        buttonBgColorClass: "bg-on-primary-container",
+        buttonTextColorClass: "text-primary-container",
+        buttonPriceBgColorClass: "bg-on-surface",
+        buttonPriceTextColorClass: "text-surface",
+    }, {
+        cardBackgroundColorClass: "bg-primary",
+        headingTextColorClass: "text-primary-container",
+        headingTextUnderlineColorClass: "bg-on-primary-container/80",
+        entryTextColorClass: "text-primary-container",
+        buttonBgColorClass: "bg-primary-container",
+        buttonTextColorClass: "text-primary",
+        buttonPriceBgColorClass: "bg-on-surface",
+        buttonPriceTextColorClass: "text-surface",
+    }]
 
     onMount(() => {
         gsap.registerPlugin(ScrollTrigger);
@@ -121,6 +154,37 @@
 <Navbar/>
 <div class="h-fit w-full pass-trigger bg-surface">
     <div class="h-[150vh] w-full flex flex-col">
+        {#if data.existingPayments}
+            <div class="h-screen w-full fixed top-0 backdrop-blur-2xl z-[3] flex flex-col items-center justify-center">
+                <div class="h-fit w-fit rounded-2xl border-2 border-on-surface bg-surface flex flex-col items-start justify-center p-5 gap-5">
+                    <p class="brand-font text-primary text-5xl tracking-wide">ALERT!</p>
+                    <div class="h-fit w-fit flex flex-col">
+                        <p class="brand-font text-on-surface text-3xl tracking-wide">An already open payment was
+                            found!</p>
+                        <p class="brand-font text-on-surface text-3xl tracking-wide">What would you like to do?</p>
+                        <div class="h-fit w-full flex flex-row items-center justify-between mt-5">
+                            <button class="bg-primary text-on-primary rounded-2xl px-2 py-1 brand-font tracking-wide text-xl"
+                                    on:click={() => {
+                                    console.log("Hello World");
+                                    for (let key in data.availablePasses) {
+                                        if(data.availablePasses[key].dbName === data.existingPaymentsData.pass_name) {
+                                            goto(`/payment/${data.availablePasses[key].token}`);
+                                            break;
+                                        }
+                                    }
+                                }}>
+                                >
+                                Refresh Payment Status?
+                            </button>
+                            <form action="?/cancelPayment"></form>
+                            <button class="bg-primary text-on-primary rounded-2xl px-4 py-1 brand-font tracking-wide text-xl">
+                                Cancel?
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {/if}
         <div class="h-[90vh] w-full flex flex-col items-center justify-center intro-banner sticky top-0">
             <div class="h-fit w-full flex flex-col overflow-hidden">
                 <div
@@ -184,86 +248,51 @@
             <div class="h-[60vh] box-border relative pl-5 py-[10px] translate-x-[100%] passes-div">
                 <div
                         class="relative w-full h-full flex flex-row items-center justify-start lg:justify-center flex-nowrap box-border gap-0 px-5 horizontal-scroll-element overflow-x-scroll py-9 no-scrollbar"
-                        on:mouseenter={flagshipCardHovered}
-                        on:mouseleave={flagshipCardInactive}
                 >
-                    <div
-                            class="w-[81%] min-[410px]:w-[71%] min-[500px]:w-[56%] min-[600px]:w-[45%] sm:w-[43%] md:w-[34%] lg:w-[23%] xl:w-[19%] h-full flex-shrink-0 flex flex-col items-start justify-start rounded-2xl border-2 border-surface bg-on-surface -rotate-[4deg] pass-1 p-5"
-                    >
-                        <div
-                                class="h-fit w-fit brand-font text-4xl text-surface relative"
-                        >
-                            Flagship Pass
-                            <div
-                                    class="h-[10px] w-full absolute bottom-0 bg-primary/80"
-                            ></div>
-                        </div>
-                        <div
-                                class="h-full w-full flex flex-col items-start justify-between"
-                        >
-                            <div
-                                    class="h-full w-full flex flex-col items-start justify-center p-4"
-                            >
-                                <div
-                                        class="h-fit w-full flex flex-col items-start justify-center py-2"
-                                >
-                                    <div
-                                            class="relative brand-font text-2xl tracking-wide text-surface flex flex-row items-center justify-start gap-1"
-                                    >
-                                        <div
-                                                class="h-3 w-3 rounded-full bg-success/70"
-                                        ></div>
-                                        <p>Proshow</p>
-                                    </div>
-                                    <div
-                                            class="h-fit w-full items-center justify-start relative brand-font text-2xl tracking-wide text-surface flex flex-row gap-1"
-                                    >
-                                        <div
-                                                class="h-3 rounded-full bg-success/70 w-3"
-                                        ></div>
-                                        <p>Standup</p>
-                                    </div>
-                                    <div
-                                            class="relative brand-font text-2xl tracking-wide text-surface flex flex-row items-center justify-start gap-1"
-                                    >
-                                        <div
-                                                class="h-3 rounded-full bg-success/70 w-3"
-                                        ></div>
-                                        <p class="">All Flagship Events</p>
-                                    </div>
-                                    <div
-                                            class="relative brand-font text-2xl tracking-wide text-surface flex flex-row items-center justify-start gap-1"
-                                    >
-                                        <div
-                                                class="h-3 rounded-full bg-error/70 w-3 flex items-center justify-center"
-                                        ></div>
-                                        Esports
-                                        <div
-                                                class="absolute top-1/2 -translate-y-1/2 h-[4px] w-full bg-error/60 left-0"
-                                        ></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button
-                                    class="rounded-2xl bg-primary text-2xl flex flex-row items-center justify-center gap-3 text-on-primary brand-font px-5 py-1 flagship-buy-button"
-                                    on:mouseenter={flagshipBuyHovered}
-                                    on:mouseleave={flagshipBuyExit}
-                            >
-                                BUY
-                                <div class="bg-on-surface brand-font text-2x rounded-2xl flex flex-row items-center justify-center px-4 py-1 flagship-buy-text">
-                                    <p>₹200</p>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
-                    <div
-                            class="w-[90%] min-[410px]:w-[80%] min-[500px]:w-[60%] min-[600px]:w-[48%] sm:w-[45%] md:w-[35%] lg:w-[25%] xl:w-[20%] h-full flex-shrink-0 rounded-2xl bg-primary rotate-[8deg] z-[2] pass-2"
-                    ></div>
-                    <div
-                            class="w-[90%] min-[410px]:w-[80%] min-[500px]:w-[60%] min-[600px]:w-[48%] sm:w-[45%] md:w-[35%] lg:w-[25%] xl:w-[20%] h-full flex-shrink-0 rounded-2xl bg-on-primary -rotate-[4deg] z-[2] pass-3"
-                    ></div>
+                    {#each Object.entries(data.availablePasses) as [key, value], index}
+                        {#if (index + 1) % 2 === 0}
+                            <PassCard rotateClass="rotate-[8deg]"
+                                      includesArray="{value['includes']}"
+                                      excludedArray="{value.excluded}"
+                                      price="{value.cost}"
+                                      redirectToken="{value.token}"
+                                      displayName="{value.displayName}"
+                                      owned="{false}"
+                                      token=""
+                                      cardBackgroundColorClass="{cardColorPallets[index%(cardColorPallets.length)].cardBackgroundColorClass}"
+                                      headingTextUnderlineColorClass="{cardColorPallets[index%(cardColorPallets.length)].headingTextUnderlineColorClass}"
+                                      headingTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].headingTextColorClass}"
+                                      entryTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].entryTextColorClass}"
+                                      buttonBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonBgColorClass}"
+                                      buttonTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonTextColorClass}"
+                                      buttonPriceBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceBgColorClass}"
+                                      buttonPriceTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceTextColorClass}"/>
+                        {:else}
+                            <PassCard rotateClass="-rotate-[4deg]"
+                                      includesArray="{value['includes']}"
+                                      excludedArray="{value.excluded}"
+                                      price="{value.cost}"
+                                      redirectToken="{value.token}"
+                                      displayName="{value.displayName}"
+                                      owned="{false}"
+                                      token=""
+                                      cardBackgroundColorClass="{cardColorPallets[index%(cardColorPallets.length)].cardBackgroundColorClass}"
+                                      headingTextUnderlineColorClass="{cardColorPallets[index%(cardColorPallets.length)].headingTextUnderlineColorClass}"
+                                      headingTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].headingTextColorClass}"
+                                      entryTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].entryTextColorClass}"
+                                      buttonBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonBgColorClass}"
+                                      buttonTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonTextColorClass}"
+                                      buttonPriceBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceBgColorClass}"
+                                      buttonPriceTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceTextColorClass}"/>
+                        {/if}
+                        <!--                    <div-->
+                        <!--                            class="w-[90%] min-[410px]:w-[80%] min-[500px]:w-[60%] min-[600px]:w-[48%] sm:w-[45%] md:w-[35%] lg:w-[25%] xl:w-[20%] h-full flex-shrink-0 rounded-2xl bg-primary rotate-[8deg] z-[2] pass-2"-->
+                        <!--                    ></div>-->
+                        <!--                    <div-->
+                        <!--                            class="w-[90%] min-[410px]:w-[80%] min-[500px]:w-[60%] min-[600px]:w-[48%] sm:w-[45%] md:w-[35%] lg:w-[25%] xl:w-[20%] h-full flex-shrink-0 rounded-2xl bg-on-primary -rotate-[4deg] z-[2] pass-3"-->
+                        <!--                    ></div>-->
+                    {/each}
                 </div>
-
             </div>
         </div>
     </div>
