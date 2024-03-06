@@ -34,7 +34,7 @@ export const load = async (event) => {
         console.log(foundPayment.razor_link_id)
         const razorpayObj = await razorpayInstance.paymentLink.fetch(foundPayment.razor_link_id);
         if (razorpayObj.status === "paid") {
-            // check if pass and payment has already been updated?
+            // check if pass and payment have already been updated?
             let checkPass = await passes.findOne({
                 payment_id: razorpayObj.id,
                 email: session.user.email,
