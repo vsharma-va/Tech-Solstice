@@ -11,7 +11,7 @@
         });
         onLoadTimeline.to('.underline-text', {
             width: "100%",
-        }, "<");
+        }, "<1");
         setTimeout(() => {
             window.location = data.redirectUrl;
         }, 3000)
