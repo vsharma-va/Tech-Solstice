@@ -2,6 +2,7 @@
     import {browser} from '$app/environment';
     import {onMount} from "svelte";
     import {gsap} from "gsap/dist/gsap";
+    import {page} from "$app/stores";
 
     let isLogin;
     let isLoggedOut;
@@ -66,7 +67,7 @@
                     class="letter-down -translate-y-[120px]">M</span><span
                     class="letter-down -translate-y-[140px]">E</span>
             </div>
-            <p>VAIBHAV!</p>
+            <p>{$page.data.session.user.name.split(" ")[0]}</p>
         </div>
     </div>
 {/if}
