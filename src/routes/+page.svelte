@@ -110,11 +110,7 @@
             duration: 5,
         })
 
-        let onLoadTimeline = gsap.timeline({
-            onComplete: () => {
-                changeThemeTimeline.play(0);
-            }
-        });
+        let onLoadTimeline = gsap.timeline({});
         onLoadTimeline.to('.load-background', {
             backgroundColor: onSurface,
             delay: 1,
@@ -170,80 +166,52 @@
             y: 0,
             opacity: 1,
         }, "<");
+        onLoadTimeline.to('.letter-up-5', {
+            y: 0,
+            opacity: 1,
+        }, "<");
+        onLoadTimeline.to('.letter-up-6', {
+            y: 0,
+            opacity: 1,
+        }, "<");
+        onLoadTimeline.to('.letter-up-7', {
+            y: 0,
+            opacity: 1,
+        }, "<");
+        onLoadTimeline.to('.letter-up-8', {
+            y: 0,
+            opacity: 1,
+        }, "<");
         onLoadTimeline.to('.load-background', {
             display: "none",
+            // duration: 0,
         });
-
-        let changeThemeTimeline = gsap.timeline({
-            onComplete: () => {
-                spotlightInfiniteTimeline.play(0);
-            }
+        onLoadTimeline.to('.letter-appear-1', {
+            opacity: 1,
+            duration: 0.1,
         });
-        changeThemeTimeline.pause(0);
-        changeThemeTimeline.to(".spotlight", {
+        onLoadTimeline.to('.letter-appear-2', {
+            opacity: 1,
+            duration: 0.1,
+        });
+        onLoadTimeline.to('.letter-appear-3', {
+            opacity: 1,
+            duration: 0.1,
+        });
+        onLoadTimeline.to('.letter-appear-4', {
+            opacity: 1,
+            duration: 0.1,
+        });
+        onLoadTimeline.to('.letter-appear-5', {
+            opacity: 1,
+            duration: 0.1,
+        });
+        onLoadTimeline.to('.brand-name', {
+            display: "none",
+        })
+        onLoadTimeline.to('.brand-name-copy', {
             display: "flex",
-            opacity: 0,
-            duration: 0.05
-        });
-        changeThemeTimeline.to(".spotlight", {
-            opacity: 0.85,
-            duration: 0.05
-        });
-        changeThemeTimeline.to(".spotlight", {
-            opacity: 0,
-            duration: 0.05
-        });
-        changeThemeTimeline.to(".spotlight", {
-            opacity: 0.25,
-            duration: 0.05
-        });
-        changeThemeTimeline.to(".spotlight", {
-            opacity: 0,
-            duration: 0.05
-        });
-        changeThemeTimeline.to(".spotlight", {
-            opacity: 0.75,
-            duration: 0.1
-        });
-
-        let spotlightInfiniteTimeline = gsap.timeline({
-            onComplete: () => {
-                spotlightInfiniteTimeline.reverse();
-            }, onReverseComplete: () => {
-                spotlightInfiniteTimeline.play();
-            }
-        });
-        spotlightInfiniteTimeline.pause(0);
-        spotlightInfiniteTimeline.to('.spot-left', {
-            scale: 1.2,
-            rotate: "22deg",
-            duration: 3,
-        });
-        spotlightInfiniteTimeline.to('.spot-left', {
-            scale: 1,
-            rotate: "18deg",
-            duration: 3,
-        });
-        spotlightInfiniteTimeline.to('.spot-center', {
-            scale: 1.2,
-            rotate: "2deg",
-            duration: 3.75,
-        }, "<");
-        spotlightInfiniteTimeline.to('.spot-center', {
-            scale: 1,
-            rotate: "-2deg",
-            duration: 3.75,
-        });
-        spotlightInfiniteTimeline.to('.spot-right', {
-            scale: 1.2,
-            rotate: "-22deg",
-            duration: 2.45,
-        }, "<");
-        spotlightInfiniteTimeline.to('.spot-right', {
-            scale: 1,
-            rotate: "-18deg",
-            duration: 2.45,
-        });
+        })
 
         let scrollAnimation = gsap.timeline({
             scrollTrigger: {
@@ -255,7 +223,8 @@
             }
         })
         scrollAnimation.to(".first-division-container", {
-            scale: 0.85,
+            scale: 0.65,
+            y: 200,
         });
 
         let featuredEventsHeadingTimeline = gsap.timeline({
@@ -703,28 +672,55 @@
             <!--            <div class="h-[140%] w-full bg-transparent hidden absolute top-0 left-1/2 -translate-x-1/2 spotlight spot-center"></div>-->
             <!--            <div class="h-[140%] w-full bg-transparent hidden absolute top-0 left-1/2 -translate-x-1/2 spotlight spot-right -rotate-[20deg]"></div>-->
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div class="h-fit w-full brand-font text-[140px] sm:text-[160px] md:text-[195px] lg:text-[210px] xl:text-[233px] tracking-wide hidden text-primary-container minus-blur overflow-y-clip flex-row items-center justify-between first-division-tech-container">
+                <div class="h-fit w-full brand-font text-[140px] sm:text-[160px] md:text-[195px] lg:text-[210px] xl:text-[233px] tracking-wide hidden text-primary-container minus-blur overflow-y-clip flex-row items-center justify-center first-division-tech-container">
                     <div class="w-full h-full flex flex-row">
                         <span class="translate-y-14 opacity-0 letter-up-1 left-of-make-italic leading-[0.88]">T</span><span
                             class="translate-y-[70px] opacity-0 letter-up-2 make-italic leading-[0.88]">E</span><span
                             class="translate-y-[90px] opacity-0 letter-up-3 leading-[0.88]">C</span><span
                             class="translate-y-[110px] opacity-0 letter-up-4 leading-[0.88]">H</span>
                     </div>
-                    <div class="flex flex-col w-full h-[40px] sm:h-[50px] md:h-[60px] ml-2 overflow-hidden relative z-[2] blur-sm minus-blur">
-                        <p class="style-font text-[40px] sm:text-[50px] md:text-[60px] font-[300] text-primary absolute top-0">
-                            Solstice
-                        </p>
-                    </div>
                 </div>
+
+                <!--                <div class="h-fit w-full brand-font text-[155px] sm:text-[175px] md:text-[210px] lg:text-[210px] xl:text-[275px] tracking-wide hidden text-primary minus-blur overflow-y-clip flex-row items-center justify-start first-division-solstice-container">-->
+                <!--                    <span class="translate-y-14 opacity-0 letter-up-1 leading-[0.88]">N</span>-->
+                <!--                    <span-->
+                <!--                            class="translate-y-[70px] opacity-0 letter-up-2 left-of-make-italic leading-[0.88]">E</span><span-->
+                <!--                        class="translate-y-[90px] opacity-0 letter-up-3 make-italic leading-[0.88]">X</span><span-->
+                <!--                        class="translate-y-[110px] opacity-0 letter-up-4 leading-[0.88]">U</span>-->
+                <!--                    <span class="translate-y-[130px] opacity-0 letter-up-5 leading-[0.88]">S</span>-->
+                <!--&lt;!&ndash;                    <span class="translate-y-[150px] opacity-0 letter-up-6 left-of-make-italic leading-[0.88]">I</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;                    <span class="translate-y-[170px] opacity-0 letter-up-7 make-italic leading-[0.88]">C</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;                    <span class="translate-y-[190px] opacity-0 letter-up-8 make-italic leading-[0.88]">E</span>&ndash;&gt;-->
+                <!--                </div>-->
                 <div class="h-fit w-full brand-font text-[155px] sm:text-[175px] md:text-[210px] lg:text-[210px] xl:text-[275px] tracking-wide hidden text-primary minus-blur overflow-y-clip flex-row items-center justify-center first-division-solstice-container">
-                    <span class="translate-y-14 opacity-0 letter-up-1 leading-[0.88]">N</span>
+                    <span class="translate-y-14 opacity-0 letter-up-1 leading-[0.88]">S</span>
                     <span
-                            class="translate-y-[70px] opacity-0 letter-up-2 left-of-make-italic leading-[0.88]">I</span><span
-                        class="translate-y-[90px] opacity-0 letter-up-3 make-italic leading-[0.88]">R</span><span
-                        class="translate-y-[110px] opacity-0 letter-up-4 leading-[0.88]">V</span>
-                    <span class="translate-y-[130px] opacity-0 letter-up-1 leading-[0.88]">A</span>
-                    <span class="translate-y-[150px] opacity-0 letter-up-1 left-of-make-italic leading-[0.88]">N</span>
-                    <span class="translate-y-[170px] opacity-0 letter-up-1 make-italic leading-[0.88]">A</span>
+                            class="translate-y-[70px] opacity-0 letter-up-2 left-of-make-italic leading-[0.88]">O</span><span
+                        class="translate-y-[90px] opacity-0 letter-up-3 make-italic leading-[0.88]">L</span><span
+                        class="translate-y-[110px] opacity-0 letter-up-4 leading-[0.88]">S</span>
+                    <span class="translate-y-[130px] opacity-0 letter-up-5 leading-[0.88]">T</span>
+                    <span class="translate-y-[150px] opacity-0 letter-up-6 left-of-make-italic leading-[0.88]">I</span>
+                    <span class="translate-y-[170px] opacity-0 letter-up-7 make-italic leading-[0.88]">C</span>
+                    <span class="translate-y-[190px] opacity-0 letter-up-8 make-italic leading-[0.88]">E</span>
+                </div>
+                <!--                <div class="flex flex-col items-center justify-center w-full h-[128px] overflow-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">-->
+                <!--                    <div class="style-font text-9xl h-full w-full font-[300] text-white text-center flex flex-row items-center justify-center brand-name">-->
+                <!--                        <span class="letter-appear-1 opacity-0">N</span><span class="letter-appear-2 opacity-0">e</span><span-->
+                <!--                            class="letter-appear-3 opacity-0">x</span><span-->
+                <!--                            class="letter-appear-4 opacity-0">u</span><span-->
+                <!--                            class="letter-appear-5 opacity-0">s</span>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 text-9xl md:text-[10rem] xl:text-[13rem] text-white text-center style-font -translate-y-1/2 flex flex-row items-center justify-center h-full w-full brand-name">
+                    <span class="letter-appear-1 opacity-0">N</span><span
+                        class="letter-appear-2 opacity-0">e</span><span
+                        class="letter-appear-3 opacity-0">x</span><span
+                        class="letter-appear-4 opacity-0">u</span><span
+                        class="letter-appear-5 opacity-0">s</span>
+                </div>
+
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 text-9xl md:text-[10rem] xl:text-[13rem] text-white text-center style-font -translate-y-1/2 flex flex-row items-center justify-center h-full w-full brand-name-copy hidden">
+                    <p class="glitch" data-glitch="Nexus">Nexus</p>
                 </div>
             </div>
             <svg id="Group_1" xmlns="http://www.w3.org/2000/svg"
@@ -753,8 +749,8 @@
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary rounded-2xl -rotate-6 z-[0]"></div>
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface rounded-2xl -rotate-3 z-[0]"></div>
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container rounded-2xl flex flex-col items-center justify-center">
-                                <p class="style-font text-3xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
-                                    Nirvana</p>
+                                <p class="style-font text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
+                                    Nexus</p>
                                 <p class="brand-font text-xl mt-2 sm:mt-0 text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
                                     Event 1</p>
                                 <p class="brand-font text-xl text-on-primary-container tracking-wide hidden featured-events-d-6 opacity-0">
@@ -768,8 +764,8 @@
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary rounded-2xl -rotate-6 z-[0]"></div>
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary-container rounded-2xl -rotate-3 z-[0]"></div>
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container rounded-2xl flex flex-col items-center justify-center">
-                                <p class="style-font text-3xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
-                                    Nirvana</p>
+                                <p class="style-font text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
+                                    Nexus</p>
                                 <p class="brand-font text-xl mt-2 sm:mt-0 text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
                                     Event 1</p>
                                 <p class="brand-font text-xl text-on-primary-container tracking-wide hidden featured-events-d-6 opacity-0">
@@ -783,8 +779,8 @@
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary rounded-2xl -rotate-6 z-[0]"></div>
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface rounded-2xl -rotate-3 z-[0]"></div>
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container rounded-2xl flex flex-col items-center justify-center">
-                                <p class="style-font text-3xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
-                                    Nirvana</p>
+                                <p class="style-font text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
+                                    Nexus</p>
                                 <p class="brand-font text-xl mt-2 sm:mt-0 text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
                                     Event 1</p>
                                 <p class="brand-font text-xl text-on-primary-container tracking-wide hidden featured-events-d-6 opacity-0">
@@ -811,7 +807,7 @@
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface rounded-2xl rotate-d-3-reveal"></div>
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container rounded-2xl flex flex-col items-center justify-center">
                     <p class="style-font text-5xl lg:text-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
-                        Nirvana</p>
+                        Nexus</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
                         Event 1</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden featured-events-d-6 opacity-0">
@@ -877,7 +873,7 @@
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary-container rounded-2xl tech-rotate-d-3-reveal"></div>
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container rounded-2xl flex flex-col items-center justify-center">
                     <p class="style-font text-5xl lg:text-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide tech-events-initial">
-                        Nirvana</p>
+                        Nexus</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden tech-events-d-3 opacity-0">
                         Event 1</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden tech-events-d-6 opacity-0">
@@ -944,7 +940,7 @@
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface rounded-2xl esports-rotate-d-3-reveal"></div>
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container rounded-2xl flex flex-col items-center justify-center">
                     <p class="style-font text-5xl lg:text-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide esports-events-initial">
-                        Nirvana</p>
+                        Nexus</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden esports-events-d-3 opacity-0">
                         Event 1</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden esports-events-d-6 opacity-0">
@@ -1036,3 +1032,95 @@
         </div>
     </div>
 </div>
+
+<style>
+    .glitch {
+        position: relative;
+        color: #fff;
+        z-index: 1;
+        animation: shift 1s ease-in-out infinite alternate;
+    }
+
+    .glitch:before,
+    .glitch:after {
+        display: block;
+        content: attr(data-glitch);
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.8;
+    }
+
+    .glitch:before {
+        animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+        color: #e1b6ff;
+        z-index: -1;
+    }
+
+    .glitch:after {
+        animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+        color: #490f72;
+        z-index: -2;
+    }
+
+    @keyframes glitch {
+        0% {
+            transform: translate(0);
+        }
+
+        20% {
+            transform: translate(-3px, 3px);
+        }
+
+        40% {
+            transform: translate(-3px, -3px);
+        }
+
+        60% {
+            transform: translate(3px, 3px);
+        }
+
+        80% {
+            transform: translate(3px, -3px);
+        }
+
+        to {
+            transform: translate(0);
+        }
+    }
+
+    @keyframes shift {
+        0%, 40%, 44%, 58%, 61%, 65%, 69%, 73%, 100% {
+            transform: skewX(0deg);
+        }
+
+        41% {
+            transform: skewX(10deg);
+        }
+
+        42% {
+            transform: skewX(-10deg);
+        }
+
+        59% {
+            transform: skewX(40deg) skewY(10deg);
+        }
+
+        60% {
+            transform: skewX(-40deg) skewY(-10deg);
+        }
+
+        63% {
+            transform: skewX(10deg) skewY(-5deg);
+        }
+
+        70% {
+            transform: skewX(-50deg) skewY(-20deg);
+        }
+
+        71% {
+            transform: skewX(10deg) skewY(-10deg);
+        }
+    }
+
+</style>
