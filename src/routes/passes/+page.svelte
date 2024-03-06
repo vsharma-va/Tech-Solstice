@@ -5,6 +5,7 @@
     import Navbar from "$lib/common/Navbar.svelte";
     import PassCard from "$lib/Passes/PassCard.svelte";
     import {goto} from "$app/navigation";
+    import {page} from "$app/stores";
 
     export let data;
 
@@ -47,6 +48,17 @@
 
     onMount(() => {
         gsap.registerPlugin(ScrollTrigger);
+
+        let tl = gsap.timeline();
+        tl.to('.login-notif', {
+            top: 56,
+            duration: 1,
+            ease: "elastic.out(1,0.3)",
+        });
+        tl.to('.login-notif', {
+            top: "-100%",
+            delay: 2,
+        })
 
         let onLoadTimeline = gsap.timeline();
         onLoadTimeline.to(".letter-down", {
@@ -153,6 +165,15 @@
 
 <Navbar/>
 <div class="h-fit w-full pass-trigger bg-surface">
+    {#if !$page.data.session?.user}
+        <div class="fixed -top-[100%] left-1/2 -translate-x-1/2 w-fit h-fit z-[10] bg-surface border-2 border-on-surface px-4 py-2 rounded-2xl login-notif">
+            <div class="brand-font flex flex-row text-3xl text-on-surface tracking-wide gap-1 h-fit w-fit">
+                <div class="flex flex-row h-fit w-fit">
+                    <p class="">Please Login To Buy Passes</p>
+                </div>
+            </div>
+        </div>
+    {/if}
     <div class="h-[150vh] w-full flex flex-col">
         {#if data.existingPayments}
             <div class="h-screen w-full fixed top-0 backdrop-blur-2xl z-[3] flex flex-col items-center justify-center">
