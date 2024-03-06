@@ -37,6 +37,7 @@
     }]
 
     onMount(() => {
+        console.log(data.ownedPasses)
         gsap.registerPlugin(ScrollTrigger);
 
         let onLoadTimeline = gsap.timeline()
@@ -139,35 +140,44 @@
                 <div
                         class="relative w-full h-full flex flex-row items-center justify-start lg:justify-center flex-nowrap box-border gap-0 px-5 horizontal-scroll-element overflow-x-scroll py-9 no-scrollbar"
                 >
-                    {#each Object.entries(data.ownedPasses) as [key, value], index}
-                        {#if (index + 1) % 2 === 0}
-                            <PassCard rotateClass="rotate-[8deg]"
-                                      owned="{true}"
-                                      token="{value.token}"
-                                      displayName="{value.pass_name.split('_')[0].charAt(0).toUpperCase() + value.pass_name.split('_')[0].slice(1)}"
-                                      cardBackgroundColorClass="{cardColorPallets[index%(cardColorPallets.length)].cardBackgroundColorClass}"
-                                      headingTextUnderlineColorClass="{cardColorPallets[index%(cardColorPallets.length)].headingTextUnderlineColorClass}"
-                                      headingTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].headingTextColorClass}"
-                                      entryTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].entryTextColorClass}"
-                                      buttonBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonBgColorClass}"
-                                      buttonTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonTextColorClass}"
-                                      buttonPriceBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceBgColorClass}"
-                                      buttonPriceTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceTextColorClass}"/>
-                        {:else}
-                            <PassCard rotateClass="-rotate-[4deg]"
-                                      owned="{true}"
-                                      token="{value.token}"
-                                      displayName="{value.pass_name.split('_')[0].charAt(0).toUpperCase() + value.pass_name.split('_')[0].slice(1)}"
-                                      cardBackgroundColorClass="{cardColorPallets[index%(cardColorPallets.length)].cardBackgroundColorClass}"
-                                      headingTextUnderlineColorClass="{cardColorPallets[index%(cardColorPallets.length)].headingTextUnderlineColorClass}"
-                                      headingTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].headingTextColorClass}"
-                                      entryTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].entryTextColorClass}"
-                                      buttonBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonBgColorClass}"
-                                      buttonTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonTextColorClass}"
-                                      buttonPriceBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceBgColorClass}"
-                                      buttonPriceTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceTextColorClass}"/>
-                        {/if}
-                    {/each}
+                    {#if data.ownedPasses.length === 0}
+                        <div class="h-full w-full rounded-2xl border-2 border-on-surface flex flex-col items-center justify-center backdrop-blur-lg p-5 gap-5">
+                            <p class="brand-font text-5xl lg:text-6xl text-on-surface">No Owned Passes</p>
+                            <p class="brand-font text-2xl sm:text-3xl lg:text-4xl text-primary text-center">If you have just made the payment go back to
+                                the passes page and click on refresh status on the popup</p>
+                        </div>
+                    {:else}
+                        {#each Object.entries(data.ownedPasses) as [_, value], index}
+                            {#if (index + 1) % 2 === 0}
+                                <PassCard rotateClass="rotate-[8deg]"
+                                          owned="{true}"
+                                          token="{value.token}"
+                                          displayName="{value.pass_name.split('_')[0].charAt(0).toUpperCase() + value.pass_name.split('_')[0].slice(1)}"
+                                          cardBackgroundColorClass="{cardColorPallets[index%(cardColorPallets.length)].cardBackgroundColorClass}"
+                                          headingTextUnderlineColorClass="{cardColorPallets[index%(cardColorPallets.length)].headingTextUnderlineColorClass}"
+                                          headingTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].headingTextColorClass}"
+                                          entryTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].entryTextColorClass}"
+                                          buttonBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonBgColorClass}"
+                                          buttonTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonTextColorClass}"
+                                          buttonPriceBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceBgColorClass}"
+                                          buttonPriceTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceTextColorClass}"/>
+                            {:else}
+                                <PassCard rotateClass="-rotate-[4deg]"
+                                          owned="{true}"
+                                          token="{value.token}"
+                                          displayName="{value.pass_name.split('_')[0].charAt(0).toUpperCase() + value.pass_name.split('_')[0].slice(1)}"
+                                          cardBackgroundColorClass="{cardColorPallets[index%(cardColorPallets.length)].cardBackgroundColorClass}"
+                                          headingTextUnderlineColorClass="{cardColorPallets[index%(cardColorPallets.length)].headingTextUnderlineColorClass}"
+                                          headingTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].headingTextColorClass}"
+                                          entryTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].entryTextColorClass}"
+                                          buttonBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonBgColorClass}"
+                                          buttonTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonTextColorClass}"
+                                          buttonPriceBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceBgColorClass}"
+                                          buttonPriceTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceTextColorClass}"/>
+                            {/if}
+                        {/each}
+                    {/if}
+
                 </div>
             </div>
         </div>
