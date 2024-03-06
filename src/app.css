@@ -13,11 +13,6 @@
     src: url(./lib/assets/fonts/Allura-Regular.ttf) format("truetype");
 }
 
-/*@font-face {*/
-/*    font-family: "Cyber";*/
-/*    src: url(./lib/assets/fonts/Demosdcyberglitch-yw6GM.ttf) format("truetype");*/
-/*}*/
-
 @font-face {
     font-family: "Rhizome";
     src: url(./lib/assets/fonts/Rhizome-RegularTrial.otf) format("opentype");
@@ -26,6 +21,11 @@
 @font-face {
     font-family: "Murmure";
     src: url(./lib/assets/fonts/Le_Murmure-Regular_web.otf) format("opentype");
+}
+
+@font-face {
+    font-family: "Overdrive Sunset";
+    src: url(./lib/assets/fonts/Overdrive_Sunset.otf) format("opentype");
 }
 
 .heading-font {
@@ -41,5 +41,15 @@
 }
 
 .style-font {
-    font-family: "Allura";
+    font-family: "Overdrive Sunset";
 }
+
+.spotlight {
+    opacity: .5;
+    background-image: conic-gradient(from 0deg at 50% -5%,transparent 45%,rgba(225,182,255,.2) 49%,rgba(225,182,255,.4) 50%,rgba(225,182,255,.2) 51%,transparent 55%);
+    border-radius: 9999px;
+    filter: blur(15px);
+    pointer-events: none;
+    transform-origin: 50% 0;
+}
+
