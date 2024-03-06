@@ -1,5 +1,7 @@
 <script>
     import {goto} from "$app/navigation";
+    import {page} from "$app/stores";
+    import {signIn} from "@auth/sveltekit/client";
 
     export let displayName;
     export let rotateClass;
@@ -67,11 +69,19 @@
             </div>
             <button
                     class="rounded-2xl {buttonBgColorClass} text-2xl flex flex-row items-center justify-center gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface hover:text-surface"
-                    on:click={() => {
-                    goto(`/payment/${redirectToken}`)
+                    on:click={async () => {
+                     if($page.session?.user) {
+                        await goto(`/payment/${redirectToken}`)
+                     } else {
+                         await signIn('google', {callbackUrl: `${$page.url.pathname}?signedIn`})
+                     }
                 }}
             >
-                BUY
+                {#if $page.session?.user}
+                    BUY
+                {:else}
+                    LOGIN
+                {/if}
                 <div class="{buttonPriceBgColorClass} {buttonPriceTextColorClass} group-hover:bg-primary group-hover:text-on-primary brand-font text-2x rounded-2xl flex flex-row items-center justify-center px-4 py-1 flagship-buy-text">
                     <p>₹{price}</p>
                 </div>
@@ -80,10 +90,10 @@
     {:else}
         <div class="h-full w-full flex flex-col">
             <div class="h-full w-full flex flex-col items-center justify-end">
-                <p class="brand-font text-4xl tracking-wider {buttonTextColorClass}">{token}</p>
+                <p class="brand-font text-4xl tracking-wider {entryTextColorClass}">{token}</p>
             </div>
             <div class="h-full w-full flex flex-col items-end justify-end">
-                <p class="brand-font text-2xl tracking-wider {buttonPriceTextColorClass}">Thank You!</p>
+                <p class="brand-font text-2xl tracking-wider {entryTextColorClass}">Thank You!</p>
             </div>
         </div>
     {/if}
