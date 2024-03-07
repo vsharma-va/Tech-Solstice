@@ -77,7 +77,7 @@
                      }
                 }}
             >
-                {#if $page.session?.user}
+                {#if $page.data.session?.user}
                     BUY
                 {:else}
                     LOGIN
