@@ -70,7 +70,7 @@
             <button
                     class="rounded-2xl {buttonBgColorClass} text-2xl flex flex-row items-center justify-center gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface hover:text-surface"
                     on:click={async () => {
-                     if($page.session?.user) {
+                     if($page.data.session?.user) {
                         await goto(`/payment/${redirectToken}`)
                      } else {
                          await signIn('google', {callbackUrl: `${$page.url.pathname}?signedIn`})
