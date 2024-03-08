@@ -799,7 +799,7 @@
             </div>
         </div>
     </div>
-    <div class="h-[800dvh] w-full sticky top-0 bg-on-surface featured-events-trigger">
+    <div class="h-[calc(800dvh)] w-full sticky top-0 bg-on-surface featured-events-trigger">
         <div class="h-screen w-full flex sticky top-0 items-center justify-center featured-events-main-container">
             <div class="lg:h-[250px] h-[200px] sm:h-[225px] xl:h-[250px] w-[85%] sm:w-[45%] lg:w-[35%] xl:w-[30%] bg-primary-container rounded-2xl flex flex-col justify-center items-center z-[2] absolute convert-to-laptop-card">
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-2xl rotate-d-9-reveal opacity-0 "></div>
@@ -865,7 +865,7 @@
             </div>
         </div>
     </div>
-    <div class="h-[800dvh] w-full sticky top-0 bg-surface tech-events-trigger z-[2]">
+    <div class="h-[calc(800dvh)] w-full sticky top-0 bg-surface tech-events-trigger z-[2]">
         <div class="h-screen w-full flex sticky top-0 items-center justify-center">
             <div class="lg:h-[250px] h-[200px] sm:h-[225px] xl:h-[250px] w-[85%] sm:w-[45%] lg:w-[35%] xl:w-[30%] bg-primary-container rounded-2xl flex flex-col justify-center items-center z-[2] absolute tech-convert-to-laptop-card">
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-2xl tech-rotate-d-9-reveal opacity-0 "></div>
@@ -932,7 +932,7 @@
         </div>
     </div>
 
-    <div class="h-[800dvh] w-full sticky top-0 bg-on-surface esports-events-trigger z-[2]">
+    <div class="h-[calc(800dvh)] w-full sticky top-0 bg-on-surface esports-events-trigger z-[2]">
         <div class="h-screen w-full flex sticky top-0 items-center justify-center">
             <div class="lg:h-[250px] h-[200px] sm:h-[225px] xl:h-[250px] w-[85%] sm:w-[45%] lg:w-[35%] xl:w-[30%] bg-primary-container rounded-2xl flex flex-col justify-center items-center z-[2] absolute esports-convert-to-laptop-card">
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-2xl esports-rotate-d-9-reveal opacity-0 "></div>
@@ -997,7 +997,7 @@
         </div>
     </div>
 
-    <div class="h-[400dvh] w-full sticky top-0 bg-surface call-to-action-trigger z-[2]">
+    <div class="h-[calc(400dvh)] w-full sticky top-0 bg-surface call-to-action-trigger z-[2]">
         <div class="h-screen w-full sticky top-0 flex flex-col items-center justify-center">
             <div class="brand-font h-fit w-full font-bold flex flex-row items-center justify-center text-[14vw] text-on-surface overflow-y-clip">
                 <span class="call-to-action-letter-down -translate-y-[70px]">G</span>
@@ -1024,7 +1024,7 @@
             </div>
         </div>
     </div>
-    <div class="h-[475dvh] w-full sticky top-0 bg-on-surface z-[2] faq-trigger">
+    <div class="h-[calc(475dvh)] w-full sticky top-0 bg-on-surface z-[2] faq-trigger">
         <div class="h-screen w-full sticky top-0 flex flex-col items-center justify-center">
             <p class="brand-font text-2xl text-surface font-bold tracking-wide">
                 FAQs
