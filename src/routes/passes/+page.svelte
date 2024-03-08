@@ -174,7 +174,7 @@
             </div>
         </div>
     {/if}
-    <div class="h-[150vh] w-full flex flex-col">
+    <div class="h-[150dvh] w-full flex flex-col">
         {#if data.existingPayments}
             <div class="h-screen w-full fixed top-0 backdrop-blur-2xl z-[3] flex flex-col items-center justify-center">
                 <div class="h-fit w-fit rounded-2xl border-2 border-on-surface bg-surface flex flex-col items-start justify-center p-5 gap-5">
@@ -206,7 +206,7 @@
                 </div>
             </div>
         {/if}
-        <div class="h-[90vh] w-full flex flex-col items-center justify-center intro-banner sticky top-0">
+        <div class="h-[90dvh] w-full flex flex-col items-center justify-center intro-banner sticky top-0">
             <div class="h-fit w-full flex flex-col overflow-hidden">
                 <div
                         class="pt-14 px-5 brand-font text-left h-fit w-full -translate-x-9 font-bold flex flex-row items-center justify-center text-6xl sm:text-7xl lg:text-9xl text-on-surface overflow-y-clip">
@@ -265,8 +265,8 @@
         <!--            <span class="letter-down -translate-y-[340px]">E</span>-->
         <!--            <span class="letter-down -translate-y-[360px]">S</span>-->
         <!--        </div>-->
-        <div class="h-[60vh] w-full overflow-x-hidden">
-            <div class="h-[60vh] box-border relative pl-5 py-[10px] translate-x-[100%] passes-div">
+        <div class="h-[60dvh] w-full overflow-x-hidden">
+            <div class="h-[60dvh] box-border relative pl-5 py-[10px] translate-x-[100%] passes-div">
                 <div
                         class="relative w-full h-full flex flex-row items-center justify-start lg:justify-center flex-nowrap box-border gap-0 px-5 horizontal-scroll-element overflow-x-scroll py-9 no-scrollbar"
                 >

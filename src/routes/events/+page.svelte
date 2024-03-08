@@ -106,8 +106,8 @@
 
 <div class="h-fit w-full bg-surface main-events-trigger">
     <Navbar/>
-    <div class="h-[800vh] w-full flex flex-col gap-10">
-        <div class="h-[90vh] w-full flex flex-col items-center justify-center sticky top-0 intro-banner">
+    <div class="h-[800dvh] w-full flex flex-col gap-10">
+        <div class="h-[90dvh] w-full flex flex-col items-center justify-center sticky top-0 intro-banner">
             <div class="h-fit w-full flex flex-col overflow-hidden">
                 <div
                         class="pt-14 px-5 brand-font text-left h-fit w-full -translate-x-9 font-bold flex flex-row items-center justify-center text-6xl sm:text-7xl lg:text-9xl text-on-surface overflow-y-clip">
@@ -144,7 +144,7 @@
             </div>
         </div>
         <div class="h-fit w-full flex flex-col">
-            <div class="h-[85vh] w-full flex flex-row px-5 lg:px-36 flex-nowrap overflow-x-scroll overflow-y-visible gap-2 no-scrollbar relative event-carousel-1 lg:gap-10">
+            <div class="h-[85h] w-full flex flex-row px-5 lg:px-36 flex-nowrap overflow-x-scroll overflow-y-visible gap-2 no-scrollbar relative event-carousel-1 lg:gap-10">
                 <div class="w-full h-full sm:w-[75%] rounded-2xl relative text-on-surface flex-shrink-0 image-div-event-1">
                     <img src="{eventBackground}" alt=""
                          class="h-full w-full object-cover inline-block display-image rounded-2xl absolute top-0 bottom-0 z-0">
