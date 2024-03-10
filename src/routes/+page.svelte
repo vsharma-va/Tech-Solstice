@@ -4,6 +4,7 @@
     import {onDestroy, onMount} from "svelte";
     import Navbar from "$lib/common/Navbar.svelte";
     import Terminal from "$lib/Landing/Terminal.svelte";
+    import {goto} from "$app/navigation";
 
     let topologyHomeEffect;
     let terminalFeaturedGsap;
@@ -776,8 +777,10 @@
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary -rotate-6 z-[0]"></div>
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface -rotate-3 z-[0]"></div>
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container flex flex-col items-center justify-center">
-                                <p class="style-font text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
-                                    Nexus</p>
+                                <div class="style-font text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
+                                    Nexus<span class="always-blink">_</span>
+                                    <div class="h-1 w-[45%] bg-on-primary-container always-blink-line"></div>
+                                </div>
                                 <p class="brand-font text-xl mt-2 sm:mt-0 text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
                                     Event 1</p>
                                 <p class="brand-font text-xl text-on-primary-container tracking-wide hidden featured-events-d-6 opacity-0">
@@ -791,8 +794,10 @@
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary -rotate-6 z-[0]"></div>
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary-container -rotate-3 z-[0]"></div>
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container flex flex-col items-center justify-center">
-                                <p class="style-font text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
-                                    Nexus</p>
+                                <div class="style-font text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
+                                    Nexus<span class="always-blink">_</span>
+                                    <div class="h-1 w-[45%] bg-on-primary-container always-blink-line"></div>
+                                </div>
                                 <p class="brand-font text-xl mt-2 sm:mt-0 text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
                                     Event 1</p>
                                 <p class="brand-font text-xl text-on-primary-container tracking-wide hidden featured-events-d-6 opacity-0">
@@ -806,8 +811,10 @@
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary -rotate-6 z-[0]"></div>
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface -rotate-3 z-[0]"></div>
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container flex flex-col items-center justify-center">
-                                <p class="style-font text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
-                                    Nexus</p>
+                                <div class="style-font text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
+                                    Nexus<span class="always-blink">_</span>
+                                    <div class="h-1 w-[45%] bg-on-primary-container always-blink-line"></div>
+                                </div>
                                 <p class="brand-font text-xl mt-2 sm:mt-0 text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
                                     Event 1</p>
                                 <p class="brand-font text-xl text-on-primary-container tracking-wide hidden featured-events-d-6 opacity-0">
@@ -817,7 +824,8 @@
                             </div>
                         </div>
                         <div class="h-full w-full col-start-2 row-start-2 items-center justify-center relative call-to-action-button-div hidden">
-                            <button class="bg-primary brand-font text-2xl -translate-y-24 opacity-0 call-to-action-button py-1 h-fit w-full text-on-primary">
+                            <button class="bg-primary brand-font text-2xl -translate-y-24 opacity-0 call-to-action-button py-1 h-fit w-full text-on-primary"
+                                    on:click={() => {goto("/passes")}}>
                                 Passes
                             </button>
                         </div>
@@ -852,15 +860,18 @@
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary rotate-d-6-reveal opacity-0"></div>
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface rotate-d-3-reveal"></div>
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container flex flex-col items-center justify-center">
-                    <p class="style-font text-5xl lg:text-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
-                        Nexus</p>
+                    <div class="style-font text-5xl lg:text-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
+                        <p>Nexus<span class="always-blink">_</span></p>
+                        <div class="h-1 w-[45%] bg-on-primary-container always-blink-line"></div>
+                    </div>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
                         Event 1</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden featured-events-d-6 opacity-0">
                         Event 2</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden featured-events-d-9 opacity-0">
                         Event 3</p>
-                    <Terminal sectionName="FEAT" arrayOfEventNames="{['Event 1', 'Event 2', 'Event 3']}" gsapTimeline="{terminalFeaturedGsap}"/>
+                    <Terminal sectionName="FEAT" arrayOfEventNames="{['Event 1', 'Event 2', 'Event 3']}"
+                              gsapTimeline="{terminalFeaturedGsap}"/>
                 </div>
             </div>
 
@@ -938,15 +949,18 @@
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary tech-rotate-d-6-reveal opacity-0"></div>
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary-container tech-rotate-d-3-reveal"></div>
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container flex flex-col items-center justify-center">
-                    <p class="style-font text-5xl lg:text-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide tech-events-initial">
-                        Nexus</p>
+                    <div class="style-font text-5xl lg:text-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide tech-events-initial">
+                        <p>Nexus<span class="always-blink">_</span></p>
+                        <div class="h-1 w-[45%] bg-on-primary-container always-blink-line"></div>
+                    </div>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden tech-events-d-3 opacity-0">
                         Event 1</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden tech-events-d-6 opacity-0">
                         Event 2</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden tech-events-d-9 opacity-0">
                         Event 3</p>
-                    <Terminal sectionName="TECH" arrayOfEventNames="{['Event 1', 'Event 2', 'Event 3']}" gsapTimeline="{terminalTechGsap}"/>
+                    <Terminal sectionName="TECH" arrayOfEventNames="{['Event 1', 'Event 2', 'Event 3']}"
+                              gsapTimeline="{terminalTechGsap}"/>
                 </div>
             </div>
             <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] h-[70px] w-[70%] sm:w-[37%] bg-primary/90 absolute bottom-24 sm:bottom-30 left-2 xl:left-14 flex flex-col items-start justify-center px-5 tech-rotate-d-9">
@@ -1035,7 +1049,8 @@
                         Event 2</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden esports-events-d-9 opacity-0">
                         Event 3</p>
-                    <Terminal sectionName="ESPORTS" arrayOfEventNames="{['Event 1', 'Event 2', 'Event 3']}" gsapTimeline="{terminalEsportsGsap}"/>
+                    <Terminal sectionName="ESPORTS" arrayOfEventNames="{['Event 1', 'Event 2', 'Event 3']}"
+                              gsapTimeline="{terminalEsportsGsap}"/>
                 </div>
             </div>
             <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] h-[70px] w-[70%] sm:w-[37%] bg-primary/90 absolute bottom-24 sm:bottom-30 left-2 xl:left-14 flex flex-col items-start justify-center px-5 esports-rotate-d-9">
