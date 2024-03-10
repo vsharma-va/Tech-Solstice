@@ -25,6 +25,9 @@
         onLoadTimeline.to('.letter-down', {
             y: 0,
         });
+        onLoadTimeline.to(window, {
+            scrollTo: 100,
+        });
         onLoadTimeline.to('.typewriter-1', {
             opacity: 1,
             duration: 0.25,
@@ -144,11 +147,11 @@
             </div>
         </div>
         <div class="h-fit w-full flex flex-col">
-            <div class="h-[85h] w-full flex flex-row px-5 lg:px-36 flex-nowrap overflow-x-scroll overflow-y-visible gap-2 no-scrollbar relative event-carousel-1 lg:gap-10">
-                <div class="w-full h-full sm:w-[75%] rounded-2xl relative text-on-surface flex-shrink-0 image-div-event-1">
+            <div class="h-[85dvh] w-full flex flex-row px-5 lg:px-36 flex-nowrap overflow-x-scroll overflow-y-visible gap-2 no-scrollbar relative event-carousel-1 lg:gap-10">
+                <div class="w-full h-full sm:w-[75%] relative text-on-surface flex-shrink-0 image-div-event-1">
                     <img src="{eventBackground}" alt=""
-                         class="h-full w-full object-cover inline-block display-image rounded-2xl absolute top-0 bottom-0 z-0">
-                    <div class="absolute bottom-2 left-2 h-fit w-[75%] rounded-2xl flex flex-col items-start justify-center p-5 bg-surface gap-1">
+                         class="h-full w-full object-cover inline-block display-image absolute top-0 bottom-0 z-0">
+                    <div class="absolute bottom-2 left-2 h-fit w-[75%] flex flex-col items-start justify-center p-5 bg-surface gap-1">
                         <div class="brand-font text-4xl sm:text-5xl tracking-wide text-on-surface leading-[1] h-fit max-w-prose relative">
                             <p>EVENT NAME</p>
                             <div class="absolute bottom-0 h-[10px] w-full bg-primary/70"></div>
@@ -156,7 +159,7 @@
                         <p class="brand-font text-2xl lg:text-3xl tracking-wide text-on-surface/80">Tagline Here</p>
                     </div>
                 </div>
-                <div class="w-full h-full sm:w-[75%] rounded-2xl border-[1.5px] border-on-surface relative text-on-surface flex-shrink-0 flex flex-col p-5 lg:p-10 gap-5 lg:gap-9 description-div-event-1 items-start justify-start backdrop-blur-lg">
+                <div class="w-full h-full sm:w-[75%] border-[1.5px] border-on-surface relative text-on-surface flex-shrink-0 flex flex-col p-5 lg:p-10 gap-5 lg:gap-9 description-div-event-1 items-start justify-start backdrop-blur-lg">
                     <div class="w-full h-fit flex flex-col gap-2 lg:gap-4">
                         <div class="brand-font text-4xl sm:text-5xl lg:text-6xl text-on-surface h-fit w-fit relative">
                             <p>Description</p>
@@ -167,7 +170,7 @@
                             adipisicing elit. Accusantium aliquam animi assumenda aut dolorem eum exercitationem fugiat,
                             harum necessitatibus nisi, nobis non nostrum odit officiis quia quo recusandae unde vel?
                         </p>
-                        <button class="px-4 py-1 bg-primary w-fit text-on-primary brand-font text-2xl sm:text-3xl rounded-2xl flex flex-row">
+                        <button class="px-4 py-1 bg-primary w-fit text-on-primary brand-font text-2xl sm:text-3xl flex flex-row">
                             Handbook
                         </button>
                     </div>
@@ -197,14 +200,14 @@
                             <div class="absolute bottom-0 w-full bg-primary/70 h-[10px]"></div>
                         </div>
                         <div class="w-full h-fit flex flex-row">
-                            <div class="w-fit h-fit bg-on-surface sm:text-2xl rounded-2xl flex flex-row px-3 py-1">
+                            <div class="w-fit h-fit bg-on-surface sm:text-2xl flex flex-row px-3 py-1">
                                 <p class="brand-font text-2xl lg:text-4xl text-surface">Flagship</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="absolute hidden sm:flex bottom-2 w-fit h-fit left-1/2 -translate-x-1/2 flex-row items-center justify-center gap-2 bg-surface border-[1px] border-on-surface p-2 rounded-2xl">
+            <div class="absolute hidden sm:flex bottom-2 w-fit h-fit left-1/2 -translate-x-1/2 flex-row items-center justify-center gap-2 bg-surface border-[1px] border-on-surface p-2">
                 <button class="h-3 w-3 rounded-full bg-primary on-left-indicator"
                         on:mousedown={() => moveCarouselLeft("event-carousel-1", "image-div-event-1")}
                 ></button>

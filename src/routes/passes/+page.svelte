@@ -1,6 +1,7 @@
 <script>
     import {gsap} from "gsap/dist/gsap";
     import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
+    import {ScrollToPlugin} from "gsap/dist/ScrollToPlugin";
     import {onMount} from "svelte";
     import Navbar from "$lib/common/Navbar.svelte";
     import PassCard from "$lib/Passes/PassCard.svelte";
@@ -48,6 +49,7 @@
 
     onMount(() => {
         gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(ScrollToPlugin);
 
         let tl = gsap.timeline();
         tl.to('.login-notif', {
@@ -64,6 +66,9 @@
         onLoadTimeline.to(".letter-down", {
             y: 0,
         });
+        onLoadTimeline.to(window, {
+            scrollTo: 100,
+        })
         onLoadTimeline.to('.passes-div', {
             x: 0,
             ease: "back.out(1.7)",
@@ -168,8 +173,8 @@
     {#if !$page.data.session?.user}
         <div class="fixed -top-[100%] left-1/2 -translate-x-1/2 w-fit h-fit z-[10] bg-surface border-2 border-on-surface px-4 py-2 rounded-2xl login-notif">
             <div class="brand-font flex flex-row text-3xl text-on-surface tracking-wide gap-1 h-fit w-fit">
-                <div class="flex flex-row h-fit w-fit">
-                    <p class="">Please Login To Buy Passes</p>
+                <div class="flex flex-row h-fit w-fit items-center justify-center">
+                    <p class="text-center">Please Login To Buy Passes</p>
                 </div>
             </div>
         </div>

@@ -14,6 +14,18 @@ export default {
         "success": "#66bb6a",
       }
       // colors: {
+      //   "primary": "#1afe49",
+      //   "on-primary": "#093e11",
+      //   "primary-container": "#4b4900",
+      //   "on-primary-container": "#eee822",
+      //   "surface": "#1c1c16",
+      //   "on-surface": "#e6e2d9",
+      //   "secondary": "#ffb1c8",
+      //   "on-secondary": "#5e1133",
+      //   "secondary-container": "#7b2949",
+      //   "on-secondary-container": "#ffd9e2",
+      // }
+      // colors: {
       //   "primary": "#80d998",
       //   "on-primary": "#00391a",
       //   "primary-container": "#005228",

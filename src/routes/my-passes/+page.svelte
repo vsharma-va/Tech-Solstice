@@ -44,6 +44,9 @@
         onLoadTimeline.to('.letter-down', {
             y: 0,
         });
+        onLoadTimeline.to(window, {
+            scrollTo: 100,
+        })
         onLoadTimeline.to('.passes-div', {
             x: 0,
             ease: "back.out(1.7)",

@@ -22,7 +22,7 @@
 </script>
 
 <div
-        class="w-[81%] min-[410px]:w-[71%] min-[500px]:w-[56%] min-[600px]:w-[45%] sm:w-[43%] md:w-[34%] lg:w-[23%] xl:w-[19%] h-full flex-shrink-0 flex flex-col items-start justify-start rounded-2xl border-2 border-surface {cardBackgroundColorClass} {rotateClass} pass-1 p-5 hover:-translate-y-[8px] hover:scale-[1.01] transition-all duration-300"
+        class="w-[81%] min-[410px]:w-[71%] min-[500px]:w-[56%] min-[600px]:w-[45%] sm:w-[43%] md:w-[34%] lg:w-[23%] xl:w-[19%] h-full flex-shrink-0 flex flex-col items-start justify-start border-2 border-surface {cardBackgroundColorClass} {rotateClass} pass-1 p-5 hover:-translate-y-[8px] hover:scale-[1.01] transition-all duration-300"
 >
     <div
             class="h-fit w-fit brand-font text-4xl {headingTextColorClass} relative"
@@ -68,7 +68,7 @@
                 </div>
             </div>
             <button
-                    class="rounded-2xl {buttonBgColorClass} text-2xl flex flex-row items-center justify-center gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface hover:text-surface"
+                    class="{buttonBgColorClass} text-2xl flex flex-row items-center justify-center gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface hover:text-surface"
                     on:click={async () => {
                      if($page.data.session?.user) {
                         await goto(`/payment/${redirectToken}`)
@@ -82,7 +82,7 @@
                 {:else}
                     LOGIN
                 {/if}
-                <div class="{buttonPriceBgColorClass} {buttonPriceTextColorClass} group-hover:bg-primary group-hover:text-on-primary brand-font text-2x rounded-2xl flex flex-row items-center justify-center px-4 py-1 flagship-buy-text">
+                <div class="{buttonPriceBgColorClass} {buttonPriceTextColorClass} group-hover:bg-primary group-hover:text-on-primary brand-font text-2x flex flex-row items-center justify-center px-4 py-1 flagship-buy-text">
                     <p>₹{price}</p>
                 </div>
             </button>

@@ -3,9 +3,15 @@
     import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
     import {onDestroy, onMount} from "svelte";
     import Navbar from "$lib/common/Navbar.svelte";
+    import Terminal from "$lib/Landing/Terminal.svelte";
 
     let topologyHomeEffect;
-
+    let terminalFeaturedGsap;
+    let terminalTechGsap;
+    let terminalEsportsGsap;
+    terminalFeaturedGsap = gsap.timeline({repeat: -1,});
+    terminalTechGsap = gsap.timeline({repeat: -1,});
+    terminalEsportsGsap = gsap.timeline({repeat: -1,});
 
     let primary = "#e1b6ff";
     let primaryContainer = "#490f72";
@@ -226,6 +232,26 @@
             scale: 0.65,
             y: 200,
         });
+
+        let alwaysBlinkTimeline = gsap.timeline({
+            repeat: -1,
+        });
+        alwaysBlinkTimeline.to('.always-blink', {
+            opacity: 0,
+            duration: 0.15
+        });
+        alwaysBlinkTimeline.to('.always-blink', {
+            opacity: 1,
+            duration: 0.15
+        })
+        alwaysBlinkTimeline.to('.always-blink-line', {
+            width: 0,
+            duration: 0.15,
+        }, "<")
+        alwaysBlinkTimeline.to('.always-blink-line', {
+            width: "45%",
+            duration: 0.15,
+        }, "<")
 
         let featuredEventsHeadingTimeline = gsap.timeline({
             scrollTrigger: {
@@ -596,7 +622,7 @@
             scrollTrigger: {
                 trigger: ".call-to-action-trigger",
                 start: 'top top',
-                end: 'top -70%',
+                end: 'top -120%',
                 scrub: true,
                 markers: false,
             }
@@ -612,7 +638,7 @@
             scrollTrigger: {
                 trigger: ".call-to-action-trigger",
                 start: "35% top",
-                end: "top -400%",
+                end: "top -600%",
                 scrub: true,
                 markers: false,
             }
@@ -740,15 +766,16 @@
         <Navbar/>
         <div class="h-screen w-full bg-transparent fixed top-0 z-[3]">
             <div class="h-full w-full sticky top-0">
-                <div class="h-[350px] xl:w-[450px] w-[95%] sm:w-[80%] md:w-[65%] lg:w-[45%] absolute right-1/2 translate-x-1/2 lg:right-3 xl:right-3 lg:translate-x-0 -bottom-[100%] xl:-bottom-[100%] rounded-2xl bg-surface flex flex-col items-center justify-start p-5 laptop-card-solstice hidden">
+                <div class="h-[350px] xl:w-[450px] w-[95%] sm:w-[80%] md:w-[65%] lg:w-[45%] absolute right-1/2 translate-x-1/2 lg:right-3 xl:right-3 lg:translate-x-0 -bottom-[100%] xl:-bottom-[100%] bg-surface flex flex-col items-center justify-start p-5 laptop-card-solstice hidden">
                     <p class="brand-font text-4xl tracking-wide font-bold text-on-surface laptop-solstice-heading">
-                        Solstice</p>
+                        Solstice
+                    </p>
                     <div class="h-full w-full grid grid-cols-2 grid-rows-2 pt-5 gap-5">
-                        <div class="h-full w-full col-start-1 row-start-1 rounded-2xl relative featured-events-card-on-laptop hidden opacity-0">
-                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-2xl -rotate-[9deg] z-[0]"></div>
-                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary rounded-2xl -rotate-6 z-[0]"></div>
-                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface rounded-2xl -rotate-3 z-[0]"></div>
-                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container rounded-2xl flex flex-col items-center justify-center">
+                        <div class="h-full w-full col-start-1 row-start-1 relative featured-events-card-on-laptop hidden opacity-0">
+                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary -rotate-[9deg] z-[0]"></div>
+                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary -rotate-6 z-[0]"></div>
+                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface -rotate-3 z-[0]"></div>
+                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container flex flex-col items-center justify-center">
                                 <p class="style-font text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
                                     Nexus</p>
                                 <p class="brand-font text-xl mt-2 sm:mt-0 text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
@@ -759,11 +786,11 @@
                                     Event 3</p>
                             </div>
                         </div>
-                        <div class="h-full w-full col-start-2 row-start-1 rounded-2xl relative tech-events-card-on-laptop hidden opacity-0">
-                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-2xl -rotate-[9deg] z-[0]"></div>
-                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary rounded-2xl -rotate-6 z-[0]"></div>
-                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary-container rounded-2xl -rotate-3 z-[0]"></div>
-                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container rounded-2xl flex flex-col items-center justify-center">
+                        <div class="h-full w-full col-start-2 row-start-1 relative tech-events-card-on-laptop hidden opacity-0">
+                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary -rotate-[9deg] z-[0]"></div>
+                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary -rotate-6 z-[0]"></div>
+                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary-container -rotate-3 z-[0]"></div>
+                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container flex flex-col items-center justify-center">
                                 <p class="style-font text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
                                     Nexus</p>
                                 <p class="brand-font text-xl mt-2 sm:mt-0 text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
@@ -774,11 +801,11 @@
                                     Event 3</p>
                             </div>
                         </div>
-                        <div class="h-full w-full col-start-1 row-start-2 relative rounded-2xl esports-events-card-on-laptop hidden opacity-0">
-                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-2xl -rotate-[9deg] z-[0]"></div>
-                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary rounded-2xl -rotate-6 z-[0]"></div>
-                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface rounded-2xl -rotate-3 z-[0]"></div>
-                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container rounded-2xl flex flex-col items-center justify-center">
+                        <div class="h-full w-full col-start-1 row-start-2 relative esports-events-card-on-laptop hidden opacity-0">
+                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary -rotate-[9deg] z-[0]"></div>
+                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary -rotate-6 z-[0]"></div>
+                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface -rotate-3 z-[0]"></div>
+                            <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container flex flex-col items-center justify-center">
                                 <p class="style-font text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
                                     Nexus</p>
                                 <p class="brand-font text-xl mt-2 sm:mt-0 text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
@@ -789,8 +816,8 @@
                                     Event 3</p>
                             </div>
                         </div>
-                        <div class="h-full w-full col-start-2 row-start-2 items-center justify-center relative rounded-xl call-to-action-button-div hidden">
-                            <button class="bg-primary brand-font text-2xl rounded-2xl -translate-y-24 opacity-0 call-to-action-button py-1 h-fit w-full text-on-primary">
+                        <div class="h-full w-full col-start-2 row-start-2 items-center justify-center relative call-to-action-button-div hidden">
+                            <button class="bg-primary brand-font text-2xl -translate-y-24 opacity-0 call-to-action-button py-1 h-fit w-full text-on-primary">
                                 Passes
                             </button>
                         </div>
@@ -799,13 +826,37 @@
             </div>
         </div>
     </div>
-    <div class="h-[calc(800dvh)] w-full sticky top-0 bg-on-surface featured-events-trigger">
+    <div class="h-[800vh] w-full sticky top-0 bg-on-surface featured-events-trigger">
+        <div class="h-screen w-full absolute -top-[48px] items-center justify-center overflow-hidden">
+            <svg width="1920" height="48" viewBox="0 0 1920 48" fill="none" class="fill-on-surface"
+                 xmlns="http://www.w3.org/2000/svg">
+                <link xmlns="" type="text/css" rel="stylesheet" id="dark-mode-custom-link"/>
+                <link xmlns="" type="text/css" rel="stylesheet" id="dark-mode-general-link"/>
+                <style xmlns="" lang="en" type="text/css" id="dark-mode-custom-style"/>
+                <style xmlns="" lang="en" type="text/css" id="dark-mode-native-style"/>
+                <style xmlns="" lang="en" type="text/css" id="dark-mode-native-sheet"/>
+                <path d="M944.931 4.96811L948.426 8.47002L951.934 4.96811H944.931ZM1193.34 13.0261H1187.65L1187.68 13.0504H1193.31L1193.34 13.0261ZM1586.65 12.8323L1580.12 6.27678H1569.09L1555.46 20.5752L1555.44 20.551V20.5752L1547.59 13.0504H1193.3L1190.48 15.8737L1195.19 20.5752H1185.79L1190.48 15.8737L1187.66 13.0504H1117.91L1113.91 9.02741L1106.01 1.11479L1100.75 6.38584L1074.08 6.26466H1069.8L1059 17.0854H1030.29L1024.1 10.8935L960.715 10.9298L955.792 15.8616L948.414 8.4579L945.947 10.9298L804.968 10.8935L794.083 0L773.558 20.5631L765.829 12.8201H762.551L760.761 14.6135L763.604 17.4611H757.919L760.749 14.6135L758.995 12.8565L701.012 12.8201V48H1920V12.8201H1586.69L1586.65 12.8323ZM1074 14.9891H1072.52V13.5108H1074V14.9891ZM1074 12.0204H1072.52V10.5421H1074V12.0204ZM1085.46 14.9891H1083.99V10.5421H1085.46V14.9891ZM1091.13 12.0204H1089.66V10.5421H1091.13V12.0204ZM1501.22 20.5631H1496.78V16.1161H1501.22V20.5631ZM1516.01 20.5631H1514.53V16.1161H1516.01V20.5631ZM1526.36 20.5631H1524.89V16.1161H1526.36V20.5631ZM1528.6 20.5631H1527.12V16.1161H1528.6V20.5631Z"
+                />
+                <path d="M589.936 6.97182L593.432 10.4737L593.434 10.4718L596.939 6.97182H589.936Z" fill="#FCEE0A"/>
+                <path d="M593.432 10.4737L593.42 10.4616L590.952 12.9335L337.976 12.8972L330.494 5.92295H320.995L306.565 20.5632L298.836 12.8202H295.559L293.768 14.6135L296.611 17.4611H290.926L293.756 14.6135L292.003 12.8565L265.019 12.8202L254.996 24.4569H211.996V48H700.988V38.4826L701.109 17.0855V12.8972L605.72 12.9335L600.798 15.8616L593.434 10.4718L593.432 10.4737Z"
+                />
+                <path d="M0 36.9798H211.996V48H0V36.9798Z"/>
+                <path d="M207.996 24.5H209.996V36.9798H207.996V24.5Z"/>
+                <path d="M199.997 24.5H201.997V36.9798H199.997V24.5Z"/>
+                <path d="M190.997 24.5H192.997V36.9798H190.997V24.5Z"/>
+                <path d="M194.997 24.5H197.997V36.9798H194.997V24.5Z"/>
+                <path d="M204.997 24.5H205.997V36.9798H204.997V24.5Z"/>
+                <path d="M188.997 24.5H189.997V36.9798H188.997V24.5Z"/>
+                <path d="M181.997 24.5H182.997V36.9798H181.997V24.5Z"/>
+                <path d="M178.997 24.5H179.997V36.9798H178.997V24.5Z"/>
+            </svg>
+        </div>
         <div class="h-screen w-full flex sticky top-0 items-center justify-center featured-events-main-container">
-            <div class="lg:h-[250px] h-[200px] sm:h-[225px] xl:h-[250px] w-[85%] sm:w-[45%] lg:w-[35%] xl:w-[30%] bg-primary-container rounded-2xl flex flex-col justify-center items-center z-[2] absolute convert-to-laptop-card">
-                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-2xl rotate-d-9-reveal opacity-0 "></div>
-                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary rounded-2xl rotate-d-6-reveal opacity-0"></div>
-                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface rounded-2xl rotate-d-3-reveal"></div>
-                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container rounded-2xl flex flex-col items-center justify-center">
+            <div class="lg:h-[250px] h-[200px] sm:h-[225px] xl:h-[250px] w-[85%] sm:w-[45%] lg:w-[35%] xl:w-[30%] bg-primary-container flex flex-col justify-center items-center z-[2] absolute convert-to-laptop-card">
+                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary rotate-d-9-reveal opacity-0 "></div>
+                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary rotate-d-6-reveal opacity-0"></div>
+                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface rotate-d-3-reveal"></div>
+                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container flex flex-col items-center justify-center">
                     <p class="style-font text-5xl lg:text-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
                         Nexus</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
@@ -814,10 +865,11 @@
                         Event 2</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden featured-events-d-9 opacity-0">
                         Event 3</p>
+                    <Terminal sectionName="FEAT" arrayOfEventNames="{['Event 1', 'Event 2', 'Event 3']}" gsapTimeline="{terminalFeaturedGsap}"/>
                 </div>
             </div>
 
-            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] h-[70px] w-[70%] sm:w-[37%] bg-primary/90 rounded-2xl absolute bottom-24 sm:bottom-30 left-2 xl:left-14 flex flex-col items-start justify-center px-5 rotate-d-9">
+            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] h-[70px] w-[70%] sm:w-[37%] bg-primary/90 absolute bottom-24 sm:bottom-30 left-2 xl:left-14 flex flex-col items-start justify-center px-5 rotate-d-9">
                 <p class="brand-font text-2xl lg:text-3xl text-on-primary tracking-wide">
                     Event Name
                 </p>
@@ -825,7 +877,7 @@
                     Event Description Here
                 </p>
             </div>
-            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[37%] bg-on-primary/90 rounded-2xl absolute top-32 xl:top-28 xl:right-14 right-2 lg:right-5 flex flex-col items-start justify-center px-5 rotate-d-6">
+            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[37%] bg-on-primary/90 absolute top-32 xl:top-28 xl:right-14 right-2 lg:right-5 flex flex-col items-start justify-center px-5 rotate-d-6">
                 <p class="brand-font text-2xl lg:text-3xl text-primary tracking-wide">
                     Event Name
                 </p>
@@ -833,7 +885,7 @@
                     Event Description Here
                 </p>
             </div>
-            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[40%] bg-surface/90 rounded-2xl absolute top-12 left-2 lg:left-9 xl:bottom-32 xl:right-24 flex flex-col items-start justify-center px-5 rotate-d-3">
+            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[40%] bg-surface/90 absolute top-12 left-2 lg:left-9 xl:bottom-32 xl:right-24 flex flex-col items-start justify-center px-5 rotate-d-3">
                 <p class="brand-font text-2xl lg:text-3xl text-on-surface tracking-wide">
                     Event Name
                 </p>
@@ -865,13 +917,37 @@
             </div>
         </div>
     </div>
-    <div class="h-[calc(800dvh)] w-full sticky top-0 bg-surface tech-events-trigger z-[2]">
+    <div class="h-[800dvh] w-full sticky top-0 bg-surface tech-events-trigger z-[2]">
+        <div class="h-screen w-full absolute -top-[48px] items-center justify-center overflow-hidden">
+            <svg width="1920" height="48" viewBox="0 0 1920 48" fill="none" class="fill-surface"
+                 xmlns="http://www.w3.org/2000/svg">
+                <link xmlns="" type="text/css" rel="stylesheet" id="dark-mode-custom-link"/>
+                <link xmlns="" type="text/css" rel="stylesheet" id="dark-mode-general-link"/>
+                <style xmlns="" lang="en" type="text/css" id="dark-mode-custom-style"/>
+                <style xmlns="" lang="en" type="text/css" id="dark-mode-native-style"/>
+                <style xmlns="" lang="en" type="text/css" id="dark-mode-native-sheet"/>
+                <path d="M944.931 4.96811L948.426 8.47002L951.934 4.96811H944.931ZM1193.34 13.0261H1187.65L1187.68 13.0504H1193.31L1193.34 13.0261ZM1586.65 12.8323L1580.12 6.27678H1569.09L1555.46 20.5752L1555.44 20.551V20.5752L1547.59 13.0504H1193.3L1190.48 15.8737L1195.19 20.5752H1185.79L1190.48 15.8737L1187.66 13.0504H1117.91L1113.91 9.02741L1106.01 1.11479L1100.75 6.38584L1074.08 6.26466H1069.8L1059 17.0854H1030.29L1024.1 10.8935L960.715 10.9298L955.792 15.8616L948.414 8.4579L945.947 10.9298L804.968 10.8935L794.083 0L773.558 20.5631L765.829 12.8201H762.551L760.761 14.6135L763.604 17.4611H757.919L760.749 14.6135L758.995 12.8565L701.012 12.8201V48H1920V12.8201H1586.69L1586.65 12.8323ZM1074 14.9891H1072.52V13.5108H1074V14.9891ZM1074 12.0204H1072.52V10.5421H1074V12.0204ZM1085.46 14.9891H1083.99V10.5421H1085.46V14.9891ZM1091.13 12.0204H1089.66V10.5421H1091.13V12.0204ZM1501.22 20.5631H1496.78V16.1161H1501.22V20.5631ZM1516.01 20.5631H1514.53V16.1161H1516.01V20.5631ZM1526.36 20.5631H1524.89V16.1161H1526.36V20.5631ZM1528.6 20.5631H1527.12V16.1161H1528.6V20.5631Z"
+                />
+                <path d="M589.936 6.97182L593.432 10.4737L593.434 10.4718L596.939 6.97182H589.936Z" fill="#FCEE0A"/>
+                <path d="M593.432 10.4737L593.42 10.4616L590.952 12.9335L337.976 12.8972L330.494 5.92295H320.995L306.565 20.5632L298.836 12.8202H295.559L293.768 14.6135L296.611 17.4611H290.926L293.756 14.6135L292.003 12.8565L265.019 12.8202L254.996 24.4569H211.996V48H700.988V38.4826L701.109 17.0855V12.8972L605.72 12.9335L600.798 15.8616L593.434 10.4718L593.432 10.4737Z"
+                />
+                <path d="M0 36.9798H211.996V48H0V36.9798Z"/>
+                <path d="M207.996 24.5H209.996V36.9798H207.996V24.5Z"/>
+                <path d="M199.997 24.5H201.997V36.9798H199.997V24.5Z"/>
+                <path d="M190.997 24.5H192.997V36.9798H190.997V24.5Z"/>
+                <path d="M194.997 24.5H197.997V36.9798H194.997V24.5Z"/>
+                <path d="M204.997 24.5H205.997V36.9798H204.997V24.5Z"/>
+                <path d="M188.997 24.5H189.997V36.9798H188.997V24.5Z"/>
+                <path d="M181.997 24.5H182.997V36.9798H181.997V24.5Z"/>
+                <path d="M178.997 24.5H179.997V36.9798H178.997V24.5Z"/>
+            </svg>
+        </div>
         <div class="h-screen w-full flex sticky top-0 items-center justify-center">
-            <div class="lg:h-[250px] h-[200px] sm:h-[225px] xl:h-[250px] w-[85%] sm:w-[45%] lg:w-[35%] xl:w-[30%] bg-primary-container rounded-2xl flex flex-col justify-center items-center z-[2] absolute tech-convert-to-laptop-card">
-                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-2xl tech-rotate-d-9-reveal opacity-0 "></div>
-                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary rounded-2xl tech-rotate-d-6-reveal opacity-0"></div>
-                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary-container rounded-2xl tech-rotate-d-3-reveal"></div>
-                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container rounded-2xl flex flex-col items-center justify-center">
+            <div class="lg:h-[250px] h-[200px] sm:h-[225px] xl:h-[250px] w-[85%] sm:w-[45%] lg:w-[35%] xl:w-[30%] bg-primary-container flex flex-col justify-center items-center z-[2] absolute tech-convert-to-laptop-card">
+                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary tech-rotate-d-9-reveal opacity-0 "></div>
+                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary tech-rotate-d-6-reveal opacity-0"></div>
+                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary-container tech-rotate-d-3-reveal"></div>
+                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container flex flex-col items-center justify-center">
                     <p class="style-font text-5xl lg:text-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide tech-events-initial">
                         Nexus</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden tech-events-d-3 opacity-0">
@@ -880,9 +956,10 @@
                         Event 2</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden tech-events-d-9 opacity-0">
                         Event 3</p>
+                    <Terminal sectionName="TECH" arrayOfEventNames="{['Event 1', 'Event 2', 'Event 3']}" gsapTimeline="{terminalTechGsap}"/>
                 </div>
             </div>
-            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] h-[70px] w-[70%] sm:w-[37%] bg-primary/90 rounded-2xl absolute bottom-24 sm:bottom-30 left-2 xl:left-14 flex flex-col items-start justify-center px-5 tech-rotate-d-9">
+            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] h-[70px] w-[70%] sm:w-[37%] bg-primary/90 absolute bottom-24 sm:bottom-30 left-2 xl:left-14 flex flex-col items-start justify-center px-5 tech-rotate-d-9">
                 <p class="brand-font text-2xl lg:text-3xl text-on-primary tracking-wide">
                     Event Name
                 </p>
@@ -890,7 +967,7 @@
                     Event Description Here
                 </p>
             </div>
-            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[37%] bg-on-primary/90 rounded-2xl absolute top-32 xl:top-28 xl:right-14 right-2 lg:right-5 flex flex-col items-start justify-center px-5 tech-rotate-d-6">
+            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[37%] bg-on-primary/90 absolute top-32 xl:top-28 xl:right-14 right-2 lg:right-5 flex flex-col items-start justify-center px-5 tech-rotate-d-6">
                 <p class="brand-font text-2xl lg:text-3xl text-primary tracking-wide">
                     Event Name
                 </p>
@@ -898,7 +975,7 @@
                     Event Description Here
                 </p>
             </div>
-            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[40%] bg-on-primary-container rounded-2xl absolute top-12 left-2 lg:left-9 xl:bottom-32 xl:right-24 flex flex-col items-start justify-center px-5 tech-rotate-d-3">
+            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[40%] bg-on-primary-container absolute top-12 left-2 lg:left-9 xl:bottom-32 xl:right-24 flex flex-col items-start justify-center px-5 tech-rotate-d-3">
                 <p class="brand-font text-2xl lg:text-3xl text-primary-container tracking-wide">
                     Event Name
                 </p>
@@ -932,24 +1009,51 @@
         </div>
     </div>
 
-    <div class="h-[calc(800dvh)] w-full sticky top-0 bg-on-surface esports-events-trigger z-[2]">
+    <div class="h-[800vh] w-full sticky top-0 bg-on-surface esports-events-trigger z-[2]">
+        <div class="h-screen w-full absolute -top-[48px] items-center justify-center overflow-hidden">
+            <svg width="1920" height="48" viewBox="0 0 1920 48" fill="none" class="fill-on-surface"
+                 xmlns="http://www.w3.org/2000/svg">
+                <link xmlns="" type="text/css" rel="stylesheet" id="dark-mode-custom-link"/>
+                <link xmlns="" type="text/css" rel="stylesheet" id="dark-mode-general-link"/>
+                <style xmlns="" lang="en" type="text/css" id="dark-mode-custom-style"/>
+                <style xmlns="" lang="en" type="text/css" id="dark-mode-native-style"/>
+                <style xmlns="" lang="en" type="text/css" id="dark-mode-native-sheet"/>
+                <path d="M944.931 4.96811L948.426 8.47002L951.934 4.96811H944.931ZM1193.34 13.0261H1187.65L1187.68 13.0504H1193.31L1193.34 13.0261ZM1586.65 12.8323L1580.12 6.27678H1569.09L1555.46 20.5752L1555.44 20.551V20.5752L1547.59 13.0504H1193.3L1190.48 15.8737L1195.19 20.5752H1185.79L1190.48 15.8737L1187.66 13.0504H1117.91L1113.91 9.02741L1106.01 1.11479L1100.75 6.38584L1074.08 6.26466H1069.8L1059 17.0854H1030.29L1024.1 10.8935L960.715 10.9298L955.792 15.8616L948.414 8.4579L945.947 10.9298L804.968 10.8935L794.083 0L773.558 20.5631L765.829 12.8201H762.551L760.761 14.6135L763.604 17.4611H757.919L760.749 14.6135L758.995 12.8565L701.012 12.8201V48H1920V12.8201H1586.69L1586.65 12.8323ZM1074 14.9891H1072.52V13.5108H1074V14.9891ZM1074 12.0204H1072.52V10.5421H1074V12.0204ZM1085.46 14.9891H1083.99V10.5421H1085.46V14.9891ZM1091.13 12.0204H1089.66V10.5421H1091.13V12.0204ZM1501.22 20.5631H1496.78V16.1161H1501.22V20.5631ZM1516.01 20.5631H1514.53V16.1161H1516.01V20.5631ZM1526.36 20.5631H1524.89V16.1161H1526.36V20.5631ZM1528.6 20.5631H1527.12V16.1161H1528.6V20.5631Z"
+                />
+                <path d="M589.936 6.97182L593.432 10.4737L593.434 10.4718L596.939 6.97182H589.936Z" fill="#FCEE0A"/>
+                <path d="M593.432 10.4737L593.42 10.4616L590.952 12.9335L337.976 12.8972L330.494 5.92295H320.995L306.565 20.5632L298.836 12.8202H295.559L293.768 14.6135L296.611 17.4611H290.926L293.756 14.6135L292.003 12.8565L265.019 12.8202L254.996 24.4569H211.996V48H700.988V38.4826L701.109 17.0855V12.8972L605.72 12.9335L600.798 15.8616L593.434 10.4718L593.432 10.4737Z"
+                />
+                <path d="M0 36.9798H211.996V48H0V36.9798Z"/>
+                <path d="M207.996 24.5H209.996V36.9798H207.996V24.5Z"/>
+                <path d="M199.997 24.5H201.997V36.9798H199.997V24.5Z"/>
+                <path d="M190.997 24.5H192.997V36.9798H190.997V24.5Z"/>
+                <path d="M194.997 24.5H197.997V36.9798H194.997V24.5Z"/>
+                <path d="M204.997 24.5H205.997V36.9798H204.997V24.5Z"/>
+                <path d="M188.997 24.5H189.997V36.9798H188.997V24.5Z"/>
+                <path d="M181.997 24.5H182.997V36.9798H181.997V24.5Z"/>
+                <path d="M178.997 24.5H179.997V36.9798H178.997V24.5Z"/>
+            </svg>
+        </div>
         <div class="h-screen w-full flex sticky top-0 items-center justify-center">
-            <div class="lg:h-[250px] h-[200px] sm:h-[225px] xl:h-[250px] w-[85%] sm:w-[45%] lg:w-[35%] xl:w-[30%] bg-primary-container rounded-2xl flex flex-col justify-center items-center z-[2] absolute esports-convert-to-laptop-card">
-                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-2xl esports-rotate-d-9-reveal opacity-0 "></div>
-                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary rounded-2xl esports-rotate-d-6-reveal opacity-0"></div>
-                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface rounded-2xl esports-rotate-d-3-reveal"></div>
-                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container rounded-2xl flex flex-col items-center justify-center">
-                    <p class="style-font text-5xl lg:text-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide esports-events-initial">
-                        Nexus</p>
+            <div class="lg:h-[250px] h-[200px] sm:h-[225px] xl:h-[250px] w-[85%] sm:w-[45%] lg:w-[35%] xl:w-[30%] bg-primary-container flex flex-col justify-center items-center z-[2] absolute esports-convert-to-laptop-card">
+                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary esports-rotate-d-9-reveal opacity-0 "></div>
+                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-on-primary esports-rotate-d-6-reveal opacity-0"></div>
+                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface esports-rotate-d-3-reveal"></div>
+                <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container flex flex-col items-center justify-center ripple-shadow">
+                    <div class="style-font text-5xl lg:text-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide esports-events-initial">
+                        <p>Nexus<span class="always-blink">_</span></p>
+                        <div class="h-1 w-[45%] bg-on-primary-container always-blink-line"></div>
+                    </div>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden esports-events-d-3 opacity-0">
                         Event 1</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden esports-events-d-6 opacity-0">
                         Event 2</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden esports-events-d-9 opacity-0">
                         Event 3</p>
+                    <Terminal sectionName="ESPORTS" arrayOfEventNames="{['Event 1', 'Event 2', 'Event 3']}" gsapTimeline="{terminalEsportsGsap}"/>
                 </div>
             </div>
-            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] h-[70px] w-[70%] sm:w-[37%] bg-primary/90 rounded-2xl absolute bottom-24 sm:bottom-30 left-2 xl:left-14 flex flex-col items-start justify-center px-5 esports-rotate-d-9">
+            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] h-[70px] w-[70%] sm:w-[37%] bg-primary/90 absolute bottom-24 sm:bottom-30 left-2 xl:left-14 flex flex-col items-start justify-center px-5 esports-rotate-d-9">
                 <p class="brand-font text-2xl lg:text-3xl text-on-primary tracking-wide">
                     Event Name
                 </p>
@@ -957,7 +1061,7 @@
                     Event Description Here
                 </p>
             </div>
-            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[37%] bg-on-primary/90 rounded-2xl absolute top-32 xl:top-28 xl:right-14 right-2 lg:right-5 flex flex-col items-start justify-center px-5 esports-rotate-d-6">
+            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[37%] bg-on-primary/90 absolute top-32 xl:top-28 xl:right-14 right-2 lg:right-5 flex flex-col items-start justify-center px-5 esports-rotate-d-6">
                 <p class="brand-font text-2xl lg:text-3xl text-primary tracking-wide">
                     Event Name
                 </p>
@@ -965,7 +1069,7 @@
                     Event Description Here
                 </p>
             </div>
-            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[40%] bg-surface rounded-2xl absolute top-12 left-2 lg:left-9 xl:bottom-32 xl:right-24 flex flex-col items-start justify-center px-5 esports-rotate-d-3">
+            <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[40%] bg-surface absolute top-12 left-2 lg:left-9 xl:bottom-32 xl:right-24 flex flex-col items-start justify-center px-5 esports-rotate-d-3">
                 <p class="brand-font text-2xl lg:text-3xl text-on-surface tracking-wide">
                     Event Name
                 </p>
@@ -997,7 +1101,31 @@
         </div>
     </div>
 
-    <div class="h-[calc(400dvh)] w-full sticky top-0 bg-surface call-to-action-trigger z-[2]">
+    <div class="h-[600vh] w-full sticky top-0 bg-surface call-to-action-trigger z-[2]">
+        <div class="h-fit w-full absolute -top-[48px] items-center justify-center overflow-hidden">
+            <svg width="1920" height="48" viewBox="0 0 1920 48" fill="none" class="fill-surface"
+                 xmlns="http://www.w3.org/2000/svg">
+                <link xmlns="" type="text/css" rel="stylesheet" id="dark-mode-custom-link"/>
+                <link xmlns="" type="text/css" rel="stylesheet" id="dark-mode-general-link"/>
+                <style xmlns="" lang="en" type="text/css" id="dark-mode-custom-style"/>
+                <style xmlns="" lang="en" type="text/css" id="dark-mode-native-style"/>
+                <style xmlns="" lang="en" type="text/css" id="dark-mode-native-sheet"/>
+                <path d="M944.931 4.96811L948.426 8.47002L951.934 4.96811H944.931ZM1193.34 13.0261H1187.65L1187.68 13.0504H1193.31L1193.34 13.0261ZM1586.65 12.8323L1580.12 6.27678H1569.09L1555.46 20.5752L1555.44 20.551V20.5752L1547.59 13.0504H1193.3L1190.48 15.8737L1195.19 20.5752H1185.79L1190.48 15.8737L1187.66 13.0504H1117.91L1113.91 9.02741L1106.01 1.11479L1100.75 6.38584L1074.08 6.26466H1069.8L1059 17.0854H1030.29L1024.1 10.8935L960.715 10.9298L955.792 15.8616L948.414 8.4579L945.947 10.9298L804.968 10.8935L794.083 0L773.558 20.5631L765.829 12.8201H762.551L760.761 14.6135L763.604 17.4611H757.919L760.749 14.6135L758.995 12.8565L701.012 12.8201V48H1920V12.8201H1586.69L1586.65 12.8323ZM1074 14.9891H1072.52V13.5108H1074V14.9891ZM1074 12.0204H1072.52V10.5421H1074V12.0204ZM1085.46 14.9891H1083.99V10.5421H1085.46V14.9891ZM1091.13 12.0204H1089.66V10.5421H1091.13V12.0204ZM1501.22 20.5631H1496.78V16.1161H1501.22V20.5631ZM1516.01 20.5631H1514.53V16.1161H1516.01V20.5631ZM1526.36 20.5631H1524.89V16.1161H1526.36V20.5631ZM1528.6 20.5631H1527.12V16.1161H1528.6V20.5631Z"
+                />
+                <path d="M589.936 6.97182L593.432 10.4737L593.434 10.4718L596.939 6.97182H589.936Z" fill="#FCEE0A"/>
+                <path d="M593.432 10.4737L593.42 10.4616L590.952 12.9335L337.976 12.8972L330.494 5.92295H320.995L306.565 20.5632L298.836 12.8202H295.559L293.768 14.6135L296.611 17.4611H290.926L293.756 14.6135L292.003 12.8565L265.019 12.8202L254.996 24.4569H211.996V48H700.988V38.4826L701.109 17.0855V12.8972L605.72 12.9335L600.798 15.8616L593.434 10.4718L593.432 10.4737Z"
+                />
+                <path d="M0 36.9798H211.996V48H0V36.9798Z"/>
+                <path d="M207.996 24.5H209.996V36.9798H207.996V24.5Z"/>
+                <path d="M199.997 24.5H201.997V36.9798H199.997V24.5Z"/>
+                <path d="M190.997 24.5H192.997V36.9798H190.997V24.5Z"/>
+                <path d="M194.997 24.5H197.997V36.9798H194.997V24.5Z"/>
+                <path d="M204.997 24.5H205.997V36.9798H204.997V24.5Z"/>
+                <path d="M188.997 24.5H189.997V36.9798H188.997V24.5Z"/>
+                <path d="M181.997 24.5H182.997V36.9798H181.997V24.5Z"/>
+                <path d="M178.997 24.5H179.997V36.9798H178.997V24.5Z"/>
+            </svg>
+        </div>
         <div class="h-screen w-full sticky top-0 flex flex-col items-center justify-center">
             <div class="brand-font h-fit w-full font-bold flex flex-row items-center justify-center text-[14vw] text-on-surface overflow-y-clip">
                 <span class="call-to-action-letter-down -translate-y-[70px]">G</span>
@@ -1024,7 +1152,31 @@
             </div>
         </div>
     </div>
-    <div class="h-[calc(475dvh)] w-full sticky top-0 bg-on-surface z-[2] faq-trigger">
+    <div class="h-[475vh] w-full sticky top-0 bg-on-surface z-[2] faq-trigger">
+        <div class="h-screen w-full absolute -top-[48px] items-center justify-center overflow-hidden">
+            <svg width="1920" height="48" viewBox="0 0 1920 48" fill="none" class="fill-on-surface"
+                 xmlns="http://www.w3.org/2000/svg">
+                <link xmlns="" type="text/css" rel="stylesheet" id="dark-mode-custom-link"/>
+                <link xmlns="" type="text/css" rel="stylesheet" id="dark-mode-general-link"/>
+                <style xmlns="" lang="en" type="text/css" id="dark-mode-custom-style"/>
+                <style xmlns="" lang="en" type="text/css" id="dark-mode-native-style"/>
+                <style xmlns="" lang="en" type="text/css" id="dark-mode-native-sheet"/>
+                <path d="M944.931 4.96811L948.426 8.47002L951.934 4.96811H944.931ZM1193.34 13.0261H1187.65L1187.68 13.0504H1193.31L1193.34 13.0261ZM1586.65 12.8323L1580.12 6.27678H1569.09L1555.46 20.5752L1555.44 20.551V20.5752L1547.59 13.0504H1193.3L1190.48 15.8737L1195.19 20.5752H1185.79L1190.48 15.8737L1187.66 13.0504H1117.91L1113.91 9.02741L1106.01 1.11479L1100.75 6.38584L1074.08 6.26466H1069.8L1059 17.0854H1030.29L1024.1 10.8935L960.715 10.9298L955.792 15.8616L948.414 8.4579L945.947 10.9298L804.968 10.8935L794.083 0L773.558 20.5631L765.829 12.8201H762.551L760.761 14.6135L763.604 17.4611H757.919L760.749 14.6135L758.995 12.8565L701.012 12.8201V48H1920V12.8201H1586.69L1586.65 12.8323ZM1074 14.9891H1072.52V13.5108H1074V14.9891ZM1074 12.0204H1072.52V10.5421H1074V12.0204ZM1085.46 14.9891H1083.99V10.5421H1085.46V14.9891ZM1091.13 12.0204H1089.66V10.5421H1091.13V12.0204ZM1501.22 20.5631H1496.78V16.1161H1501.22V20.5631ZM1516.01 20.5631H1514.53V16.1161H1516.01V20.5631ZM1526.36 20.5631H1524.89V16.1161H1526.36V20.5631ZM1528.6 20.5631H1527.12V16.1161H1528.6V20.5631Z"
+                />
+                <path d="M589.936 6.97182L593.432 10.4737L593.434 10.4718L596.939 6.97182H589.936Z" fill="#FCEE0A"/>
+                <path d="M593.432 10.4737L593.42 10.4616L590.952 12.9335L337.976 12.8972L330.494 5.92295H320.995L306.565 20.5632L298.836 12.8202H295.559L293.768 14.6135L296.611 17.4611H290.926L293.756 14.6135L292.003 12.8565L265.019 12.8202L254.996 24.4569H211.996V48H700.988V38.4826L701.109 17.0855V12.8972L605.72 12.9335L600.798 15.8616L593.434 10.4718L593.432 10.4737Z"
+                />
+                <path d="M0 36.9798H211.996V48H0V36.9798Z"/>
+                <path d="M207.996 24.5H209.996V36.9798H207.996V24.5Z"/>
+                <path d="M199.997 24.5H201.997V36.9798H199.997V24.5Z"/>
+                <path d="M190.997 24.5H192.997V36.9798H190.997V24.5Z"/>
+                <path d="M194.997 24.5H197.997V36.9798H194.997V24.5Z"/>
+                <path d="M204.997 24.5H205.997V36.9798H204.997V24.5Z"/>
+                <path d="M188.997 24.5H189.997V36.9798H188.997V24.5Z"/>
+                <path d="M181.997 24.5H182.997V36.9798H181.997V24.5Z"/>
+                <path d="M178.997 24.5H179.997V36.9798H178.997V24.5Z"/>
+            </svg>
+        </div>
         <div class="h-screen w-full sticky top-0 flex flex-col items-center justify-center">
             <p class="brand-font text-2xl text-surface font-bold tracking-wide">
                 FAQs
