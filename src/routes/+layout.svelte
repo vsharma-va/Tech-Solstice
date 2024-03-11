@@ -5,6 +5,7 @@
     import AuthNotif from "$lib/common/AuthNotif.svelte";
     import InvalidPassTokenNotif from "$lib/common/InvalidPassTokenNotif.svelte";
     import AlreadyOwnedNotif from "$lib/common/AlreadyOwnedNotif.svelte";
+    import Loader from "$lib/common/Loader.svelte";
 
     onMount(() => {
         let isMobile = function () {

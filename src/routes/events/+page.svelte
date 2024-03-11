@@ -5,6 +5,7 @@
     import {ScrollToPlugin} from "gsap/dist/ScrollToPlugin";
     import {onMount} from "svelte";
     import eventBackground from "$lib/assets/images/example-event-background.webp";
+    import Loader from "$lib/common/Loader.svelte";
 
     let isMobile;
 
@@ -21,7 +22,13 @@
         gsap.registerPlugin(ScrollTrigger);
         gsap.registerPlugin(ScrollToPlugin);
 
-        let onLoadTimeline = gsap.timeline({});
+        let onLoadTimeline = gsap.timeline({
+            delay: 3.1, onStart: () => {
+                gsap.set('.letter-down', {
+                    clearProps: true,
+                })
+            }
+        });
         onLoadTimeline.to('.letter-down', {
             y: 0,
         });
@@ -107,6 +114,7 @@
     }
 </script>
 
+<Loader/>
 <div class="h-fit w-full bg-surface main-events-trigger">
     <Navbar/>
     <div class="h-[800dvh] w-full flex flex-col gap-10">

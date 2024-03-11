@@ -7,6 +7,8 @@
     import PassCard from "$lib/Passes/PassCard.svelte";
     import {goto} from "$app/navigation";
     import {page} from "$app/stores";
+    import Loader from "$lib/common/Loader.svelte";
+    import AuthNotif from "$lib/common/AuthNotif.svelte";
 
     export let data;
 
@@ -62,30 +64,39 @@
             delay: 2,
         })
 
-        let onLoadTimeline = gsap.timeline();
+        let onLoadTimeline = gsap.timeline({
+           delay: 3.1, onStart: () => {
+                gsap.set('.letter-down', {
+                    clearProps: true,
+                })
+            }
+        });
+        // onLoadTimeline.to(".main-wrapper", {
+        //     duration: 5,
+        // })
         onLoadTimeline.to(".letter-down", {
             y: 0,
-        });
+        }, ">");
         onLoadTimeline.to(window, {
             scrollTo: 100,
-        })
+        }, ">")
         onLoadTimeline.to('.passes-div', {
             x: 0,
             ease: "back.out(1.7)",
             duration: 1.25,
-        });
+        }, ">");
         onLoadTimeline.to('.typewriter-1', {
             opacity: 1,
             duration: 0.25,
-        });
+        }, ">");
         onLoadTimeline.to('.typewriter-2', {
             opacity: 1,
             duration: 0.25,
-        });
+        }, ">");
         onLoadTimeline.to('.typewriter-3', {
             opacity: 1,
             duration: 0.25,
-        });
+        }, ">");
         onLoadTimeline.to('.typewriter-4', {
             opacity: 1,
             duration: 0.25,
@@ -169,7 +180,8 @@
 </script>
 
 <Navbar/>
-<div class="h-fit w-full pass-trigger bg-surface">
+<Loader/>
+<div class="h-fit w-full pass-trigger bg-surface main-wrapper">
     {#if !$page.data.session?.user}
         <div class="fixed -top-[100%] left-1/2 -translate-x-1/2 w-fit h-fit z-[10] bg-surface border-2 border-on-surface px-4 py-2 rounded-2xl login-notif">
             <div class="brand-font flex flex-row text-3xl text-on-surface tracking-wide gap-1 h-fit w-fit">

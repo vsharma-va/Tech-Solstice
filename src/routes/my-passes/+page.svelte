@@ -4,6 +4,7 @@
     import {gsap} from "gsap/dist/gsap";
     import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
     import PassCard from "$lib/Passes/PassCard.svelte";
+    import Loader from "$lib/common/Loader.svelte";
 
     export let data;
 
@@ -37,10 +38,13 @@
     }]
 
     onMount(() => {
-        console.log(data.ownedPasses)
         gsap.registerPlugin(ScrollTrigger);
 
-        let onLoadTimeline = gsap.timeline()
+        let onLoadTimeline = gsap.timeline({
+            delay: 3.1, onStart: () => {
+                gsap.set('.letter-down', {clearProps: true})
+            }
+        })
         onLoadTimeline.to('.letter-down', {
             y: 0,
         });
@@ -102,6 +106,7 @@
     })
 </script>
 <Navbar/>
+<Loader/>
 <div class="h-fit w-full bg-surface pass-trigger">
     <div class="h-[150vh] w-full flex flex-col">
         <div class="h-[90vh] w-full flex flex-col items-center justify-center intro-banner sticky top-0">
@@ -146,7 +151,8 @@
                     {#if data.ownedPasses.length === 0}
                         <div class="h-full w-full rounded-2xl border-2 border-on-surface flex flex-col items-center justify-center backdrop-blur-lg p-5 gap-5">
                             <p class="brand-font text-5xl lg:text-6xl text-on-surface">No Owned Passes</p>
-                            <p class="brand-font text-2xl sm:text-3xl lg:text-4xl text-primary text-center">If you have just made the payment go back to
+                            <p class="brand-font text-2xl sm:text-3xl lg:text-4xl text-primary text-center">If you have
+                                just made the payment go back to
                                 the passes page and click on refresh status on the popup</p>
                         </div>
                     {:else}

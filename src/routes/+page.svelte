@@ -117,7 +117,7 @@
             duration: 5,
         })
 
-        let onLoadTimeline = gsap.timeline({});
+        let onLoadTimeline = gsap.timeline();
         onLoadTimeline.to('.load-background', {
             backgroundColor: onSurface,
             delay: 1,
@@ -245,14 +245,6 @@
             opacity: 1,
             duration: 0.15
         })
-        alwaysBlinkTimeline.to('.always-blink-line', {
-            width: 0,
-            duration: 0.15,
-        }, "<")
-        alwaysBlinkTimeline.to('.always-blink-line', {
-            width: "45%",
-            duration: 0.15,
-        }, "<")
 
         let featuredEventsHeadingTimeline = gsap.timeline({
             scrollTrigger: {
@@ -779,7 +771,7 @@
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container flex flex-col items-center justify-center">
                                 <div class="style-font text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
                                     Nexus<span class="always-blink">_</span>
-                                    <div class="h-1 w-[45%] bg-on-primary-container always-blink-line"></div>
+                                    <div class="h-1 w-[45%] bg-on-primary-container"></div>
                                 </div>
                                 <p class="brand-font text-xl mt-2 sm:mt-0 text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
                                     Event 1</p>
@@ -796,7 +788,7 @@
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container flex flex-col items-center justify-center">
                                 <div class="style-font text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
                                     Nexus<span class="always-blink">_</span>
-                                    <div class="h-1 w-[45%] bg-on-primary-container always-blink-line"></div>
+                                    <div class="h-1 w-[45%] bg-on-primary-container"></div>
                                 </div>
                                 <p class="brand-font text-xl mt-2 sm:mt-0 text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
                                     Event 1</p>
@@ -813,7 +805,7 @@
                             <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container flex flex-col items-center justify-center">
                                 <div class="style-font text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
                                     Nexus<span class="always-blink">_</span>
-                                    <div class="h-1 w-[45%] bg-on-primary-container always-blink-line"></div>
+                                    <div class="h-1 w-[45%] bg-on-primary-container"></div>
                                 </div>
                                 <p class="brand-font text-xl mt-2 sm:mt-0 text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
                                     Event 1</p>
@@ -862,7 +854,7 @@
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container flex flex-col items-center justify-center">
                     <div class="style-font text-5xl lg:text-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide featured-events-initial">
                         <p>Nexus<span class="always-blink">_</span></p>
-                        <div class="h-1 w-[45%] bg-on-primary-container always-blink-line"></div>
+                        <div class="h-1 w-[45%] bg-on-primary-container"></div>
                     </div>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
                         Event 1</p>
@@ -951,7 +943,7 @@
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container flex flex-col items-center justify-center">
                     <div class="style-font text-5xl lg:text-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide tech-events-initial">
                         <p>Nexus<span class="always-blink">_</span></p>
-                        <div class="h-1 w-[45%] bg-on-primary-container always-blink-line"></div>
+                        <div class="h-1 w-[45%] bg-on-primary-container"></div>
                     </div>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden tech-events-d-3 opacity-0">
                         Event 1</p>
@@ -1041,7 +1033,7 @@
                 <div class="h-full w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-container flex flex-col items-center justify-center ripple-shadow">
                     <div class="style-font text-5xl lg:text-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-primary-container tracking-wide esports-events-initial">
                         <p>Nexus<span class="always-blink">_</span></p>
-                        <div class="h-1 w-[45%] bg-on-primary-container always-blink-line"></div>
+                        <div class="h-1 w-[45%] bg-on-primary-container"></div>
                     </div>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden esports-events-d-3 opacity-0">
                         Event 1</p>
