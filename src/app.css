@@ -46,10 +46,45 @@
 
 .spotlight {
     opacity: .5;
-    background-image: conic-gradient(from 0deg at 50% -5%,transparent 45%,rgba(225,182,255,.2) 49%,rgba(225,182,255,.4) 50%,rgba(225,182,255,.2) 51%,transparent 55%);
+    background-image: conic-gradient(from 0deg at 50% -5%, transparent 45%, rgba(225, 182, 255, .2) 49%, rgba(225, 182, 255, .4) 50%, rgba(225, 182, 255, .2) 51%, transparent 55%);
     border-radius: 9999px;
     filter: blur(15px);
     pointer-events: none;
     transform-origin: 50% 0;
 }
 
+.svg-circle {
+    width: 3.25em;
+    transform-origin: center;
+    animation: rotate4 2s linear infinite;
+}
+
+.svg-circle-path {
+    fill: none;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate4 {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dash4 {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dasharray: 90, 200;
+        stroke-dashoffset: -35px;
+    }
+
+    100% {
+        stroke-dashoffset: -125px;
+    }
+}
