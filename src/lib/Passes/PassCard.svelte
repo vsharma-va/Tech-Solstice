@@ -44,7 +44,6 @@
             opacity: 1,
             ease: "bounce.out",
         });
-
     }
 </script>
 

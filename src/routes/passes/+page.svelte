@@ -7,10 +7,11 @@
     import PassCard from "$lib/Passes/PassCard.svelte";
     import {goto} from "$app/navigation";
     import {page} from "$app/stores";
-    import Loader from "$lib/common/Loader.svelte";
-    import AuthNotif from "$lib/common/AuthNotif.svelte";
 
     export let data;
+
+    let refreshStatusButton;
+    let cancelPaymentButton;
 
     let flagshipCardTimeline;
     let flagshipBuyTimeline;
@@ -65,7 +66,7 @@
         })
 
         let onLoadTimeline = gsap.timeline({
-           onStart: () => {
+            onStart: () => {
                 gsap.set('.letter-down', {
                     clearProps: true,
                 })
@@ -159,6 +160,31 @@
 
     });
 
+    function animateLoadingPhase() {
+        gsap.to('.button-inner-text', {
+            opacity: 0,
+            duration: 0,
+        })
+        gsap.to('.loader-refresh', {
+            display: "flex",
+            scale: 1,
+            opacity: 1,
+            ease: "circ.out",
+            duration: 0.3,
+        })
+        let load = gsap.timeline({repeat: -1,})
+        load.to('.loader-refresh-dot', {
+            scale: 0.75,
+            opacity: 0.8,
+            ease: "bounce.out",
+        });
+        load.to('.loader-refresh-dot', {
+            scale: 1,
+            opacity: 1,
+            ease: "bounce.out",
+        });
+    }
+
     function flagshipCardHovered() {
         flagshipCardTimeline.play(0);
     }
@@ -197,23 +223,31 @@
                             found!</p>
                         <p class="brand-font text-on-surface text-3xl tracking-wide">What would you like to do?</p>
                         <div class="h-fit w-full flex flex-row items-center justify-between mt-5">
-                            <button class="bg-primary text-on-primary rounded-2xl px-2 py-1 brand-font tracking-wide text-xl"
-                                    on:click={() => {
-                                    console.log("Hello World");
+                            <button class="bg-primary text-on-primary rounded-2xl px-3 py-1 regular-font text-lg relative"
+                                    bind:this={refreshStatusButton}
+                                    on:click={async () => {
+                                        animateLoadingPhase();
+                                    refreshStatusButton.disabled = true;
                                     for (let key in data.availablePasses) {
                                         if(data.availablePasses[key].dbName === data.existingPaymentsData.pass_name) {
-                                            goto(`/payment/${data.availablePasses[key].token}`);
+                                            console.log(data.availablePasses[key].token);
+                                            await goto(`/payment/${data.availablePasses[key].token}`);
                                             break;
                                         }
                                     }
                                 }}>
-                                >
-                                Refresh Payment Status?
+                                <p class="button-inner-text">Refresh Status?</p>
+                                <div class="h-full w-full flex-col items-center justify-center loader-refresh hidden scale-0 absolute top-0 left-0">
+                                    <div class="rounded-full bg-on-primary h-8 w-8 loader-refresh-dot"></div>
+                                </div>
                             </button>
-                            <form action="?/cancelPayment"></form>
-                            <button class="bg-primary text-on-primary rounded-2xl px-4 py-1 brand-font tracking-wide text-xl">
-                                Cancel?
-                            </button>
+                            <form action="?/cancelPayment" method="post">
+                                <button class="bg-primary text-on-primary rounded-2xl px-4 py-1 regular-font text-lg"
+                                        type="submit"
+                                        bind:this={cancelPaymentButton}>
+                                    Cancel?
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
