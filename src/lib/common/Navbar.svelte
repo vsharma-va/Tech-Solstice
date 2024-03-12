@@ -113,6 +113,11 @@
             display: "hidden",
             opacity: 0,
         }, "<")
+        homeScreenNavTimeline.to('.spinner-loader', {
+            display: "flex",
+            scale: 1,
+            ease: "circ.out",
+        }, "<")
     }
 
     function homeButtonClicked() {
@@ -273,7 +278,11 @@
                     <span class="nav-letter-down -translate-y-[1100px]">N</span>
                 {/if}
             </button>
-
+            <div class="h-fit w-full flex-col spinner-loader items-center justify-center hidden scale-0">
+                <svg viewBox="25 25 50 50" class="svg-circle">
+                    <circle r="20" cy="50" cx="50" class="svg-circle-path stroke-on-primary stroke-2"></circle>
+                </svg>
+            </div>
         </div>
         <div class="h-fit w-[7%] absolute left-1/2 -translate-x-1/2 -bottom-[9%] rounded-full bg-primary cursor-pointer z-[10]"
              on:click={animateNavButton}>

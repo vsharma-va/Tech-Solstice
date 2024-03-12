@@ -2,18 +2,18 @@
     import {gsap} from "gsap/dist/gsap";
     import {onMount} from "svelte";
     import {afterNavigate, beforeNavigate} from "$app/navigation";
-    import {navigating} from "$app/stores";
 
     let loaderTimeline;
+    let notHome = true;
 
     onMount(() => {
-        loaderTimeline = gsap.timeline();
+        loaderTimeline = gsap.timeline({});
         loaderTimeline.to('.unblur', {
             backdropFilter: "blur(0)",
             duration: 1,
         });
         loaderTimeline.to('.unblur', {
-            scale: 600,
+            scale: 100,
             duration: 1,
             delay: 1,
             opacity: 0,
@@ -30,14 +30,33 @@
     afterNavigate(() => {
         loaderTimeline.play(0);
     });
+
+    beforeNavigate(({from, to}) => {
+        notHome = to.route.id !== '/';
+        if(!notHome) {
+            gsap.to(".curtain", {
+                display: "none",
+            })
+        } else {
+            gsap.to(".curtain", {
+                display: "flex",
+            })
+        }
+    })
+
+    // $: if($page.url.pathname) {
+    //     notHome = $page.url.pathname !== '/';
+    // }
 </script>
+
 <div class="h-screen w-full fixed top-0 z-10 bg-surface flex flex-col items-center justify-center p-8 overflow-hidden curtain">
     <div class="absolute top-[53%] left-1/2 -translate-x-1/2 text-9xl md:text-[10rem] xl:text-[13rem] text-white text-center style-font -translate-y-1/2 flex flex-row items-center justify-center h-full w-full unblur">
         <p class="glitch" data-glitch="Nexus">Nexus</p>
     </div>
     <div class="h-[200px] w-full sm:h-[250px] sm:w-[70%] md:w-[60%] lg:w-[40%] xl:h-[300px] 2xl:w-[30%] bg-transparent backdrop-blur-lg border-2 border-primary unblur">
         <div class="h-[20%] border-b-2 border-primary w-full flex flex-row px-5 justify-between items-center">
-            <p class="brand-font text-2xl sm:text-3xl text-on-primary-container tracking-wide w-1/2">Solstice 1.0.1</p>
+            <p class="brand-font text-2xl sm:text-3xl text-on-primary-container tracking-wide w-1/2">Solstice
+                1.0.1</p>
             <div class="flex flex-row h-full w-full items-center justify-end gap-2">
                 <div class="h-3 w-3 rounded-full bg-success"></div>
                 <div class="h-3 w-3 rounded-full bg-[#fef836]"></div>

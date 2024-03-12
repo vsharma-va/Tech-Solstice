@@ -10,7 +10,7 @@
         })
         setTimeout(() => {
             window.location = data.redirectUrl;
-        }, 3000)
+        }, 6100)
     })
 </script>
 

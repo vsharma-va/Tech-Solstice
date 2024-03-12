@@ -1,6 +1,7 @@
 <script>
     import {goto} from "$app/navigation";
     import {page} from "$app/stores";
+    import {gsap} from "gsap/dist/gsap";
     import {signIn} from "@auth/sveltekit/client";
 
     export let displayName;
@@ -19,6 +20,32 @@
     export let redirectToken;
     export let owned;
     export let token;
+
+    function animateLoadingPhase() {
+        gsap.to('.button-inner-text', {
+            display: 'none',
+            duration: 0,
+        })
+        gsap.to('.loader-buy', {
+            display: "flex",
+            scale: 1,
+            opacity: 1,
+            ease: "circ.out",
+            duration: 0.3,
+        })
+        let load = gsap.timeline({repeat: -1,})
+        load.to('.loader', {
+            scale: 0.75,
+            opacity: 0.8,
+            ease: "bounce.out",
+        });
+        load.to('.loader', {
+            scale: 1,
+            opacity: 1,
+            ease: "bounce.out",
+        });
+
+    }
 </script>
 
 <div
@@ -70,6 +97,7 @@
             <button
                     class="{buttonBgColorClass} text-2xl flex flex-row items-center justify-center gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface hover:text-surface"
                     on:click={async () => {
+                       animateLoadingPhase();
                      if($page.data.session?.user) {
                         await goto(`/payment/${redirectToken}`)
                      } else {
@@ -78,11 +106,14 @@
                 }}
             >
                 {#if $page.data.session?.user}
-                    BUY
+                    <p class="button-inner-text">BUY</p>
                 {:else}
-                    LOGIN
+                    <p class="button-inner-text">LOGIN</p>
                 {/if}
-                <div class="{buttonPriceBgColorClass} {buttonPriceTextColorClass} group-hover:bg-primary group-hover:text-on-primary brand-font text-2x flex flex-row items-center justify-center px-4 py-1 flagship-buy-text">
+                <div class="h-full w-full flex-col items-center justify-center loader-buy hidden scale-0">
+                    <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>
+                </div>
+                <div class="{buttonPriceBgColorClass} {buttonPriceTextColorClass} group-hover:bg-primary group-hover:text-on-primary brand-font text-2xl flex flex-row items-center justify-center px-4 py-1 flagship-buy-text">
                     <p>₹{price}</p>
                 </div>
             </button>

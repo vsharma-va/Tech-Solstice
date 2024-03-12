@@ -28,22 +28,6 @@
             top: "-100%",
             delay: 2,
         })
-
-        let tlOut = gsap.timeline();
-        tl.to('.logout-notif', {
-            top: 56,
-            duration: 1,
-            ease: "elastic.out(1,0.3)",
-        });
-        tl.to('.letter-down', {
-            y: 0,
-            duration: 1.5,
-            ease: "elastic.out(1,0.3)",
-        }, "<")
-        tl.to('.logout-notif', {
-            top: "-100%",
-            delay: 2,
-        })
     })
 </script>
 

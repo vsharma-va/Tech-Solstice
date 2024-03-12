@@ -65,15 +65,12 @@
         })
 
         let onLoadTimeline = gsap.timeline({
-           delay: 3.1, onStart: () => {
+           onStart: () => {
                 gsap.set('.letter-down', {
                     clearProps: true,
                 })
             }
         });
-        // onLoadTimeline.to(".main-wrapper", {
-        //     duration: 5,
-        // })
         onLoadTimeline.to(".letter-down", {
             y: 0,
         }, ">");
@@ -180,7 +177,6 @@
 </script>
 
 <Navbar/>
-<Loader/>
 <div class="h-fit w-full pass-trigger bg-surface main-wrapper">
     {#if !$page.data.session?.user}
         <div class="fixed -top-[100%] left-1/2 -translate-x-1/2 w-fit h-fit z-[10] bg-surface border-2 border-on-surface px-4 py-2 rounded-2xl login-notif">

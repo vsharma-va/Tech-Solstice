@@ -23,7 +23,7 @@
         gsap.registerPlugin(ScrollToPlugin);
 
         let onLoadTimeline = gsap.timeline({
-            delay: 3.1, onStart: () => {
+            onStart: () => {
                 gsap.set('.letter-down', {
                     clearProps: true,
                 })
@@ -114,7 +114,6 @@
     }
 </script>
 
-<Loader/>
 <div class="h-fit w-full bg-surface main-events-trigger">
     <Navbar/>
     <div class="h-[800dvh] w-full flex flex-col gap-10">

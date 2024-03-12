@@ -41,7 +41,7 @@
         gsap.registerPlugin(ScrollTrigger);
 
         let onLoadTimeline = gsap.timeline({
-            delay: 3.1, onStart: () => {
+            onStart: () => {
                 gsap.set('.letter-down', {clearProps: true})
             }
         })
@@ -106,7 +106,6 @@
     })
 </script>
 <Navbar/>
-<Loader/>
 <div class="h-fit w-full bg-surface pass-trigger">
     <div class="h-[150vh] w-full flex flex-col">
         <div class="h-[90vh] w-full flex flex-col items-center justify-center intro-banner sticky top-0">

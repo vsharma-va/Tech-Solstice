@@ -29,6 +29,7 @@
 </script>
 
 <AuthNotif/>
+<!--<Loader/>-->
 <AlreadyOwnedNotif />
 <InvalidPassTokenNotif />
 <slot/>
