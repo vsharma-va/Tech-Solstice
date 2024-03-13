@@ -18,11 +18,11 @@
     let gradientClass;
 
     if(flagship) {
-        gradientClass = "instagram";
+        gradientClass = "flagship-gradient";
     } else if (esports) {
         gradientClass = "linkedin";
     } else if (technical) {
-        gradientClass = "youtube";
+        gradientClass = "technical-gradient";
     }
 
     function moveCarouselRight(trigger, scrollToClass) {

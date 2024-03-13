@@ -112,7 +112,7 @@
             }
         });
         eventsBannerTl.to('.intro-banner', {
-            opacity: 0.6,
+            opacity: 1,
             scale: 0.75,
             yPercent: 10,
         });
