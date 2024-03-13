@@ -1002,7 +1002,7 @@
                     <span class="tech-letter-down -translate-y-[360px]">S</span>
                 </div>
                 <div class="regular-font text-center font-thin h-fit w-full tracking-wide flex flex-col text-on-surface capitalize items-center justify-center pb-2 sm:pb-4 lg:pb-9 text-sm opacity-0 tech-events-tagline-div">
-                    featuring three flagship events that redefine the boundaries of technology and celebration!
+                    Explore, innovate, and excel in our technical events lineup!
                 </div>
             </div>
         </div>
@@ -1090,7 +1090,7 @@
                     <span class="esports-letter-down -translate-y-[320px]">S</span>
                 </div>
                 <div class="regular-font text-center font-thin h-fit w-full tracking-wide flex flex-col text-surface capitalize items-center justify-center pb-2 sm:pb-4 lg:pb-9 text-sm opacity-0 esports-events-tagline-div">
-                    featuring three flagship events that redefine the boundaries of technology and celebration!
+                    Dive into the electrifying world of esports competition!
                 </div>
             </div>
         </div>
