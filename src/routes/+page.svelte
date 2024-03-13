@@ -45,65 +45,48 @@
             })(navigator.userAgent || navigator.vendor || window.opera);
             return check;
         };
-        if (!isMobile()) {
-            let p5 = window.p5;
-            let THREE = window.THREE;
-            topologyHomeEffect = VANTA.TOPOLOGY({
-                el: ".topology-animation-home",
-                mouseControls: false,
-                touchControls: false,
-                gyroControls: false,
-                minHeight: 200.00,
-                minWidth: 200.00,
-                scale: 1.00,
-                scaleMobile: 100.00,
-                color: primaryContainer,
-                backgroundColor: "transparent",
-                THREE,
-                p5
-            });
-        }
+
 
 
         gsap.registerPlugin(ScrollTrigger);
 
-        if (isMobile()) {
-            console.log("TOUCH DEVICE FOUND");
-            let destroyTopologyTimeline = gsap.timeline(
-                {
-                    scrollTrigger: {
-                        trigger: ".featured-events-trigger",
-                        start: "top 70%",
-                        end: "top 70%",
-                        scrub: false,
-                        markers: false,
-                    },
-                },
-            );
-            destroyTopologyTimeline.to('.featured-events-trigger', {
-                onComplete: () => {
-                    console.debug("Topology Destoryed");
-                    topologyHomeEffect.destroy();
-                },
-                onReverseComplete: () => {
-                    console.debug("Topology Restored");
-                    topologyHomeEffect = VANTA.TOPOLOGY({
-                        el: ".topology-animation-home",
-                        mouseControls: false,
-                        touchControls: false,
-                        gyroControls: false,
-                        minHeight: 200.0,
-                        minWidth: 200.0,
-                        scale: 1.0,
-                        scaleMobile: 100.0,
-                        color: primaryContainer,
-                        backgroundColor: "transparent",
-                        THREE,
-                        p5,
-                    });
-                }
-            })
-        }
+        // if (isMobile()) {
+        //     console.log("TOUCH DEVICE FOUND");
+        //     let destroyTopologyTimeline = gsap.timeline(
+        //         {
+        //             scrollTrigger: {
+        //                 trigger: ".featured-events-trigger",
+        //                 start: "top 70%",
+        //                 end: "top 70%",
+        //                 scrub: false,
+        //                 markers: false,
+        //             },
+        //         },
+        //     );
+        //     destroyTopologyTimeline.to('.featured-events-trigger', {
+        //         onComplete: () => {
+        //             console.debug("Topology Destoryed");
+        //             topologyHomeEffect.destroy();
+        //         },
+        //         onReverseComplete: () => {
+        //             console.debug("Topology Restored");
+        //             topologyHomeEffect = VANTA.TOPOLOGY({
+        //                 el: ".topology-animation-home",
+        //                 mouseControls: false,
+        //                 touchControls: false,
+        //                 gyroControls: false,
+        //                 minHeight: 200.0,
+        //                 minWidth: 200.0,
+        //                 scale: 1.0,
+        //                 scaleMobile: 100.0,
+        //                 color: primaryContainer,
+        //                 backgroundColor: "transparent",
+        //                 THREE,
+        //                 p5,
+        //             });
+        //         }
+        //     })
+        // }
 
         let waitTimeline = gsap.timeline({
             onComplete: () => {
