@@ -777,11 +777,11 @@
                                     <div class="h-1 w-[45%] bg-on-primary-container"></div>
                                 </div>
                                 <p class="brand-font text-xl mt-2 sm:mt-0 text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
-                                    Event 1</p>
+                                    DJ</p>
                                 <p class="brand-font text-xl text-on-primary-container tracking-wide hidden featured-events-d-6 opacity-0">
-                                    Event 2</p>
+                                    Artist</p>
                                 <p class="brand-font text-xl text-on-primary-container tracking-wide hidden featured-events-d-9 opacity-0">
-                                    Event 3</p>
+                                    Standup</p>
                             </div>
                         </div>
                         <div class="h-full w-full col-start-2 row-start-1 relative tech-events-card-on-laptop hidden opacity-0">
@@ -794,11 +794,11 @@
                                     <div class="h-1 w-[45%] bg-on-primary-container"></div>
                                 </div>
                                 <p class="brand-font text-xl mt-2 sm:mt-0 text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
-                                    Event 1</p>
+                                    Hackathon</p>
                                 <p class="brand-font text-xl text-on-primary-container tracking-wide hidden featured-events-d-6 opacity-0">
-                                    Event 2</p>
+                                    Tech Exhibition </p>
                                 <p class="brand-font text-xl text-on-primary-container tracking-wide hidden featured-events-d-9 opacity-0">
-                                    Event 3</p>
+                                    CTF</p>
                             </div>
                         </div>
                         <div class="h-full w-full col-start-1 row-start-2 relative esports-events-card-on-laptop hidden opacity-0">
@@ -811,11 +811,11 @@
                                     <div class="h-1 w-[45%] bg-on-primary-container"></div>
                                 </div>
                                 <p class="brand-font text-xl mt-2 sm:mt-0 text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
-                                    Event 1</p>
+                                    BGMI</p>
                                 <p class="brand-font text-xl text-on-primary-container tracking-wide hidden featured-events-d-6 opacity-0">
-                                    Event 2</p>
+                                    COD</p>
                                 <p class="brand-font text-xl text-on-primary-container tracking-wide hidden featured-events-d-9 opacity-0">
-                                    Event 3</p>
+                                    FIFA</p>
                             </div>
                         </div>
                         <div class="h-full w-full col-start-2 row-start-2 items-center justify-center relative call-to-action-button-div hidden">
@@ -860,11 +860,11 @@
                         <div class="h-1 w-[45%] bg-on-primary-container"></div>
                     </div>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden featured-events-d-3 opacity-0">
-                        Event 1</p>
+                        DJ</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden featured-events-d-6 opacity-0">
-                        Event 2</p>
+                        Artist</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden featured-events-d-9 opacity-0">
-                        Event 3</p>
+                        Standup</p>
                     <Terminal sectionName="FEAT" arrayOfEventNames="{['Event 1', 'Event 2', 'Event 3']}"
                               gsapTimeline="{terminalFeaturedGsap}"/>
                 </div>
@@ -872,26 +872,26 @@
 
             <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] h-[70px] w-[70%] sm:w-[37%] bg-primary/90 absolute bottom-24 sm:bottom-30 left-2 xl:left-14 flex flex-col items-start justify-center px-5 rotate-d-9">
                 <p class="brand-font text-2xl lg:text-3xl text-on-primary tracking-wide">
-                    Event Name
+                    Standup
                 </p>
                 <p class="regular-font text-sm text-on-primary tracking-wide">
-                    Event Description Here
+                    Laugh. Enjoy. Repeat.
                 </p>
             </div>
             <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[37%] bg-on-primary/90 absolute top-32 xl:top-28 xl:right-14 right-2 lg:right-5 flex flex-col items-start justify-center px-5 rotate-d-6">
                 <p class="brand-font text-2xl lg:text-3xl text-primary tracking-wide">
-                    Event Name
+                    Artist
                 </p>
                 <p class="regular-font text-sm text-primary tracking-wide">
-                    Event Description Here
+                    Harmony. Passion. Performance.
                 </p>
             </div>
             <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[40%] bg-surface/90 absolute top-12 left-2 lg:left-9 xl:bottom-32 xl:right-24 flex flex-col items-start justify-center px-5 rotate-d-3">
                 <p class="brand-font text-2xl lg:text-3xl text-on-surface tracking-wide">
-                    Event Name
+                    DJ
                 </p>
                 <p class="regular-font text-sm text-on-surface tracking-wide">
-                    Event Description Here
+                    Beats. Groove. Dance.
                 </p>
             </div>
             <div class="h-full w-full flex flex-col absolute top-0 items-center justify-end">
@@ -949,37 +949,37 @@
                         <div class="h-1 w-[45%] bg-on-primary-container"></div>
                     </div>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden tech-events-d-3 opacity-0">
-                        Event 1</p>
+                        Hackathon</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden tech-events-d-6 opacity-0">
-                        Event 2</p>
+                        Tech Exhibition</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden tech-events-d-9 opacity-0">
-                        Event 3</p>
+                        CTF</p>
                     <Terminal sectionName="TECH" arrayOfEventNames="{['Event 1', 'Event 2', 'Event 3']}"
                               gsapTimeline="{terminalTechGsap}"/>
                 </div>
             </div>
             <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] h-[70px] w-[70%] sm:w-[37%] bg-primary/90 absolute bottom-24 sm:bottom-30 left-2 xl:left-14 flex flex-col items-start justify-center px-5 tech-rotate-d-9">
                 <p class="brand-font text-2xl lg:text-3xl text-on-primary tracking-wide">
-                    Event Name
+                    CTF
                 </p>
                 <p class="regular-font text-sm text-on-primary tracking-wide">
-                    Event Description Here
+                    Strategy. Victory. Thrill.
                 </p>
             </div>
             <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[37%] bg-on-primary/90 absolute top-32 xl:top-28 xl:right-14 right-2 lg:right-5 flex flex-col items-start justify-center px-5 tech-rotate-d-6">
                 <p class="brand-font text-2xl lg:text-3xl text-primary tracking-wide">
-                    Event Name
+                    Tech Exhibition
                 </p>
                 <p class="regular-font text-sm text-primary tracking-wide">
-                    Event Description Here
+                    Innovation. Discovery. Future.
                 </p>
             </div>
             <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[40%] bg-on-primary-container absolute top-12 left-2 lg:left-9 xl:bottom-32 xl:right-24 flex flex-col items-start justify-center px-5 tech-rotate-d-3">
                 <p class="brand-font text-2xl lg:text-3xl text-primary-container tracking-wide">
-                    Event Name
+                   Hackathon
                 </p>
                 <p class="regular-font text-sm text-primary-container tracking-wide">
-                    Event Description Here
+                    Innovate. Code. Collaborate.
                 </p>
             </div>
             <div class="h-full w-full flex flex-col absolute top-0 items-center justify-end">
@@ -1039,37 +1039,37 @@
                         <div class="h-1 w-[45%] bg-on-primary-container"></div>
                     </div>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden esports-events-d-3 opacity-0">
-                        Event 1</p>
+                        BGMI</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden esports-events-d-6 opacity-0">
-                        Event 2</p>
+                        COD</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden esports-events-d-9 opacity-0">
-                        Event 3</p>
+                        FIFA</p>
                     <Terminal sectionName="ESPORTS" arrayOfEventNames="{['Event 1', 'Event 2', 'Event 3']}"
                               gsapTimeline="{terminalEsportsGsap}"/>
                 </div>
             </div>
             <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] h-[70px] w-[70%] sm:w-[37%] bg-primary/90 absolute bottom-24 sm:bottom-30 left-2 xl:left-14 flex flex-col items-start justify-center px-5 esports-rotate-d-9">
                 <p class="brand-font text-2xl lg:text-3xl text-on-primary tracking-wide">
-                    Event Name
+                    FIFA
                 </p>
                 <p class="regular-font text-sm text-on-primary tracking-wide">
-                    Event Description Here
+                    Passion. Precision. Victory.
                 </p>
             </div>
             <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[37%] bg-on-primary/90 absolute top-32 xl:top-28 xl:right-14 right-2 lg:right-5 flex flex-col items-start justify-center px-5 esports-rotate-d-6">
                 <p class="brand-font text-2xl lg:text-3xl text-primary tracking-wide">
-                    Event Name
+                    COD
                 </p>
                 <p class="regular-font text-sm text-primary tracking-wide">
-                    Event Description Here
+                    Action. Precision. Strategy.
                 </p>
             </div>
             <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[40%] bg-surface absolute top-12 left-2 lg:left-9 xl:bottom-32 xl:right-24 flex flex-col items-start justify-center px-5 esports-rotate-d-3">
                 <p class="brand-font text-2xl lg:text-3xl text-on-surface tracking-wide">
-                    Event Name
+                    BGMI
                 </p>
                 <p class="regular-font text-sm text-on-surface tracking-wide">
-                    Event Description Here
+                    Battle. Survive. Conquer.
                 </p>
             </div>
             <div class="h-full w-full flex flex-col absolute top-0 items-center justify-end">
@@ -1165,9 +1165,7 @@
             </svg>
         </div>
         <div class="h-screen w-full flex sticky top-0 flex-col items-center justify-center">
-            <p class="brand-font text-2xl text-surface font-bold tracking-wide">
-                FAQs
-            </p>
+
         </div>
         <div class="h-[40vh] w-full bg-surface sticky top-[100%]">
             <div class="h-full w-full absolute -top-[48px] items-center justify-center overflow-hidden">
