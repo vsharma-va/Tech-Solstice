@@ -31,6 +31,11 @@
         }, 1000)
     })
 </script>
+<svelte:head>
+    <title>PAYMENT</title>
+</svelte:head>
+
+
 
 <div class="h-[100dvh] w-full bg-surface flex flex-col items-center justify-center">
     <div class="brand-font h-fit w-full font-bold flex flex-row items-center justify-center text-[14vw] text-on-surface overflow-y-clip">

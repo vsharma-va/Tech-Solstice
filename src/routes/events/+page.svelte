@@ -173,6 +173,10 @@
         })
     }
 </script>
+<svelte:head>
+    <title>EVENTS</title>
+</svelte:head>
+
 
 <div class="h-fit w-full bg-surface main-events-trigger">
     <Navbar/>

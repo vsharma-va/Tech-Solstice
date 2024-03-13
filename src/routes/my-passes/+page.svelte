@@ -105,6 +105,11 @@
         });
     })
 </script>
+<svelte:head>
+    <title>MY PASSES</title>
+</svelte:head>
+
+
 <Navbar/>
 <div class="h-fit w-full bg-surface pass-trigger">
     <div class="h-[150vh] w-full flex flex-col">

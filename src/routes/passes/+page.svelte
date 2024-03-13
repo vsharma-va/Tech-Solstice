@@ -201,6 +201,10 @@
         flagshipBuyTimeline.reverse();
     }
 </script>
+<svelte:head>
+    <title>PASSES</title>
+</svelte:head>
+
 
 <Navbar/>
 <div class="h-fit w-full pass-trigger bg-surface main-wrapper">

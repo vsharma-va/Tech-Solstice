@@ -675,6 +675,11 @@
         }
     });
 </script>
+<svelte:head>
+    <title>HOME</title>
+</svelte:head>
+
+
 <div class="h-screen w-full bg-primary flex flex-col items-center justify-center load-background">
     <p class="brand-font font-bold text-[140px] sm:text-[160px] md:text-[195px] lg:text-[210px] xl:text-[233px] scale-[1.4] hidden text-primary-container tracking-wide main-text leading-[0.78]">
         WELCOME</p>
