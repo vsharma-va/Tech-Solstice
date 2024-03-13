@@ -4,13 +4,46 @@
     import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
     import {ScrollToPlugin} from "gsap/dist/ScrollToPlugin";
     import {onMount} from "svelte";
-    import eventBackground from "$lib/assets/images/example-event-background.webp";
-    import Loader from "$lib/common/Loader.svelte";
+    import EventCard from "$lib/Events/EventCard.svelte";
+    import {TextPlugin} from "gsap/dist/TextPlugin";
 
     let isMobile;
+    let contentStrapiUrl = "https://content.mitblrfest.in"
+    let strapiKey = "298b35a62cad6355f0bfa06ffd7ae42c739c87fe0e3bc2ba4978116cbed29991873264fecca48f2cb119c07bfb70b6121b25f8aedc2b7da56fac282793f34e97ddb672a2a4396fc8c9b37e9b752840ad215149c57ad151092c5b34b8f1f95840ad124ef3092509c1b1cbd75dceef1adf9234e772194b7539d63ff26062acd8a8";
 
+    let FeaturedEvents = [];
+    let TechEvents = [];
+    let EsportsEvents = [];
 
-    onMount(() => {
+    onMount(async () => {
+        let eventData = (await (await fetch(`${contentStrapiUrl}/api/events`, {
+            headers: {Authorization: `Bearer ${strapiKey}`}
+        })).json()).data
+
+        let FeaturedEventsTemp = []
+        let TechEventsTemp = []
+        let EsportsEventsTemp = []
+        console.log(eventData);
+        for (let festEvent of eventData) {
+
+            if (festEvent.attributes.EventPriority <= 1000) {
+                FeaturedEventsTemp.push(festEvent);
+            } else if (festEvent.attributes.EventPriority <= 2000) {
+                TechEventsTemp.push(festEvent);
+            } else {
+                EsportsEventsTemp.push(festEvent);
+            }
+        }
+
+        FeaturedEventsTemp.sort((a, b) => a.attributes.EventPriority - b.attributes.EventPriority);
+        TechEventsTemp.sort((a, b) => a.attributes.EventPriority - b.attributes.EventPriority);
+        EsportsEventsTemp.sort((a, b) => a.attributes.EventPriority - b.attributes.EventPriority);
+
+        FeaturedEvents = FeaturedEventsTemp;
+        TechEvents = TechEventsTemp;
+        EsportsEvents = EsportsEventsTemp;
+        console.log(TechEventsTemp);
+
         isMobile = function () {
             let check = false;
             (function (a) {
@@ -20,6 +53,7 @@
         };
 
         gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(TextPlugin);
         gsap.registerPlugin(ScrollToPlugin);
 
         let onLoadTimeline = gsap.timeline({
@@ -82,6 +116,32 @@
             scale: 0.75,
             yPercent: 10,
         });
+
+        let technical = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.starting-cultural-events',
+                start: 'top center',
+                end: 'top 30%',
+                scrub: true,
+                markers: false,
+            }
+        })
+        technical.to('.actual-heading-text', {
+            text: "TECHNICAL"
+        })
+
+        let esports = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.starting-esports-events',
+                start: 'top center',
+                end: 'top 30%',
+                scrub: true,
+                markers: false,
+            }
+        })
+        esports.to('.actual-heading-text', {
+            text: "ESPORTS"
+        })
     });
 
     function moveCarouselRight(trigger, scrollToClass) {
@@ -116,11 +176,11 @@
 
 <div class="h-fit w-full bg-surface main-events-trigger">
     <Navbar/>
-    <div class="h-[800dvh] w-full flex flex-col gap-10">
+    <div class="h-fit w-full flex flex-col gap-10">
         <div class="h-[90dvh] w-full flex flex-col items-center justify-center sticky top-0 intro-banner">
             <div class="h-fit w-full flex flex-col overflow-hidden">
                 <div
-                        class="pt-14 px-5 brand-font text-left h-fit w-full -translate-x-9 font-bold flex flex-row items-center justify-center text-6xl sm:text-7xl lg:text-9xl text-on-surface overflow-y-clip">
+                        class="pt-14 px-5 brand-font text-left h-fit w-full -translate-x-9 font-bold flex flex-row items-center justify-center text-6xl sm:text-7xl lg:text-9xl text-on-surface overflow-y-clip actual-heading-text">
                     <span class="letter-down -translate-y-[70px]">F</span>
                     <span class="letter-down -translate-y-[90px]">E</span>
                     <span class="letter-down -translate-y-[110px]">A</span>
@@ -153,76 +213,34 @@
                 </p>
             </div>
         </div>
-        <div class="h-fit w-full flex flex-col">
-            <div class="h-[85dvh] w-full flex flex-row px-5 lg:px-36 flex-nowrap overflow-x-scroll overflow-y-visible gap-2 no-scrollbar relative event-carousel-1 lg:gap-10">
-                <div class="w-full h-full sm:w-[75%] relative text-on-surface flex-shrink-0 image-div-event-1">
-                    <img src="{eventBackground}" alt=""
-                         class="h-full w-full object-cover inline-block display-image absolute top-0 bottom-0 z-0">
-                    <div class="absolute bottom-2 left-2 h-fit w-[75%] flex flex-col items-start justify-center p-5 bg-surface gap-1">
-                        <div class="brand-font text-4xl sm:text-5xl tracking-wide text-on-surface leading-[1] h-fit max-w-prose relative">
-                            <p>EVENT NAME</p>
-                            <div class="absolute bottom-0 h-[10px] w-full bg-primary/70"></div>
-                        </div>
-                        <p class="brand-font text-2xl lg:text-3xl tracking-wide text-on-surface/80">Tagline Here</p>
-                    </div>
-                </div>
-                <div class="w-full h-full sm:w-[75%] border-[1.5px] border-on-surface relative text-on-surface flex-shrink-0 flex flex-col p-5 lg:p-10 gap-5 lg:gap-9 description-div-event-1 items-start justify-start backdrop-blur-lg">
-                    <div class="w-full h-fit flex flex-col gap-2 lg:gap-4">
-                        <div class="brand-font text-4xl sm:text-5xl lg:text-6xl text-on-surface h-fit w-fit relative">
-                            <p>Description</p>
-                            <div class="absolute bottom-0 w-full bg-primary/70 h-[10px]"></div>
-                        </div>
-                        <p class="regular-font text-sm sm:text-lg lg:text-xl sm:leading-[1.2] text-on-surface/80">Lorem
-                            ipsum dolor sit amet, consectetur
-                            adipisicing elit. Accusantium aliquam animi assumenda aut dolorem eum exercitationem fugiat,
-                            harum necessitatibus nisi, nobis non nostrum odit officiis quia quo recusandae unde vel?
-                        </p>
-                        <button class="px-4 py-1 bg-primary w-fit text-on-primary brand-font text-2xl sm:text-3xl flex flex-row">
-                            Handbook
-                        </button>
-                    </div>
-                    <div class="w-full h-fit flex flex-col gap-2 lg:gap-4">
-                        <div class="brand-font text-4xl sm:text-5xl lg:text-6xl text-on-surface h-fit w-fit relative">
-                            <p>Prize Pool</p>
-                            <div class="absolute bottom-0 w-full bg-primary/70 h-[10px]"></div>
-                        </div>
-                        <div class="flex flex-row w-full h-fit items-center justify-around">
-                            <div class="h-fit w-fit flex flex-row items-center justify-center gap-2">
-                                <div class="h-3 w-3 rounded-full bg-yellow-500"></div>
-                                <p class="brand-font text-2xl sm:text-3xl lg:text-4xl  text-on-surface/80">₹1000</p>
-                            </div>
-                            <div class="h-fit w-fit flex flex-row items-center justify-center gap-2">
-                                <div class="h-3 w-3 rounded-full bg-gray-300"></div>
-                                <p class="brand-font text-2xl sm:text-3xl lg:text-4xl text-on-surface/80">₹1000</p>
-                            </div>
-                            <div class="h-fit w-fit flex flex-row items-center justify-center gap-2">
-                                <div class="h-3 w-3 rounded-full bg-yellow-950"></div>
-                                <p class="brand-font text-2xl sm:text-3xl lg:text-4xl text-on-surface/80">₹1000</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-full h-fit flex flex-col gap-3 lg:gap-4">
-                        <div class="brand-font text-4xl sm:text-5xl lg:text-6xl text-on-surface h-fit w-fit relative">
-                            <p>Included With</p>
-                            <div class="absolute bottom-0 w-full bg-primary/70 h-[10px]"></div>
-                        </div>
-                        <div class="w-full h-fit flex flex-row">
-                            <div class="w-fit h-fit bg-on-surface sm:text-2xl flex flex-row px-3 py-1">
-                                <p class="brand-font text-2xl lg:text-4xl text-surface">Flagship</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="absolute hidden sm:flex bottom-2 w-fit h-fit left-1/2 -translate-x-1/2 flex-row items-center justify-center gap-2 bg-surface border-[1px] border-on-surface p-2">
-                <button class="h-3 w-3 rounded-full bg-primary on-left-indicator"
-                        on:mousedown={() => moveCarouselLeft("event-carousel-1", "image-div-event-1")}
-                ></button>
-                <button class="h-3 w-3 rounded-full bg-primary opacity-[0.2] on-right-indicator"
-                        on:mousedown={() => moveCarouselRight("event-carousel-1", "description-div-event-1")}
-                ></button>
-            </div>
-        </div>
+
+        {#if FeaturedEvents.length > 0}
+            {#each FeaturedEvents as festEvent}
+                <EventCard descriptionText="{festEvent.attributes.EventDescription}"
+                           eventName="{festEvent.attributes.EventName}" taglineHere="{festEvent.attributes.Tagline}"
+                           includedWith="Flagship" showPrizePool="{false}" flagship="{true}"/>
+            {/each}
+        {/if}
+        <div class="h-[90dvh] w-full starting-cultural-events"></div>
+        {#if TechEvents.length > 0}
+            {#each TechEvents as festEvent}
+                <EventCard descriptionText="{festEvent.attributes.EventDescription}"
+                           eventName="{festEvent.attributes.EventName}" taglineHere="{festEvent.attributes.Tagline}"
+                           includedWith="Flagship" showPrizePool="{true}" first="{festEvent.attributes.FirstPrize}"
+                           second="{festEvent.attributes.SecondPrize}" third="{festEvent.attributes.ThirdPrize}"
+                           handbookLink="{festEvent.attributes.RulebookGDriveLink}" technical="{true}"/>
+            {/each}
+        {/if}
+        <div class="h-[90dvh] w-full starting-esports-events"></div>
+        {#if EsportsEvents.length > 0}
+            {#each EsportsEvents as festEvent}
+                <EventCard descriptionText="{festEvent.attributes.EventDescription}"
+                           eventName="{festEvent.attributes.EventName}" taglineHere="{festEvent.attributes.Tagline}"
+                           includedWith="Flagship" showPrizePool="{true}" first="{festEvent.attributes.FirstPrize}"
+                           second="{festEvent.attributes.SecondPrize}" third="{festEvent.attributes.ThirdPrize}"
+                           handbookLink="{festEvent.attributes.RulebookGDriveLink}" esports="{true}"/>
+            {/each}
+        {/if}
     </div>
 </div>
 

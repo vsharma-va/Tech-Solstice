@@ -88,3 +88,51 @@
         stroke-dashoffset: -125px;
     }
 }
+
+.instagram {
+    background: #f09433;
+    background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );*/
+}
+
+.linkedin {
+    background-image: linear-gradient(
+            45deg,
+            hsl(0deg 0% 100%) 0%,
+            hsl(201deg 63% 91%) 11%,
+            hsl(201deg 62% 83%) 22%,
+            hsl(201deg 61% 75%) 33%,
+            hsl(201deg 60% 68%) 44%,
+            hsl(201deg 59% 61%) 56%,
+            hsl(201deg 58% 54%) 67%,
+            hsl(201deg 64% 47%) 78%,
+            hsl(201deg 80% 41%) 89%,
+            hsl(201deg 100% 35%) 100%
+    );
+}
+
+.youtube {
+    background-image: linear-gradient(
+            45deg,
+            hsl(0deg 0% 100%) -1%,
+            hsl(357deg 100% 97%) 0%,
+            hsl(357deg 100% 94%) 4%,
+            hsl(357deg 100% 92%) 8%,
+            hsl(357deg 100% 89%) 13%,
+            hsl(357deg 100% 86%) 18%,
+            hsl(357deg 100% 83%) 24%,
+            hsl(357deg 100% 81%) 30%,
+            hsl(357deg 100% 78%) 36%,
+            hsl(357deg 100% 75%) 42%,
+            hsl(357deg 100% 72%) 49%,
+            hsl(357deg 100% 69%) 55%,
+            hsl(357deg 100% 67%) 62%,
+            hsl(357deg 100% 64%) 70%,
+            hsl(357deg 100% 61%) 77%,
+            hsl(357deg 100% 58%) 84%,
+            hsl(357deg 100% 56%) 92%,
+            hsl(357deg 100% 53%) 100%
+    );
+}

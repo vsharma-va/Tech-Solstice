@@ -1,8 +1,5 @@
 <script>
-    import {goto} from "$app/navigation";
-    import {page} from "$app/stores";
     import {gsap} from "gsap/dist/gsap";
-    import {signIn} from "@auth/sveltekit/client";
 
     export let displayName;
     export let rotateClass;
@@ -93,28 +90,33 @@
                     {/each}
                 </div>
             </div>
-            <button
-                    class="{buttonBgColorClass} text-2xl flex flex-row items-center justify-center gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface hover:text-surface"
-                    on:click={async () => {
-                       animateLoadingPhase();
-                     if($page.data.session?.user) {
-                        await goto(`/payment/${redirectToken}`)
-                     } else {
-                         await signIn('google', {callbackUrl: `${$page.url.pathname}?signedIn`})
-                     }
-                }}
-            >
-                {#if $page.data.session?.user}
-                    <p class="button-inner-text">BUY</p>
-                {:else}
-                    <p class="button-inner-text">LOGIN</p>
-                {/if}
-                <div class="h-full w-full flex-col items-center justify-center loader-buy hidden scale-0">
-                    <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>
-                </div>
-                <div class="{buttonPriceBgColorClass} {buttonPriceTextColorClass} group-hover:bg-primary group-hover:text-on-primary brand-font text-2xl flex flex-row items-center justify-center px-4 py-1 flagship-buy-text">
-                    <p>₹{price}</p>
-                </div>
+            <!--            <button-->
+            <!--                    class="{buttonBgColorClass} text-2xl flex flex-row items-center justify-center gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface hover:text-surface"-->
+            <!--                    on:click={async () => {-->
+            <!--                       animateLoadingPhase();-->
+            <!--                     if($page.data.session?.user) {-->
+            <!--                        await goto(`/payment/${redirectToken}`)-->
+            <!--                     } else {-->
+            <!--                         await signIn('google', {callbackUrl: `${$page.url.pathname}?signedIn`})-->
+            <!--                     }-->
+            <!--                }}-->
+            <!--            >-->
+            <!--                {#if $page.data.session?.user}-->
+            <!--                    <p class="button-inner-text">BUY</p>-->
+            <!--                {:else}-->
+            <!--                    <p class="button-inner-text">LOGIN</p>-->
+            <!--                {/if}-->
+            <!--                <div class="h-full w-full flex-col items-center justify-center loader-buy hidden scale-0">-->
+            <!--                    <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>-->
+            <!--                </div>-->
+            <!--                <div class="{buttonPriceBgColorClass} {buttonPriceTextColorClass} group-hover:bg-primary group-hover:text-on-primary brand-font text-2xl flex flex-row items-center justify-center px-4 py-1 flagship-buy-text">-->
+            <!--                    <p>₹{price}</p>-->
+            <!--                </div>-->
+            <!--            </button>-->
+            <button class="{buttonBgColorClass} text-2xl flex flex-row items-center justify-center
+                gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface
+                hover:text-surface">
+                Coming Soon
             </button>
         </div>
     {:else}
