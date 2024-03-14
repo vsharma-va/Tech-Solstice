@@ -870,7 +870,7 @@
                         Artist</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden featured-events-d-9 opacity-0">
                         Standup</p>
-                    <Terminal sectionName="FEAT" arrayOfEventNames="{['Event 1', 'Event 2', 'Event 3']}"
+                    <Terminal sectionName="FEAT" arrayOfEventNames="{['DJ', 'Artist', 'Standup']}"
                               gsapTimeline="{terminalFeaturedGsap}"/>
                 </div>
             </div>
@@ -959,7 +959,7 @@
                         Tech Exhibition</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden tech-events-d-9 opacity-0">
                         CTF</p>
-                    <Terminal sectionName="TECH" arrayOfEventNames="{['Event 1', 'Event 2', 'Event 3']}"
+                    <Terminal sectionName="TECH" arrayOfEventNames="{['Hackathon', 'Tech Exhibition', 'CTF']}"
                               gsapTimeline="{terminalTechGsap}"/>
                 </div>
             </div>
@@ -1049,7 +1049,7 @@
                         COD</p>
                     <p class="brand-font text-4xl lg:text-5xl text-on-primary-container tracking-wide hidden esports-events-d-9 opacity-0">
                         FIFA</p>
-                    <Terminal sectionName="ESPORTS" arrayOfEventNames="{['Event 1', 'Event 2', 'Event 3']}"
+                    <Terminal sectionName="ESPORTS" arrayOfEventNames="{['BGMI', 'COD', 'FIFA']}"
                               gsapTimeline="{terminalEsportsGsap}"/>
                 </div>
             </div>
@@ -1303,5 +1303,4 @@
             transform: skewX(10deg) skewY(-10deg);
         }
     }
-
 </style>
