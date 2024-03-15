@@ -1,5 +1,4 @@
 <script>
-    import eventBackground from "$lib/assets/images/example-event-background.webp";
     import {gsap} from "gsap/dist/gsap";
 
     // to do add different color palettes for different categories
@@ -15,9 +14,10 @@
     export let flagship;
     export let esports;
     export let technical;
+
     let gradientClass;
 
-    if(flagship) {
+    if (flagship) {
         gradientClass = "flagship-gradient";
     } else if (esports) {
         gradientClass = "linkedin";
@@ -57,14 +57,17 @@
 <div class="h-fit w-full flex flex-col relative">
     <div class="h-[85dvh] w-full flex flex-row px-5 lg:px-36 flex-nowrap overflow-x-scroll overflow-y-visible gap-2 no-scrollbar relative event-carousel-1 lg:gap-10">
         <div class="w-full h-full sm:w-[75%] relative text-on-surface flex-shrink-0 image-div-event-1 {gradientClass}">
-<!--            <img src="{eventBackground}" alt=""-->
-<!--                 class="h-full w-full object-cover inline-block display-image absolute top-0 bottom-0 z-0">-->
+            <!--            <img src="{eventBackground}" alt=""-->
+            <!--                 class="h-full w-full object-cover inline-block display-image absolute top-0 bottom-0 z-0">-->
             <div class="absolute bottom-2 left-2 h-fit w-[75%] flex flex-col items-start justify-center p-5 bg-surface gap-1">
                 <div class="brand-font text-4xl sm:text-5xl tracking-wide text-on-surface leading-[1] h-fit max-w-prose relative">
                     <p>{eventName}</p>
                     <div class="absolute bottom-0 h-[10px] w-full bg-primary/70"></div>
                 </div>
                 <p class="brand-font text-2xl lg:text-3xl tracking-wide text-on-surface/80">{taglineHere}</p>
+                <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2">
+                    Register
+                </button>
             </div>
         </div>
         <div class="w-full h-full sm:w-[75%] border-[1.5px] border-on-surface relative text-on-surface flex-shrink-0 flex flex-col p-5 lg:p-10 gap-5 lg:gap-9 description-div-event-1 items-start justify-start backdrop-blur-lg overflow-y-scroll">
@@ -82,11 +85,14 @@
                     {/if}
                 </p>
                 {#if showPrizePool}
-                    <button class="px-4 py-1 bg-primary w-fit text-on-primary brand-font text-2xl sm:text-3xl flex flex-row">
+                    <a class="px-4 py-1 bg-primary w-fit text-on-primary brand-font text-2xl sm:text-3xl flex flex-row"
+                       href="{handbookLink}" target="_blank">
                         {#if handbookLink === '-1'}
                             Handbook (Soon)
+                        {:else}
+                            Handbook
                         {/if}
-                    </button>
+                    </a>
                 {/if}
             </div>
             {#if showPrizePool}
