@@ -1,5 +1,9 @@
 <script>
     import {gsap} from "gsap/dist/gsap";
+    import {page} from "$app/stores";
+    import {signIn} from "@auth/sveltekit/client";
+    import {goto} from "$app/navigation";
+    import {clickedPassRedirectToken} from "../../store.js";
 
     export let displayName;
     export let rotateClass;
@@ -17,6 +21,7 @@
     export let redirectToken;
     export let owned;
     export let token;
+    export let userData;
 
     function animateLoadingPhase() {
         gsap.to('.button-inner-text', {
@@ -40,6 +45,18 @@
             scale: 1,
             opacity: 1,
             ease: "bounce.out",
+        });
+    }
+
+    function showDataForm() {
+        let dataTimeline = gsap.timeline();
+        dataTimeline.to('.data-form', {
+            display: 'flex',
+        });
+        dataTimeline.to('.data-form', {
+            top: 0,
+            duration: 0.5,
+            ease: "power4.out",
         });
     }
 </script>
@@ -90,34 +107,40 @@
                     {/each}
                 </div>
             </div>
-            <!--            <button-->
-            <!--                    class="{buttonBgColorClass} text-2xl flex flex-row items-center justify-center gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface hover:text-surface"-->
-            <!--                    on:click={async () => {-->
-            <!--                       animateLoadingPhase();-->
-            <!--                     if($page.data.session?.user) {-->
-            <!--                        await goto(`/payment/${redirectToken}`)-->
-            <!--                     } else {-->
-            <!--                         await signIn('google', {callbackUrl: `${$page.url.pathname}?signedIn`})-->
-            <!--                     }-->
-            <!--                }}-->
-            <!--            >-->
-            <!--                {#if $page.data.session?.user}-->
-            <!--                    <p class="button-inner-text">BUY</p>-->
-            <!--                {:else}-->
-            <!--                    <p class="button-inner-text">LOGIN</p>-->
-            <!--                {/if}-->
-            <!--                <div class="h-full w-full flex-col items-center justify-center loader-buy hidden scale-0">-->
-            <!--                    <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>-->
-            <!--                </div>-->
-            <!--                <div class="{buttonPriceBgColorClass} {buttonPriceTextColorClass} group-hover:bg-primary group-hover:text-on-primary brand-font text-2xl flex flex-row items-center justify-center px-4 py-1 flagship-buy-text">-->
-            <!--                    <p>₹{price}</p>-->
-            <!--                </div>-->
-            <!--            </button>-->
-            <button class="{buttonBgColorClass} text-2xl flex flex-row items-center justify-center
-                gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface
-                hover:text-surface">
-                Coming Soon
+            <button
+                    class="{buttonBgColorClass} text-2xl flex flex-row items-center justify-center gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface hover:text-surface"
+                    on:click={async () => {
+                                    $clickedPassRedirectToken = redirectToken;
+                                 if(!$page.data.session?.user) {
+                                   animateLoadingPhase();
+                                     await signIn('google', {callbackUrl: `${$page.url.pathname}?signedIn`})
+                                 } else {
+                                     if(!userData) {
+                                         showDataForm();
+                                     } else {
+                                        animateLoadingPhase();
+                                        await goto(`/payment/${redirectToken}`)
+                                     }
+                                 }
+                            }}
+            >
+                {#if $page.data.session?.user}
+                    <p class="button-inner-text">BUY</p>
+                {:else}
+                    <p class="button-inner-text">LOGIN</p>
+                {/if}
+                <div class="h-full w-full flex-col items-center justify-center loader-buy hidden scale-0">
+                    <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>
+                </div>
+                <div class="{buttonPriceBgColorClass} {buttonPriceTextColorClass} group-hover:bg-primary group-hover:text-on-primary brand-font text-2xl flex flex-row items-center justify-center px-4 py-1 flagship-buy-text">
+                    <p>₹{price}</p>
+                </div>
             </button>
+            <!--            <button class="{buttonBgColorClass} text-2xl flex flex-row items-center justify-center-->
+            <!--                gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface-->
+            <!--                hover:text-surface">-->
+            <!--                Coming Soon-->
+            <!--            </button>-->
         </div>
     {:else}
         <div class="h-full w-full flex flex-col">
