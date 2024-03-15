@@ -138,18 +138,28 @@
 }
 
 .technical-gradient {
-    background: hsla(254, 68%, 9%, 1);
-
-    background: linear-gradient(45deg, hsla(254, 68%, 9%, 1) 0%, hsla(269, 97%, 37%, 1) 33%, hsla(320, 77%, 55%, 1) 66%, hsla(316, 41%, 93%, 1) 100%);
-
-    background: -moz-linear-gradient(45deg, hsla(254, 68%, 9%, 1) 0%, hsla(269, 97%, 37%, 1) 33%, hsla(320, 77%, 55%, 1) 66%, hsla(316, 41%, 93%, 1) 100%);
-
-    background: -webkit-linear-gradient(45deg, hsla(254, 68%, 9%, 1) 0%, hsla(269, 97%, 37%, 1) 33%, hsla(320, 77%, 55%, 1) 66%, hsla(316, 41%, 93%, 1) 100%);
+    /*background-image: linear-gradient(*/
+    /*        45deg,*/
+    /*        hsl(320deg 11% 89%) 0%,*/
+    /*        hsl(11deg 47% 87%) 16%,*/
+    /*        hsl(16deg 71% 84%) 22%,*/
+    /*        hsl(17deg 84% 81%) 26%,*/
+    /*        hsl(18deg 91% 77%) 31%,*/
+    /*        hsl(19deg 95% 74%) 35%,*/
+    /*        hsl(20deg 96% 70%) 40%,*/
+    /*        hsl(20deg 97% 66%) 46%,*/
+    /*        hsl(21deg 96% 61%) 53%,*/
+    /*        hsl(22deg 95% 56%) 63%,*/
+    /*        hsl(24deg 99% 49%) 91%*/
+    /*);*/
+    background: #03001e; /* fallback for old browsers */
+    background: -webkit-linear-gradient(45deg, #fdeff9, #ec38bc); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(45deg, #fdeff9, #ec38bc); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .flagship-gradient {
-    background: #03001e;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(-45deg, #fdeff9, #ec38bc, #7303c0, #03001e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: #03001e; /* fallback for old browsers */
+    background: -webkit-linear-gradient(-45deg, #fdeff9, #ec38bc, #7303c0, #03001e); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(-45deg, #fdeff9, #ec38bc, #7303c0, #03001e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
