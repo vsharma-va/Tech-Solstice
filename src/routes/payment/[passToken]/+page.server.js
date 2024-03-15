@@ -37,11 +37,13 @@ export const load = async (event) => {
                 }
                 // check for any open payments
                 let previousOpenPayment = await payments.findOne({
+                    email: session.user.email,
                     pass_name: decodedToken.dbName,
                     status: 'created',
                 });
                 // if previous open payments found then check their updated status
                 if (previousOpenPayment) {
+                    console.log("FOUND PREVIOUS PAYMENT");
                     let razorpayFetched = await razorpayInstance.paymentLink.fetch(previousOpenPayment.razor_link_id);
                     if (razorpayFetched.status === 'created') {
                         return {
@@ -52,6 +54,7 @@ export const load = async (event) => {
                         await payments.updateOne({
                             reference_id: razorpayFetched.reference_id,
                         }, {$set: {status: razorpayFetched.status}})
+                        // create new payment link
                         let paymentReferenceId = uuidv4();
                         let razorpayLink = await generatePaymentLink(session, decodedToken.cost, decodedToken.dbName, paymentReferenceId);
                         await payments.updateOne({
@@ -67,6 +70,7 @@ export const load = async (event) => {
                         })
                         return {redirectUrl: razorpayLink.short_url};
                     } else if (razorpayFetched.status === 'paid') {
+                        // update payment status in  db
                         await payments.updateOne({
                             reference_id: razorpayFetched.reference_id,
                         }, {
@@ -85,6 +89,7 @@ export const load = async (event) => {
                         return {redirectUrl: process.env.ORIGIN + "/my-passes"}
                     }
                 } else {
+                    console.log("CREATING NEW PAYMENT")
                     const payRefId = uuidv4();
                     let generatedLink = await generatePaymentLink(session, decodedToken.cost, decodedToken.dbName, payRefId);
                     await payments.insertOne({
