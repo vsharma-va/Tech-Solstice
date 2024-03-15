@@ -7,11 +7,19 @@
     import PassCard from "$lib/Passes/PassCard.svelte";
     import {goto} from "$app/navigation";
     import {page} from "$app/stores";
+    import {enhance} from "$app/forms";
+    import {clickedPassRedirectToken} from "../../store.js";
 
     export let data;
+    export let form;
+    console.log(form);
 
     let refreshStatusButton;
     let cancelPaymentButton;
+    let userName;
+    let userPhoneNumber;
+
+    let errors = {userNameError: '', userPhoneNumberError: ''};
 
     let flagshipCardTimeline;
     let flagshipBuyTimeline;
@@ -185,6 +193,7 @@
         });
     }
 
+
     function flagshipCardHovered() {
         flagshipCardTimeline.play(0);
     }
@@ -200,14 +209,99 @@
     function flagshipBuyExit() {
         flagshipBuyTimeline.reverse();
     }
+
+    function attemptPayment({formData}) {
+        formData.set('userName', userName);
+        formData.set('userPhoneNumber', userPhoneNumber);
+        let redirectToken = $clickedPassRedirectToken;
+        formData.set('redirectToken', redirectToken);
+    }
+
+    function checkUserName() {
+        if (userName.length >= 2 && userName.match(/^[A-Za-z\s]*$/)) {
+            errors.userNameError = '';
+        } else {
+            errors.userNameError = 'Please enter a valid name';
+        }
+    }
+
+    function checkMobileNumber() {
+        if (userPhoneNumber?.toString().length === 10) {
+            errors.userPhoneNumberError = '';
+        } else {
+            errors.userPhoneNumberError = 'Please enter a valid mobile number';
+        }
+    }
+
+    function clearFormErrorName() {
+        if (form) {
+            form.userNameError = '';
+        }
+    }
+
+    function clearFormErrorMobile() {
+        if (form) {
+            form.userPhoneNumberError = '';
+        }
+    }
+
+    function hideForm() {
+        let dataTimeline = gsap.timeline();
+        dataTimeline.to('.data-form', {
+            top: "100%",
+            duration: 0.5,
+            ease: "power4.out",
+        });
+        dataTimeline.to('.data-form', {
+            display: 'none',
+        });
+    }
 </script>
+
 <svelte:head>
     <title>PASSES</title>
 </svelte:head>
 
-
 <Navbar/>
-<div class="h-fit w-full pass-trigger bg-surface main-wrapper">
+
+<div class="h-fit w-full pass-trigger bg-surface main-wrapper relative">
+    <div class="h-screen w-full fixed top-[100%] backdrop-blur-2xl hidden data-form items-center justify-center z-[3] p-4">
+        <button class="h-screen w-full bg-transparent absolute top-0" on:click={hideForm}></button>
+        <div class="h-fit w-fit rounded-2xl border-2 border-on-surface bg-surface flex flex-col items-start justify-center z-[6] p-5 gap-5">
+            <div class="h-fit w-fit flex flex-col gap-1">
+                <p class="brand-font text-primary text-[40px] leading-8 tracking-wide">PLEASE ENTER YOUR DETAILS!</p>
+                <p class="regular-font text-on-primary-container/70 text-lg text-center leading-5 tracking-wide">Your
+                    details will be used for event registeration</p>
+            </div>
+            <div class="h-fit w-full flex flex-col gap-2">
+                <form action="?/registerUserAndProceed" method="post" use:enhance={(event)=>{
+                    attemptPayment(event)
+                }} class="h-fit w-full">
+                    <div class="form__group field">
+                        <input type="input" class="form__field regular-font" placeholder="Full Name" required=""
+                               bind:value={userName} on:input={checkUserName}>
+                        <label for="name" class="form__label regular-font">Full Name</label>
+                        {#if form?.userNameError}
+                            <p class="text-sm text-error regular-font from-form">{form.userNameError}</p>
+                        {/if}
+                        <p class="text-sm text-error regular-font">{errors.userNameError}</p>
+                    </div>
+                    <div class="form__group field">
+                        <input type="number" class="form__field regular-font" placeholder="Phone Number" required=""
+                               bind:value={userPhoneNumber} on:input={checkMobileNumber}>
+                        <label for="name" class="form__label regular-font">Phone Number</label>
+                        {#if form?.userPhoneNumberError}
+                            <p class="text-sm text-error regular-font">{form.userPhoneNumberError}</p>
+                        {/if}
+                        <p class="text-sm text-error regular-font">{errors.userPhoneNumberError}</p>
+                    </div>
+                    <button class="w-full h-fit bg-primary text-on-primary text-3xl py-1 brand-font mt-4" type="submit">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
     {#if !$page.data.session?.user}
         <div class="fixed -top-[100%] left-1/2 -translate-x-1/2 w-fit h-fit z-[10] bg-surface border-2 border-on-surface px-4 py-2 rounded-2xl login-notif">
             <div class="brand-font flex flex-row text-3xl text-on-surface tracking-wide gap-1 h-fit w-fit">
@@ -338,7 +432,8 @@
                                       buttonBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonBgColorClass}"
                                       buttonTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonTextColorClass}"
                                       buttonPriceBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceBgColorClass}"
-                                      buttonPriceTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceTextColorClass}"/>
+                                      buttonPriceTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceTextColorClass}"
+                                      userData="{data.userData}"/>
                         {:else}
                             <PassCard rotateClass="-rotate-[4deg]"
                                       includesArray="{value['includes']}"
@@ -355,7 +450,8 @@
                                       buttonBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonBgColorClass}"
                                       buttonTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonTextColorClass}"
                                       buttonPriceBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceBgColorClass}"
-                                      buttonPriceTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceTextColorClass}"/>
+                                      buttonPriceTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonPriceTextColorClass}"
+                                      userData="{data.userData}"/>
                         {/if}
                         <!--                    <div-->
                         <!--                            class="w-[90%] min-[410px]:w-[80%] min-[500px]:w-[60%] min-[600px]:w-[48%] sm:w-[45%] md:w-[35%] lg:w-[25%] xl:w-[20%] h-full flex-shrink-0 rounded-2xl bg-primary rotate-[8deg] z-[2] pass-2"-->
@@ -380,5 +476,67 @@
     .no-scrollbar {
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
+    }
+
+    .form__group {
+        position: relative;
+        padding: 20px 0 0;
+        width: 100%;
+    }
+
+    .form__field {
+        font-family: inherit;
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid #9b9b9b;
+        outline: 0;
+        font-size: 17px;
+        color: #fff;
+        padding: 7px 0;
+        background: transparent;
+        transition: border-color 0.2s;
+    }
+
+    .form__field::placeholder {
+        color: transparent;
+    }
+
+    .form__field:placeholder-shown ~ .form__label {
+        font-size: 17px;
+        cursor: text;
+        top: 20px;
+    }
+
+    .form__label {
+        position: absolute;
+        top: 0;
+        display: block;
+        transition: 0.2s;
+        font-size: 17px;
+        color: #9b9b9b;
+        pointer-events: none;
+    }
+
+    .form__field:focus {
+        padding-bottom: 6px;
+        font-weight: 700;
+        border-width: 3px;
+        border-image: linear-gradient(to right, #490f72, #e1b6ff);
+        border-image-slice: 1;
+    }
+
+    .form__field:focus ~ .form__label {
+        position: absolute;
+        top: 0;
+        display: block;
+        transition: 0.2s;
+        font-size: 17px;
+        color: #e1b6ff;
+        font-weight: 700;
+    }
+
+    /* reset input */
+    .form__field:required, .form__field:invalid {
+        box-shadow: none;
     }
 </style>
