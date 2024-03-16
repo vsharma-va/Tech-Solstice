@@ -6,6 +6,7 @@
     import InvalidPassTokenNotif from "$lib/common/InvalidPassTokenNotif.svelte";
     import AlreadyOwnedNotif from "$lib/common/AlreadyOwnedNotif.svelte";
     import Loader from "$lib/common/Loader.svelte";
+    import EventRegisteredNotif from "$lib/common/EventRegisteredNotif.svelte";
 
     onMount(() => {
         let isMobile = function () {
@@ -30,6 +31,7 @@
 
 <AuthNotif/>
 <!--<Loader/>-->
+<EventRegisteredNotif/>
 <AlreadyOwnedNotif />
 <InvalidPassTokenNotif />
 <slot/>

@@ -6,6 +6,10 @@
     import {onMount} from "svelte";
     import EventCard from "$lib/Events/EventCard.svelte";
     import {TextPlugin} from "gsap/dist/TextPlugin";
+    import {browser} from "$app/environment";
+    import {beforeFormSubmissionPositionEvents} from "../../store.js";
+
+    export let data;
 
     let isMobile;
     let contentStrapiUrl = "https://content.mitblrfest.in"
@@ -23,9 +27,21 @@
         let FeaturedEventsTemp = []
         let TechEventsTemp = []
         let EsportsEventsTemp = []
-        console.log(eventData);
         for (let festEvent of eventData) {
-
+            if (data.isRegisteredForAtLeastOne) {
+                let foundFlag = false;
+                for (let event of data.data) {
+                    if (festEvent.attributes.EventPriority === event.event_priority) {
+                        console.log(event.event_priority);
+                        festEvent.attributes.isRegistered = true;
+                        foundFlag = true;
+                        break;
+                    }
+                }
+                if (!foundFlag) {
+                    festEvent.attributes.isRegistered = false;
+                }
+            }
             if (festEvent.attributes.EventPriority <= 1000) {
                 FeaturedEventsTemp.push(festEvent);
             } else if (festEvent.attributes.EventPriority <= 2000) {
@@ -42,7 +58,6 @@
         FeaturedEvents = FeaturedEventsTemp;
         TechEvents = TechEventsTemp;
         EsportsEvents = EsportsEventsTemp;
-        console.log(TechEventsTemp);
 
         isMobile = function () {
             let check = false;
@@ -101,6 +116,12 @@
             opacity: 1,
             duration: 0.25,
         })
+
+        if (browser) {
+            if ($beforeFormSubmissionPositionEvents !== 0) {
+                $beforeFormSubmissionPositionEvents = 0;
+            }
+        }
 
         let eventsBannerTl = gsap.timeline({
             scrollTrigger: {
@@ -222,7 +243,9 @@
             {#each FeaturedEvents as festEvent}
                 <EventCard descriptionText="{festEvent.attributes.EventDescription}"
                            eventName="{festEvent.attributes.EventName}" taglineHere="{festEvent.attributes.Tagline}"
-                           includedWith="Flagship" showPrizePool="{false}" flagship="{true}"/>
+                           includedWith="Flagship" showPrizePool="{false}" flagship="{true}"
+                           isRegistered="{festEvent.attributes.isRegistered}"
+                           priority="{festEvent.attributes.EventPriority}"/>
             {/each}
         {/if}
         <div class="h-[90dvh] w-full starting-cultural-events"></div>
@@ -232,7 +255,9 @@
                            eventName="{festEvent.attributes.EventName}" taglineHere="{festEvent.attributes.Tagline}"
                            includedWith="Flagship" showPrizePool="{true}" first="{festEvent.attributes.FirstPrize}"
                            second="{festEvent.attributes.SecondPrize}" third="{festEvent.attributes.ThirdPrize}"
-                           handbookLink="{festEvent.attributes.RulebookGDriveLink}" technical="{true}"/>
+                           handbookLink="{festEvent.attributes.RulebookGDriveLink}" technical="{true}"
+                           isRegistered="{festEvent.attributes.isRegistered}"
+                           priority="{festEvent.attributes.EventPriority}"/>
             {/each}
         {/if}
         <div class="h-[90dvh] w-full starting-esports-events"></div>
@@ -242,7 +267,9 @@
                            eventName="{festEvent.attributes.EventName}" taglineHere="{festEvent.attributes.Tagline}"
                            includedWith="Flagship" showPrizePool="{true}" first="{festEvent.attributes.FirstPrize}"
                            second="{festEvent.attributes.SecondPrize}" third="{festEvent.attributes.ThirdPrize}"
-                           handbookLink="{festEvent.attributes.RulebookGDriveLink}" esports="{true}"/>
+                           handbookLink="{festEvent.attributes.RulebookGDriveLink}" esports="{true}"
+                           isRegistered="{festEvent.attributes.isRegistered}"
+                           priority="{festEvent.attributes.EventPriority}"/>
             {/each}
         {/if}
     </div>

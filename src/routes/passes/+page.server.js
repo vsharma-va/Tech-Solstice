@@ -14,11 +14,11 @@ const user = userDatabase.collection("us_user_data");
 
 const currentPasses = {
     flagship: {
-        includes: ['Proshow', 'Standup', 'All Flagship Events'],
+        includes: ['All Events'],
         excluded: ['Esports'],
         cost: 699,
         token: {
-            includes: ['Proshow', 'Standup', 'All Flagship Events'],
+            includes: ['All Events'],
             excluded: ['Esports'],
             cost: 699,
             dbName: 'flagship__v1',
@@ -28,8 +28,8 @@ const currentPasses = {
         dbName: 'flagship__v1'
     },
     esports: {
-        includes: ['All Esports Events'],
-        excluded: ['Proshow', 'Standup', 'All Flagship Events'],
+        includes: ['Esports'],
+        excluded: ['Rest Of The Events'],
         cost: 399,
         token: {
             includes: ['Proshow', 'Standup', 'All Flagship Events'],
@@ -76,6 +76,9 @@ export const load = async (event) => {
 export const actions = {
     cancelPayment: async (event) => {
         const session = await event.locals.getSession();
+        if(!session?.user) {
+            redirect(302, '/passes?signedOut');
+        }
         console.log("CANCELLING");
         await payments.updateOne({
             email: session.user.email,
