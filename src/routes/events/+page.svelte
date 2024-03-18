@@ -202,7 +202,7 @@
 <div class="h-fit w-full bg-surface main-events-trigger">
     <Navbar/>
     <div class="h-fit w-full flex flex-col gap-10">
-        <div class="h-[90dvh] w-full flex flex-col items-center justify-center sticky top-0 intro-banner">
+        <div class="h-[90vh] w-full flex flex-col items-center justify-center sticky top-0 intro-banner">
             <div class="h-fit w-full flex flex-col overflow-hidden">
                 <div
                         class="pt-14 px-5 brand-font text-left h-fit w-full -translate-x-9 font-bold flex flex-row items-center justify-center text-6xl sm:text-7xl lg:text-9xl text-on-surface overflow-y-clip actual-heading-text">
@@ -248,7 +248,7 @@
                            priority="{festEvent.attributes.EventPriority}"/>
             {/each}
         {/if}
-        <div class="h-[90dvh] w-full starting-cultural-events"></div>
+        <div class="h-[90vh] w-full starting-cultural-events"></div>
         {#if TechEvents.length > 0}
             {#each TechEvents as festEvent}
                 <EventCard descriptionText="{festEvent.attributes.EventDescription}"
@@ -260,7 +260,7 @@
                            priority="{festEvent.attributes.EventPriority}"/>
             {/each}
         {/if}
-        <div class="h-[90dvh] w-full starting-esports-events"></div>
+        <div class="h-[90vh] w-full starting-esports-events"></div>
         {#if EsportsEvents.length > 0}
             {#each EsportsEvents as festEvent}
                 <EventCard descriptionText="{festEvent.attributes.EventDescription}"

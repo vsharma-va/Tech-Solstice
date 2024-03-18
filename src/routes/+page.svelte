@@ -923,7 +923,7 @@
             </div>
         </div>
     </div>
-    <div class="h-[800dvh] w-full sticky top-0 bg-surface tech-events-trigger z-[2]">
+    <div class="h-[800vh] w-full sticky top-0 bg-surface tech-events-trigger z-[2]">
         <div class="h-screen w-full absolute -top-[48px] items-center justify-center overflow-hidden">
             <svg width="1920" height="48" viewBox="0 0 1920 48" fill="none" class="fill-surface"
                  xmlns="http://www.w3.org/2000/svg">

@@ -87,7 +87,7 @@
 </script>
 
 <div class="h-fit w-full flex flex-col relative">
-    <div class="h-[85dvh] w-full flex flex-row px-5 lg:px-36 flex-nowrap overflow-x-scroll overflow-y-visible gap-2 no-scrollbar relative event-carousel-1 lg:gap-10">
+    <div class="h-[85vh] w-full flex flex-row px-5 lg:px-36 flex-nowrap overflow-x-scroll overflow-y-visible gap-2 no-scrollbar relative event-carousel-1 lg:gap-10">
         <div class="w-full h-full sm:w-[75%] relative text-on-surface flex-shrink-0 image-div-event-1 {gradientClass}">
             <!--            <img src="{eventBackground}" alt=""-->
             <!--                 class="h-full w-full object-cover inline-block display-image absolute top-0 bottom-0 z-0">-->

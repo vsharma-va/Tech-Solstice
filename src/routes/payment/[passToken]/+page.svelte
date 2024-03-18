@@ -37,7 +37,7 @@
 
 
 
-<div class="h-[100dvh] w-full bg-surface flex flex-col items-center justify-center">
+<div class="h-[100vh] w-full bg-surface flex flex-col items-center justify-center">
     <div class="brand-font h-fit w-full font-bold flex flex-row items-center justify-center text-[14vw] text-on-surface overflow-y-clip">
         <span class="call-to-action-letter-down -translate-y-[70px]">D</span>
         <span class="call-to-action-letter-down -translate-y-[90px]">O</span>
