@@ -97,33 +97,39 @@
                     <div class="absolute bottom-0 h-[10px] w-full bg-primary/70"></div>
                 </div>
                 <p class="brand-font text-2xl lg:text-3xl tracking-wide text-on-surface/80">{taglineHere}</p>
-                {#if !isRegistered}
-                    <form action="?/registerEvent"
-                          use:enhance={(async ({formData}) => {
-                              formData.set('priority', priority);
-                              return async ({result}) => {
-                                  location.reload();
-                              }
-                          })}
-                          method="post" class="h-full w-full">
+                <!--{#if !isRegistered}-->
+                <!--    <form action="?/registerEvent"-->
+                <!--          use:enhance={(async ({formData}) => {-->
+                <!--              formData.set('priority', priority);-->
+                <!--              return async ({result}) => {-->
+                <!--                  location.reload();-->
+                <!--              }-->
+                <!--          })}-->
+                <!--          method="post" class="h-full w-full">-->
+                <!--        <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"-->
+                <!--                type="submit"-->
+                <!--                bind:this={registerButton}-->
+                <!--                on:click={-->
+                <!--                () => {-->
+                <!--                    $beforeFormSubmissionPositionEvents = window.scrollY;-->
+                <!--                    console.log(window.scrollY);-->
+                <!--                    //registerButton.disabled = true;-->
+                <!--                    animateLoadingPhase();-->
+                <!--                }-->
+                <!--            }>-->
+                <!--            <p class="button-inner-text">Register</p>-->
+                <!--            <div class="h-full w-full flex-col items-center justify-center loader-buy hidden scale-0">-->
+                <!--                <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>-->
+                <!--            </div>-->
+                <!--        </button>-->
+                <!--    </form>-->
+                <!--{/if}-->
                         <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
-                                type="submit"
+                                type="button"
                                 bind:this={registerButton}
-                                on:click={
-                                () => {
-                                    $beforeFormSubmissionPositionEvents = window.scrollY;
-                                    console.log(window.scrollY);
-                                    //registerButton.disabled = true;
-                                    animateLoadingPhase();
-                                }
-                            }>
-                            <p class="button-inner-text">Register</p>
-                            <div class="h-full w-full flex-col items-center justify-center loader-buy hidden scale-0">
-                                <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>
-                            </div>
+                            >
+                            Coming Soon!
                         </button>
-                    </form>
-                {/if}
             </div>
             {#if isRegistered}
                 <div class="absolute flex top-5 right-5 items-center text-2xl h-fit w-fit bg-surface px-2 py-1 brand-font text-success">
