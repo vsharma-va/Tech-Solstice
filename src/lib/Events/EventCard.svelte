@@ -1,7 +1,7 @@
 <script>
     import {gsap} from "gsap/dist/gsap";
-    import {beforeFormSubmissionPositionEvents} from "../../store.js";
-    import {enhance} from "$app/forms";
+    // import standupHidden from "$lib/assets/images/standup_hidden.webp";
+    import standupHidden from "$lib/assets/images/standupHidden.webm";
 
     // to do add different color palettes for different categories
     export let eventName;
@@ -89,8 +89,13 @@
 <div class="h-fit w-full flex flex-col relative">
     <div class="h-[85vh] w-full flex flex-row px-5 lg:px-36 flex-nowrap overflow-x-scroll overflow-y-visible gap-2 no-scrollbar relative event-carousel-1 lg:gap-10">
         <div class="w-full h-full sm:w-[75%] relative text-on-surface flex-shrink-0 image-div-event-1 {gradientClass}">
-            <!--            <img src="{eventBackground}" alt=""-->
-            <!--                 class="h-full w-full object-cover inline-block display-image absolute top-0 bottom-0 z-0">-->
+            <!--            priority of standup-->
+            {#if priority === 1}
+                <!--                <img src="{standupHidden}" alt=""-->
+                <!--                     class="h-full w-full object-cover inline-block display-image absolute top-0 bottom-0 z-0">-->
+                <video src="{standupHidden}" class="h-full w-full object-cover inline-block absolute top-0 bottom-0 z-0"
+                       autoplay muted loop></video>
+            {/if}
             <div class="absolute bottom-2 left-2 h-fit w-[75%] flex flex-col items-start justify-center p-5 bg-surface gap-1">
                 <div class="brand-font text-4xl sm:text-5xl tracking-wide text-on-surface leading-[1] h-fit max-w-prose relative">
                     <p>{eventName}</p>
@@ -124,16 +129,22 @@
                 <!--        </button>-->
                 <!--    </form>-->
                 <!--{/if}-->
-                        <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
-                                type="button"
-                                bind:this={registerButton}
-                            >
-                            Coming Soon!
-                        </button>
+                <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
+                        type="button"
+                        bind:this={registerButton}
+                >
+                    Coming Soon!
+                </button>
             </div>
-            {#if isRegistered}
+            {#if isRegistered && (priority !== 1 && priority !== 2)}
                 <div class="absolute flex top-5 right-5 items-center text-2xl h-fit w-fit bg-surface px-2 py-1 brand-font text-success">
                     Registered!
+                </div>
+            {:else if priority === 1}
+                <div class="absolute flex top-6 right-3 sm:right-5 items-center text-3xl h-fit w-fit bg-surface px-2 py-1 style-font text-on-surface">
+                    <p class="glitch" data-glitch="A$@QF G$%@!">
+                        A$@QF G$%@!
+                    </p>
                 </div>
             {/if}
             <div class="absolute flex sm:flex top-1/2 -translate-y-1/2 right-0 w-fit h-fit flex-row items-center justify-center gap-2 bg-surface p-2">
@@ -248,5 +259,94 @@
     .no-scrollbar {
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
+    }
+
+    .glitch {
+        position: relative;
+        color: #fff;
+        z-index: 1;
+        animation: shift 1s ease-in-out infinite alternate;
+    }
+
+    .glitch:before,
+    .glitch:after {
+        display: block;
+        content: attr(data-glitch);
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.8;
+    }
+
+    .glitch:before {
+        animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+        color: #e1b6ff;
+        z-index: -1;
+    }
+
+    .glitch:after {
+        animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+        color: #490f72;
+        z-index: -2;
+    }
+
+    @keyframes glitch {
+        0% {
+            transform: translate(0);
+        }
+
+        20% {
+            transform: translate(-3px, 3px);
+        }
+
+        40% {
+            transform: translate(-3px, -3px);
+        }
+
+        60% {
+            transform: translate(3px, 3px);
+        }
+
+        80% {
+            transform: translate(3px, -3px);
+        }
+
+        to {
+            transform: translate(0);
+        }
+    }
+
+    @keyframes shift {
+        0%, 40%, 44%, 58%, 61%, 65%, 69%, 73%, 100% {
+            transform: skewX(0deg);
+        }
+
+        41% {
+            transform: skewX(10deg);
+        }
+
+        42% {
+            transform: skewX(-10deg);
+        }
+
+        59% {
+            transform: skewX(40deg) skewY(10deg);
+        }
+
+        60% {
+            transform: skewX(-40deg) skewY(-10deg);
+        }
+
+        63% {
+            transform: skewX(10deg) skewY(-5deg);
+        }
+
+        70% {
+            transform: skewX(-50deg) skewY(-20deg);
+        }
+
+        71% {
+            transform: skewX(10deg) skewY(-10deg);
+        }
     }
 </style>
