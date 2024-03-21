@@ -13,12 +13,12 @@ export const load = async (event) => {
     if (!session?.user) {
         throw redirect(302, '/passes?signedOut');
     } else {
-        console.log(session.user.email);
+        console.log('email->log: ', session.user.email);
         let dbPasses = await passes.find({
             email: session.user.email,
             banned: false,
         }, {projection: {_id: 0}}).toArray();
-        console.log(dbPasses);
+        console.log('ownedpasses->log: ', dbPasses);
         return {ownedPasses: dbPasses};
     }
 }
