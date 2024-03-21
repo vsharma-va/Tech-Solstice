@@ -15,8 +15,21 @@
     let eventsNavLink;
     let travelTo;
     let myPassNavLink;
+    let navbarOffsetClass = '-translate-y-[100%]';
 
     onMount(() => {
+        var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
+            navigator.userAgent &&
+            navigator.userAgent.indexOf('CriOS') == -1 &&
+            navigator.userAgent.indexOf('FxiOS') == -1;
+        if(isSafari) {
+            navbarOffsetClass = '-translate-y-[97%]';
+        }
+        // if (navigator.userAgent.toLowerCase().includes("safari")){
+        //     navbarOffsetClass = '-translate-y-[97%]';
+        // }
+
+
         navBarOpenTimeline = gsap.timeline({
             onStart: () => {
                 navBarButtonTimeline.play(0);
@@ -199,7 +212,7 @@
     }
 </script>
 
-<div class="h-fit w-full fixed flex flex-col items-center justify-center top-0 -translate-y-[100%] z-[5] px-5 pt-2 navbar-div">
+<div class="h-fit w-full fixed flex flex-col items-center justify-center top-0 {navbarOffsetClass} z-[5] px-5 pt-2 navbar-div">
     <div class="h-[250px] bg-primary w-full sm:w-[57%] md:w-[45%] lg:w-[33%] xl:w-[28%] 2xl:w-[24%] rounded-2xl relative z-[3]">
         <svg width="521" height="170" viewBox="0 0 521 170"
              class="fill-primary h-fit w-full absolute -bottom-[17%] z-[2] nav-svg" xmlns="http://www.w3.org/2000/svg">

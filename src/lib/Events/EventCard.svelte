@@ -87,7 +87,7 @@
 </script>
 
 <div class="h-fit w-full flex flex-col relative">
-    <div class="h-[85vh] w-full flex flex-row px-5 lg:px-36 flex-nowrap overflow-x-scroll overflow-y-visible gap-2 no-scrollbar relative event-carousel-1 lg:gap-10">
+    <div class="h-[85vh] w-full flex flex-row px-5 lg:px-36 flex-nowrap overflow-x-scroll gap-2 no-scrollbar relative event-carousel-1 lg:gap-10">
         <div class="w-full h-full sm:w-[75%] relative text-on-surface flex-shrink-0 image-div-event-1 {gradientClass}">
             <!--            priority of standup-->
             {#if priority === 1}
@@ -158,7 +158,7 @@
                 </button>
             </div>
         </div>
-        <div class="w-full h-full sm:w-[75%] border-[1.5px] border-on-surface relative text-on-surface flex-shrink-0 flex flex-col p-5 lg:p-10 gap-5 lg:gap-9 description-div-event-1 items-start justify-start backdrop-blur-lg overflow-y-scroll">
+        <div class="w-full h-full sm:w-[75%] border-[1.5px] border-on-surface relative text-on-surface flex-shrink-0 flex flex-col p-5 lg:p-10 gap-5 lg:gap-9 description-div-event-1 items-start justify-start backdrop-blur-lg overflow-y-auto">
 
             <div class="w-full h-fit flex flex-col gap-2 lg:gap-4">
                 <div class="brand-font text-4xl sm:text-5xl lg:text-6xl text-on-surface h-fit w-fit relative">
@@ -167,8 +167,8 @@
                 </div>
                 <p class="regular-font text-sm sm:text-lg lg:text-xl sm:leading-[1.2] text-on-surface/80">
                     {#if descriptionText.includes("__namehere__")}
-                        {descriptionText.split("__namehere__")[0]}<span class="blur-sm relative">Name<div
-                            class="w-full h-full bg-primary absolute top-0"></div></span>{descriptionText.split("__namehere__")[1]}
+                        {descriptionText.split("__namehere__")[0]}<span
+                            class="blur-sm relative bg-primary">A$@QF G$%@!</span>{descriptionText.split("__namehere__")[1]}
                     {:else}
                         {descriptionText}
                     {/if}
@@ -240,6 +240,7 @@
             </div>
         </div>
     </div>
+<!--    scroll buttons on top-->
     <div class="absolute flex sm:flex -top-2 w-fit h-fit left-1/2 -translate-x-1/2 flex-row items-center justify-center gap-2 bg-surface border-[1px] border-on-surface p-2">
         <button class="h-3 w-3 rounded-full {gradientClass} on-left-indicator"
                 on:mousedown={() => moveCarouselLeft("event-carousel-1", "image-div-event-1")}

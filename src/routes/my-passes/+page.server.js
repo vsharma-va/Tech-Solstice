@@ -18,7 +18,7 @@ export const load = async (event) => {
             email: session.user.email,
             banned: false,
         }, {projection: {_id: 0}}).toArray();
-        console.log('ownedpasses->log: ', dbPasses);
+        // console.log('ownedpasses->log: ', dbPasses);
         return {ownedPasses: dbPasses};
     }
 }
