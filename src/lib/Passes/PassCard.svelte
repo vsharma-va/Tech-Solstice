@@ -1,5 +1,9 @@
 <script>
     import {gsap} from "gsap/dist/gsap";
+    import {goto} from "$app/navigation";
+    import {signIn} from "@auth/sveltekit/client";
+    import {page} from "$app/stores";
+    import {clickedPassRedirectToken} from "../../store.js";
 
     export let displayName;
     export let rotateClass;
