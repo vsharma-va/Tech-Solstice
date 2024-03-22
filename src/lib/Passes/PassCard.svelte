@@ -120,7 +120,7 @@
                                                  } else {
                                                      console.log("REDIRECT TOKEN -> ", $clickedPassRedirectToken)
                                                     animateLoadingPhase();
-                                                    window.location.href = "https://payment.manipal.edu/Tech-solstice-nexus-Login";
+                                                    await goto("/payment/disclaimer");
                                                  }
                                              }
                                         }}
