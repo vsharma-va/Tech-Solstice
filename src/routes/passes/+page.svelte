@@ -17,9 +17,10 @@
     let refreshStatusButton;
     let cancelPaymentButton;
     let userName;
+    let userLearnerId;
     let userPhoneNumber;
 
-    let errors = {userNameError: '', userPhoneNumberError: ''};
+    let errors = {userNameError: '', userPhoneNumberError: '', userLearnerIdError: ''};
 
     let flagshipCardTimeline;
     let flagshipBuyTimeline;
@@ -213,6 +214,7 @@
     function attemptPayment({formData}) {
         formData.set('userName', userName);
         formData.set('userPhoneNumber', userPhoneNumber);
+        formData.set('userLearnerId', userLearnerId);
         let redirectToken = $clickedPassRedirectToken;
         formData.set('redirectToken', redirectToken);
     }
@@ -230,6 +232,14 @@
             errors.userPhoneNumberError = '';
         } else {
             errors.userPhoneNumberError = 'Please enter a valid mobile number';
+        }
+    }
+
+    function checkLearnerId() {
+        if (userLearnerId.includes('@learner.manipal.edu')) {
+            errors.userLearnerIdError = '';
+        } else {
+            errors.userLearnerIdError = 'Please enter a valid learner id';
         }
     }
 
@@ -270,8 +280,11 @@
         <div class="h-fit w-fit rounded-2xl border-2 border-on-surface bg-surface flex flex-col items-start justify-center z-[6] p-5 gap-5">
             <div class="h-fit w-fit flex flex-col gap-1">
                 <p class="brand-font text-primary text-[40px] leading-8 tracking-wide">PLEASE ENTER YOUR DETAILS!</p>
-                <p class="regular-font text-on-primary-container/70 text-lg text-center leading-5 tracking-wide">Your
+                <p class="regular-font text-on-primary-container/70 text-lg leading-5 tracking-wide text-left mt-1">Your
                     details will be used for event registeration</p>
+                <p class="regular-font text-on-primary-container/70 text-lg leading-5 tracking-wide text-left">Make
+                    sure your details are correct,
+                    as they will be used to verify your pass purchase!</p>
             </div>
             <div class="h-fit w-full flex flex-col gap-2">
                 <form action="?/registerUserAndProceed" method="post" use:enhance={(event)=>{
@@ -294,6 +307,15 @@
                             <p class="text-sm text-error regular-font">{form.userPhoneNumberError}</p>
                         {/if}
                         <p class="text-sm text-error regular-font">{errors.userPhoneNumberError}</p>
+                    </div>
+                    <div class="form__group field">
+                        <input type="email" class="form__field regular-font" placeholder="Learner Email Id" required=""
+                               bind:value={userLearnerId} on:input={checkLearnerId}>
+                        <label for="name" class="form__label regular-font">Learner Email Idr</label>
+                        {#if form?.userLearnerId}
+                            <p class="text-sm text-error regular-font">{form.userLearnerId}</p>
+                        {/if}
+                        <p class="text-sm text-error regular-font">{errors.userLearnerIdError}</p>
                     </div>
                     <button class="w-full h-fit bg-primary text-on-primary text-3xl py-1 brand-font mt-4" type="submit">
                         Submit

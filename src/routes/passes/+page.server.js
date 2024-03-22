@@ -16,30 +16,30 @@ const currentPasses = {
     flagship: {
         includes: ['All Events'],
         excluded: ['Esports'],
-        cost: 1,
+        cost: 599,
         token: {
             includes: ['All Events'],
             excluded: ['Esports'],
-            cost: 1,
-            dbName: 'flagship__v1',
+            cost: 599,
+            dbName: 'flagship__v2',
             displayName: 'Flagship'
         },
         displayName: 'Flagship',
-        dbName: 'flagship__v1'
+        dbName: 'flagship__v2'
     },
     esports: {
         includes: ['Esports'],
         excluded: ['Rest Of The Events'],
-        cost: 1,
+        cost: 99,
         token: {
             includes: ['Proshow', 'Standup', 'All Flagship Events'],
             excluded: ['Esports'],
-            cost: 1,
-            dbName: 'esports__v1',
+            cost: 99,
+            dbName: 'esports__v2',
             displayName: 'Esports'
         },
         displayName: 'Esports',
-        dbName: 'esports__v1'
+        dbName: 'esports__v2'
     },
 }
 // replace token with jwt
@@ -90,10 +90,11 @@ export const actions = {
         if (!session) {
             redirect(302, '/?signedOut');
         } else {
-            let errors = {userNameError: '', userPhoneNumberError: ''};
+            let errors = {userNameError: '', userPhoneNumberError: '', userLearnerIdError: ''};
             const formData = await event.request.formData();
             const userName = formData.get('userName');
             const userPhoneNumber = formData.get('userPhoneNumber');
+            const userLearnerId = formData.get('userLearnerId');
             const redirectToken = formData.get('redirectToken');
             if (userName.length >= 2 && userName?.match(/^[A-Za-z\s]*$/) && userName !== 'undefined') {
                 errors.userNameError = '';
@@ -103,8 +104,12 @@ export const actions = {
             if (userPhoneNumber.length !== 10 || userPhoneNumber.toString() === 'undefined') {
                 errors.userPhoneNumberError = 'Please enter a valid phone number';
             }
+            if(!userLearnerId.includes('@learner.manipal.edu')){
+                console.log("SOMETHING");
+                errors.userLearnerIdError = 'Please enter a valid learner id';
+            }
             console.log(typeof redirectToken);
-            if (errors.userNameError || errors.userPhoneNumberError) {
+            if (errors.userNameError || errors.userPhoneNumberError || errors.userLearnerIdError) {
                 return fail(400, errors);
             } else {
                 let foundUser = await user.findOne({
@@ -116,9 +121,11 @@ export const actions = {
                         user_name: userName,
                         userPhoneNumber: userPhoneNumber,
                     })
-                    redirect(302, `/payment/${redirectToken}`);
+                    redirect(302, '/payment/disclaimer');
+                    // redirect(302, `/payment/${redirectToken}`);
                 } else {
-                    redirect(302, `/payment/${redirectToken}`);
+                    redirect(302, '/payment/disclaimer');
+                    // redirect(302, `/payment/${redirectToken}`);
                 }
             }
         }
