@@ -133,7 +133,7 @@
                 <div class="h-full w-full flex-col items-center justify-center loader-buy hidden scale-0">
                     <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>
                 </div>
-                <div class="{buttonPriceBgColorClass} {buttonPriceTextColorClass} group-hover:bg-primary group-hover:text-on-primary regular-font text-2xl flex flex-row items-center justify-center px-4 py-1 flagship-buy-text">
+                <div class="{buttonPriceBgColorClass} {buttonPriceTextColorClass} group-hover:bg-primary group-hover:text-on-primary regular-font text-xl flex flex-row items-center justify-center px-4 py-1 flagship-buy-text">
                     <p>₹{price}</p>
                 </div>
             </button>
