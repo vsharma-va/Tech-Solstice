@@ -110,7 +110,7 @@
             <button
                     class="{buttonBgColorClass} text-2xl flex flex-row items-center justify-center gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface hover:text-surface"
                     on:click={async () => {
-                                                $clickedPassRedirectToken = redirectToken;
+                                             $clickedPassRedirectToken = redirectToken;
                                              if(!$page.data.session?.user) {
                                                animateLoadingPhase();
                                                  await signIn('google', {callbackUrl: `${$page.url.pathname}?signedIn`})
