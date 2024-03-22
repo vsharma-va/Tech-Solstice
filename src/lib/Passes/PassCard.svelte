@@ -118,6 +118,7 @@
                                                  if(!userData) {
                                                      showDataForm();
                                                  } else {
+                                                     console.log("REDIRECT TOKEN -> ", $clickedPassRedirectToken)
                                                     animateLoadingPhase();
                                                     await goto(`/payment/${redirectToken}`)
                                                  }

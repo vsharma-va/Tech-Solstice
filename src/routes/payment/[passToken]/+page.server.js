@@ -23,6 +23,7 @@ export const load = async (event) => {
     } else {
 
         if (!event.params.passToken) {
+            console.log("PARAMS ERROR")
             throw redirect(302, '/passes?invalidPassToken')
         } else {
             try {
@@ -105,6 +106,7 @@ export const load = async (event) => {
                 }
 
             } catch (err) {
+                console.log('TOKEN JWT ERROR');
                 throw redirect(302, '/passes?invalidPassToken');
             }
         }
@@ -131,7 +133,7 @@ async function generatePaymentLink(session, passFees, passName, paymentReference
         callback_url: process.env.ORIGIN + "/payment/callback/" + paymentReferenceId,
         callback_method: 'get'
     }).catch((error) => {
-        console.log(error);
+        console.log("RAZORPAY LINK GENERATION ERROR", error);
         throw redirect(302, "/?paymentGenerationError")
     })
 }
