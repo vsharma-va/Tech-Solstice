@@ -126,7 +126,7 @@
                                         }}
             >
                 {#if $page.data.session?.user}
-                    <p class="button-inner-text">BUY</p>
+                    <p class="button-inner-text text-[28px]">BUY</p>
                 {:else}
                     <p class="button-inner-text">LOGIN</p>
                 {/if}

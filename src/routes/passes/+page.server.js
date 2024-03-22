@@ -120,6 +120,7 @@ export const actions = {
                         email: session.user.email,
                         user_name: userName,
                         userPhoneNumber: userPhoneNumber,
+                        userLearnerId: userLearnerId,
                     })
                     redirect(302, '/payment/disclaimer');
                     // redirect(302, `/payment/${redirectToken}`);

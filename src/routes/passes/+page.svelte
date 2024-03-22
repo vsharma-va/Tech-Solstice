@@ -9,6 +9,7 @@
     import {page} from "$app/stores";
     import {enhance} from "$app/forms";
     import {clickedPassRedirectToken} from "../../store.js";
+    import Footer from "$lib/common/Footer.svelte";
 
     export let data;
     export let form;
@@ -487,7 +488,6 @@
         </div>
     </div>
 </div>
-
 
 <style>
     .no-scrollbar::-webkit-scrollbar {

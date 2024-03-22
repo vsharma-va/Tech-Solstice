@@ -23,7 +23,7 @@
             navigator.userAgent.indexOf('CriOS') == -1 &&
             navigator.userAgent.indexOf('FxiOS') == -1;
         if(isSafari) {
-            navbarOffsetClass = '-translate-y-[97%]';
+            navbarOffsetClass = '-translate-y-[94%]';
         }
         // if (navigator.userAgent.toLowerCase().includes("safari")){
         //     navbarOffsetClass = '-translate-y-[97%]';
