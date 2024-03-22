@@ -16,11 +16,11 @@ const currentPasses = {
     flagship: {
         includes: ['All Events'],
         excluded: ['Esports'],
-        cost: 599,
+        cost: 699,
         token: {
             includes: ['All Events'],
             excluded: ['Esports'],
-            cost: 599,
+            cost: 699,
             dbName: 'flagship__v2',
             displayName: 'Flagship'
         },
