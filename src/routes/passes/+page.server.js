@@ -16,11 +16,11 @@ const currentPasses = {
     flagship: {
         includes: ['All Events'],
         excluded: ['Esports'],
-        cost: 699,
+        cost: 1,
         token: {
             includes: ['All Events'],
             excluded: ['Esports'],
-            cost: 699,
+            cost: 1,
             dbName: 'flagship__v1',
             displayName: 'Flagship'
         },
@@ -30,11 +30,11 @@ const currentPasses = {
     esports: {
         includes: ['Esports'],
         excluded: ['Rest Of The Events'],
-        cost: 399,
+        cost: 1,
         token: {
             includes: ['Proshow', 'Standup', 'All Flagship Events'],
             excluded: ['Esports'],
-            cost: 399,
+            cost: 1,
             dbName: 'esports__v1',
             displayName: 'Esports'
         },
