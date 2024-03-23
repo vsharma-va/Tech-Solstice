@@ -99,7 +99,7 @@
                             <div
                                     class="h-3 rounded-full bg-error/70 w-3 flex items-center justify-center"
                             ></div>
-                            {excludedValue}
+                            <p>{excludedValue}</p>
                             <div
                                     class="absolute top-1/2 -translate-y-1/2 h-[4px] w-full bg-error/60 left-0"
                             ></div>
@@ -107,9 +107,10 @@
                     {/each}
                 </div>
             </div>
-            <button
-                    class="{buttonBgColorClass} text-2xl flex flex-row items-center justify-center gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface hover:text-surface"
-                    on:click={async () => {
+            {#if displayName !== 'Hackathon'}
+                <button
+                        class="{buttonBgColorClass} text-2xl flex flex-row items-center justify-center gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface hover:text-surface"
+                        on:click={async () => {
                                              $clickedPassRedirectToken = redirectToken;
                                              if(!$page.data.session?.user) {
                                                animateLoadingPhase();
@@ -124,24 +125,27 @@
                                                  }
                                              }
                                         }}
-            >
-                {#if $page.data.session?.user}
-                    <p class="button-inner-text text-[28px]">BUY</p>
-                {:else}
-                    <p class="button-inner-text">LOGIN</p>
-                {/if}
-                <div class="h-full w-full flex-col items-center justify-center loader-buy hidden scale-0">
-                    <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>
-                </div>
-                <div class="{buttonPriceBgColorClass} {buttonPriceTextColorClass} group-hover:bg-primary group-hover:text-on-primary regular-font text-xl flex flex-row items-center justify-center px-4 py-1 flagship-buy-text">
-                    <p>₹{price}</p>
-                </div>
-            </button>
-            <!--            <button class="{buttonBgColorClass} text-2xl flex flex-row items-center justify-center-->
-            <!--                            gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface-->
-            <!--                            hover:text-surface">-->
-            <!--                Coming Soon-->
-            <!--            </button>-->
+                >
+                    {#if $page.data.session?.user}
+                        <p class="button-inner-text text-[28px]">BUY</p>
+                    {:else}
+                        <p class="button-inner-text">LOGIN</p>
+                    {/if}
+                    <div class="h-full w-full flex-col items-center justify-center loader-buy hidden scale-0">
+                        <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>
+                    </div>
+                    <div class="{buttonPriceBgColorClass} {buttonPriceTextColorClass} group-hover:bg-primary group-hover:text-on-primary regular-font text-xl flex flex-row items-center justify-center px-4 py-1 flagship-buy-text">
+                        <p>₹{price}</p>
+                    </div>
+                </button>
+            {:else}
+                <button class="{buttonBgColorClass} text-2xl flex flex-row items-center justify-center
+                                            gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface
+                                            hover:text-surface">
+                    Coming Soon
+                </button>
+
+            {/if}
         </div>
     {:else}
         <div class="h-full w-full flex flex-col">

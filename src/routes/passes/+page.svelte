@@ -9,6 +9,7 @@
     import {page} from "$app/stores";
     import {enhance} from "$app/forms";
     import {clickedPassRedirectToken} from "../../store.js";
+    import {dragscroll} from '@svelte-put/dragscroll';
     import Footer from "$lib/common/Footer.svelte";
 
     export let data;
@@ -437,6 +438,7 @@
             <div class="h-[60vh] box-border relative pl-5 py-[10px] translate-x-[100%] passes-div">
                 <div
                         class="relative w-full h-full flex flex-row items-center justify-start lg:justify-center flex-nowrap box-border gap-0 px-5 horizontal-scroll-element overflow-x-scroll py-9 no-scrollbar"
+                        use:dragscroll
                 >
                     {#each Object.entries(data.availablePasses) as [key, value], index}
                         {#if (index + 1) % 2 === 0}

@@ -15,11 +15,11 @@ const user = userDatabase.collection("us_user_data");
 const currentPasses = {
     flagship: {
         includes: ['All Events'],
-        excluded: ['Esports'],
+        excluded: ['Esports', 'Hackathon'],
         cost: 699,
         token: {
             includes: ['All Events'],
-            excluded: ['Esports'],
+            excluded: ['Esports, Hackathon'],
             cost: 699,
             dbName: 'flagship__v2',
             displayName: 'Flagship'
@@ -40,6 +40,20 @@ const currentPasses = {
         },
         displayName: 'Esports',
         dbName: 'esports__v2'
+    },
+    Hackathon: {
+        includes: ['Premier Hackathon Event'],
+        excluded: ['Rest Of The Events'],
+        cost: '@1x',
+        token: {
+            includes: ['Hackathon'],
+            excluded: ['Rest Of The Events'],
+            cost: '@1x',
+            dbName: 'hackathon__v2',
+            displayName: 'Hackathon'
+        },
+        displayName: 'Hackathon',
+        dbName: 'hackathon__v2'
     },
 }
 // replace token with jwt
