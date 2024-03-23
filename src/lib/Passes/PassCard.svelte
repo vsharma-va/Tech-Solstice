@@ -116,11 +116,13 @@
                                                animateLoadingPhase();
                                                  await signIn('google', {callbackUrl: `${$page.url.pathname}?signedIn`})
                                              } else {
+                                                 console.log(userData);
                                                  if(!userData) {
                                                      showDataForm();
                                                  } else {
                                                      console.log("REDIRECT TOKEN -> ", $clickedPassRedirectToken)
                                                     animateLoadingPhase();
+                                                     document.cookie = "triedPaying=true; expires=Thu, 18 Dec 2030 12:00:00 UTC; path=/";
                                                     await goto("/payment/disclaimer");
                                                  }
                                              }

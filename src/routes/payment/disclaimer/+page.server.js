@@ -16,11 +16,16 @@ export const load = async (event) => {
         redirect(302, '/passes?signedOut');
     } else {
         let foundUser = await user.findOne({email: session.user.email})
-        if(!foundUser) {
+        if (!foundUser) {
             redirect(302, '/passes');
         } else {
-            let ownedPasses = await passes.find({email: session.user.email}).toArray()
-            if(ownedPasses.length === 2) {
+            let ownedPasses = await passes.find({
+                email: session.user.email,
+                banned: false,
+                pass_name: {$nin: ['CC__v1', 'staff__v1']}
+            }).toArray()
+            console.log(ownedPasses);
+            if (ownedPasses.length === 2) {
                 redirect(302, '/passes?alreadyOwned');
             }
         }

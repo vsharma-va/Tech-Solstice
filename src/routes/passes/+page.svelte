@@ -17,6 +17,7 @@
     console.log(form);
 
     let refreshStatusButton;
+    let submitFormButton;
     let cancelPaymentButton;
     let userName;
     let userLearnerId;
@@ -62,6 +63,12 @@
     }]
 
     onMount(() => {
+        let checkPaymentCookie = document.cookie;
+        if (checkPaymentCookie) {
+            if (checkPaymentCookie.split("=")[1] === 'true') {
+                goto('/payment/manipal-dumb-check');
+            }
+        }
         gsap.registerPlugin(ScrollTrigger);
         gsap.registerPlugin(ScrollToPlugin);
 
@@ -277,9 +284,9 @@
 <Navbar/>
 
 <div class="h-fit w-full pass-trigger bg-surface main-wrapper relative">
-    <div class="h-screen w-full fixed top-[100%] backdrop-blur-2xl hidden data-form items-center justify-center z-[3] p-4">
+    <div class="h-screen w-full fixed top-[100%] backdrop-blur-2xl hidden data-form items-center justify-center z-[3] px-4 pt-4">
         <button class="h-screen w-full bg-transparent absolute top-0" on:click={hideForm}></button>
-        <div class="h-fit w-fit rounded-2xl border-2 border-on-surface bg-surface flex flex-col items-start justify-center z-[6] p-5 gap-5">
+        <div class="h-fit w-fit relative border-2 border-on-surface bg-surface flex flex-col items-start justify-center z-[6] px-5 pt-5 gap-5">
             <div class="h-fit w-fit flex flex-col gap-1">
                 <p class="brand-font text-primary text-[40px] leading-8 tracking-wide">PLEASE ENTER YOUR DETAILS!</p>
                 <p class="regular-font text-on-primary-container/70 text-lg leading-5 tracking-wide text-left mt-1">Your
@@ -319,9 +326,12 @@
                         {/if}
                         <p class="text-sm text-error regular-font">{errors.userLearnerIdError}</p>
                     </div>
-                    <button class="w-full h-fit bg-primary text-on-primary text-3xl py-1 brand-font mt-4" type="submit">
+                    <button class="w-full h-fit bg-primary text-on-primary text-3xl py-1 brand-font mt-4" type="submit" bind:this={submitFormButton} on:click={() => {
+                        submitFormButton.disabled = true;
+                    }}>
                         Submit
                     </button>
+                    <p class="text-lg regular-font text-primary/70 text-center">Click Outside To Close</p>
                 </form>
             </div>
         </div>

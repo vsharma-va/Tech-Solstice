@@ -73,6 +73,7 @@ export const load = async (event) => {
         let userData = await user.findOne({
             email: session.user.email,
         }, {projection: {_id: 0}});
+        console.log(userData, session.user.email);
         // console.log(foundPayment);
         if (!foundPayment) {
             return {availablePasses: currentPasses, existingPayments: false, userData: userData};

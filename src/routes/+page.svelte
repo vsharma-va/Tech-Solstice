@@ -38,6 +38,12 @@
     // let onSurface = "#ede0dd";
 
     onMount(() => {
+        let checkPaymentCookie = document.cookie;
+        if (checkPaymentCookie) {
+            if (checkPaymentCookie.split("=")[1] === 'true') {
+                goto('/payment/manipal-dumb-check');
+            }
+        }
         let isMobile = function () {
             let check = false;
             (function (a) {
@@ -45,7 +51,6 @@
             })(navigator.userAgent || navigator.vendor || window.opera);
             return check;
         };
-
 
 
         gsap.registerPlugin(ScrollTrigger);
@@ -981,7 +986,7 @@
             </div>
             <div class="lg:w-[30%] xl:w-[25%] xl:h-[85px] w-[70%] h-[70px] sm:w-[40%] bg-on-primary-container absolute top-12 left-2 lg:left-9 xl:bottom-32 xl:right-24 flex flex-col items-start justify-center px-5 tech-rotate-d-3">
                 <p class="brand-font text-2xl lg:text-3xl text-primary-container tracking-wide">
-                   Hackathon
+                    Hackathon
                 </p>
                 <p class="regular-font text-sm text-primary-container tracking-wide">
                     Innovate. Code. Collaborate.
@@ -1172,7 +1177,7 @@
         <div class="h-screen w-full flex sticky top-0 flex-col items-center justify-center">
 
         </div>
-        <Footer />
+        <Footer/>
     </div>
 </div>
 

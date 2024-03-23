@@ -5,6 +5,8 @@
     import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
     import PassCard from "$lib/Passes/PassCard.svelte";
     import Loader from "$lib/common/Loader.svelte";
+    import {dragscroll} from "@svelte-put/dragscroll";
+    import {goto} from "$app/navigation";
 
     export let data;
 
@@ -38,6 +40,13 @@
     }]
 
     onMount(() => {
+        let checkPaymentCookie = document.cookie;
+        if (checkPaymentCookie) {
+            if (checkPaymentCookie.split("=")[1] === 'true') {
+                goto('/payment/manipal-dumb-check');
+            }
+        }
+
         gsap.registerPlugin(ScrollTrigger);
 
         let onLoadTimeline = gsap.timeline({
@@ -151,6 +160,7 @@
             <div class="h-[60vh] box-border relative pl-5 py-[10px] translate-x-[100%] passes-div">
                 <div
                         class="relative w-full h-full flex flex-row items-center justify-start lg:justify-center flex-nowrap box-border gap-0 px-5 horizontal-scroll-element overflow-x-scroll py-9 no-scrollbar"
+                        use:dragscroll
                 >
                     {#if data.ownedPasses.length === 0}
                         <div class="h-full w-full rounded-2xl border-2 border-on-surface flex flex-col items-center justify-center backdrop-blur-lg p-5 gap-5">
