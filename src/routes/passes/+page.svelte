@@ -326,9 +326,7 @@
                         {/if}
                         <p class="text-sm text-error regular-font">{errors.userLearnerIdError}</p>
                     </div>
-                    <button class="w-full h-fit bg-primary text-on-primary text-3xl py-1 brand-font mt-4" type="submit" bind:this={submitFormButton} on:click={() => {
-                        submitFormButton.disabled = true;
-                    }}>
+                    <button class="w-full h-fit bg-primary text-on-primary text-3xl py-1 brand-font mt-4" type="submit">
                         Submit
                     </button>
                     <p class="text-lg regular-font text-primary/70 text-center">Click Outside To Close</p>

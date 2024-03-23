@@ -35,30 +35,6 @@ export const actions = {
         console.log(totalPages);
 
         console.log(foundUser.email);
-        resultPage.data.docs[10] = {
-            "_id": "65fec5aebd5b861188d34ba8",
-            "is_posted": 0,
-            "tracking_id": "pay_Npn4V71LEMHbM8",
-            "order_status": "Success",
-            "currency": "INR",
-            "actual_amount": "798",
-            "billing_name": "Rohit Managoli",
-            "billing_tel": "9860285402",
-            "membership_type": "TechSolsticeNexus",
-            "created_at": "2024-03-23",
-            "orderid": "order_Npn3q4k54Rn5sP",
-            "receiptno": "TSN4455",
-            "total_amount": "798",
-            "email": "rohit1.mitblr2022@learner.manipal.edu",
-            "user_type": "MAHE",
-            "department": "MIT",
-            "registration_number": "225811200",
-            "esports": true,
-            "esports_amount": 99,
-            "amount": 699,
-            "cgst": 60.86,
-            "base_price": 676.27
-        };
         let paymentFlag = false;
         for (let pageNumber = 2; pageNumber <= totalPages; pageNumber++) {
             for (let doc of resultPage.data.docs) {
