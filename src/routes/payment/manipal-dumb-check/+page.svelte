@@ -3,9 +3,9 @@
     import {gsap} from "gsap/dist/gsap";
     import {TextPlugin} from "gsap/dist/TextPlugin";
     import {goto} from "$app/navigation";
+    import {destroyRedirectPaymentCookie} from "../../../store.js";
 
     export let form;
-
 
     onMount(() => {
         gsap.registerPlugin(TextPlugin);
@@ -13,13 +13,18 @@
             form = undefined;
             document.cookie = "triedPaying=true; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
             replaceTextSuccess();
-            setTimeout(() => {
+            setTimeout(async () => {
                 goto('/my-passes');
             }, 2500);
         } else {
             replaceTextFailure();
             form = undefined;
-            document.cookie = "triedPaying=true; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+            if ($destroyRedirectPaymentCookie === 1) {
+                document.cookie = "triedPaying=true; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+                $destroyRedirectPaymentCookie = 0;
+            } else {
+                $destroyRedirectPaymentCookie += 1;
+            }
             setTimeout(() => {
                 replaceTextBack();
             }, 2500);
@@ -58,7 +63,11 @@
                 </button>
             </form>
             <button class="px-2 py-1 bg-primary brand-font text-on-primary text-2xl tracking-wide" on:click={
-                () => {goto('/passes')}
+                async () => {
+                    document.cookie = "triedPaying=true; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+                    $destroyRedirectPaymentCookie = 0;
+                    await goto('/passes');
+                }
             }>GO BACK
             </button>
         </div>

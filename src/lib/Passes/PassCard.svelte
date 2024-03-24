@@ -131,7 +131,7 @@
                     {#if $page.data.session?.user}
                         <p class="button-inner-text text-[28px]">BUY</p>
                     {:else}
-                        <p class="button-inner-text">LOGIN</p>
+                        <p class="button-inner-text text-[28px]">LOGIN</p>
                     {/if}
                     <div class="h-full w-full flex-col items-center justify-center loader-buy hidden scale-0">
                         <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>
@@ -141,7 +141,7 @@
                     </div>
                 </button>
             {:else}
-                <button class="{buttonBgColorClass} text-2xl flex flex-row items-center justify-center
+                <button class="{buttonBgColorClass} text-[28px] flex flex-row items-center justify-center
                                             gap-3 {buttonTextColorClass} brand-font px-5 py-1 flagship-buy-button group hover:bg-on-surface
                                             hover:text-surface">
                     Coming Soon
@@ -152,7 +152,7 @@
     {:else}
         <div class="h-full w-full flex flex-col">
             <div class="h-full w-full flex flex-col items-center justify-end">
-                <p class="brand-font text-4xl tracking-wider {entryTextColorClass}">{token}</p>
+                <p class="regular-font text-2xl {entryTextColorClass}">ID: {token}</p>
             </div>
             <div class="h-full w-full flex flex-col items-end justify-end">
                 <p class="brand-font text-2xl tracking-wider {entryTextColorClass}">Thank You!</p>
