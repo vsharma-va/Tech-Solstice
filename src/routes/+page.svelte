@@ -40,7 +40,7 @@
     onMount(() => {
         let checkPaymentCookie = document.cookie;
         if (checkPaymentCookie) {
-            if (checkPaymentCookie.split("=")[1] === 'true') {
+            if(checkPaymentCookie.includes("triedPaying=true")){
                 goto('/payment/manipal-dumb-check');
             }
         }
