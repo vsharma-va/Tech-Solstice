@@ -22,7 +22,7 @@ export const load = async (event) => {
         }, {projection: {_id: 0}}).toArray();
         return {isRegisteredForAtLeastOne: true, data: userEvents, userPasses: userPasses};
     } else {
-        return {isRegisteredForAtLeastOne: false, userPasses: };
+        return {isRegisteredForAtLeastOne: false, userPasses: []};
     }
 }
 
