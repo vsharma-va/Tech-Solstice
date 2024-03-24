@@ -8,6 +8,7 @@
     import {TextPlugin} from "gsap/dist/TextPlugin";
     import {browser} from "$app/environment";
     import {beforeFormSubmissionPositionEvents} from "../../store.js";
+    import {goto} from "$app/navigation";
 
     export let data;
 
@@ -70,6 +71,8 @@
         gsap.registerPlugin(ScrollTrigger);
         gsap.registerPlugin(TextPlugin);
         gsap.registerPlugin(ScrollToPlugin);
+
+
 
         let onLoadTimeline = gsap.timeline({
             onStart: () => {
@@ -226,6 +229,12 @@
                     <span class="letter-down -translate-y-[320px]">T</span>
                     <span class="letter-down -translate-y-[340px]">S</span>
                 </div>
+<!--                <div class="w-full h-fit flex items-center justify-center pt-5">-->
+<!--                    <button class="px-2 py-1 bg-primary text-on-primary text-3xl lg:text-5xl brand-font transition-all duration-300 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(97,44,138,1)]"-->
+<!--                    on:click={() => goto('/events/compete')}>-->
+<!--                        GO TO COMPETE PORTAL-->
+<!--                    </button>-->
+<!--                </div>-->
             </div>
             <div class="h-fit w-full flex flex-col items-center justify-center px-5 mt-24">
                 <p class="brand-font text-3xl sm:text-4xl lg:text-5xl text-primary tracking-wide text-center">
@@ -245,7 +254,8 @@
                            eventName="{festEvent.attributes.EventName}" taglineHere="{festEvent.attributes.Tagline}"
                            includedWith="Flagship" showPrizePool="{false}" flagship="{true}"
                            isRegistered="{festEvent.attributes.isRegistered}"
-                           priority="{festEvent.attributes.EventPriority}"/>
+                           priority="{festEvent.attributes.EventPriority}"
+                           userPasses="{data.userPasses}"/>
             {/each}
         {/if}
         <div class="h-[90vh] w-full starting-cultural-events"></div>
@@ -257,7 +267,7 @@
                            second="{festEvent.attributes.SecondPrize}" third="{festEvent.attributes.ThirdPrize}"
                            handbookLink="{festEvent.attributes.RulebookGDriveLink}" technical="{true}"
                            isRegistered="{festEvent.attributes.isRegistered}"
-                           priority="{festEvent.attributes.EventPriority}"/>
+                           priority="{festEvent.attributes.EventPriority}" userPasses="{data.userPasses}"/>
             {/each}
         {/if}
         <div class="h-[90vh] w-full starting-esports-events"></div>
@@ -265,11 +275,11 @@
             {#each EsportsEvents as festEvent}
                 <EventCard descriptionText="{festEvent.attributes.EventDescription}"
                            eventName="{festEvent.attributes.EventName}" taglineHere="{festEvent.attributes.Tagline}"
-                           includedWith="Flagship" showPrizePool="{true}" first="{festEvent.attributes.FirstPrize}"
+                           includedWith="Esports" showPrizePool="{true}" first="{festEvent.attributes.FirstPrize}"
                            second="{festEvent.attributes.SecondPrize}" third="{festEvent.attributes.ThirdPrize}"
                            handbookLink="{festEvent.attributes.RulebookGDriveLink}" esports="{true}"
                            isRegistered="{festEvent.attributes.isRegistered}"
-                           priority="{festEvent.attributes.EventPriority}"/>
+                           priority="{festEvent.attributes.EventPriority}" userPasses="{data.userPasses}"/>
             {/each}
         {/if}
     </div>

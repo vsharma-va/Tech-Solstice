@@ -172,3 +172,7 @@
 
     background: -webkit-linear-gradient(225deg, hsla(254, 68%, 9%, 1) 0%, hsla(269, 97%, 37%, 1) 33%, hsla(320, 77%, 55%, 1) 66%, hsla(316, 41%, 93%, 1) 100%);
 }
+
+.proshow-gradient {
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+}

@@ -1,7 +1,12 @@
 <script>
     import {gsap} from "gsap/dist/gsap";
-    // import standupHidden from "$lib/assets/images/standup_hidden.webp";
-    import standupHidden from "$lib/assets/images/standupHidden.webm";
+    // import standupHidden from "$lib/assets/images/standupHidden.webm";
+    import akashGupta from "$lib/assets/images/akash_gupta_banner.png";
+    import nikhil from "$lib/assets/images/Nikhil_D_Souza.png";
+    import vani from "$lib/assets/images/Vani_Bhasin.png";
+    import dj from "$lib/assets/images/dj.png";
+    import {goto} from "$app/navigation";
+    import {onMount} from "svelte";
 
     // to do add different color palettes for different categories
     export let eventName;
@@ -18,12 +23,24 @@
     export let technical;
     export let isRegistered;
     export let priority;
+    export let userPasses;
+
+    let hasEsports = false;
+    let hasFlagship = false;
+
+    for (let pass of userPasses) {
+        if (pass.pass_name === 'esports__v2') {
+            hasEsports = true;
+        } else if (pass.pass_name === 'flagship__v2') {
+            hasFlagship = true;
+        }
+    }
 
     let gradientClass;
     let registerButton;
 
     if (flagship) {
-        gradientClass = "flagship-gradient";
+        gradientClass = "bg-gradient-to-br from-[#d3d8de] to-[#cfd6dc]";
     } else if (esports) {
         gradientClass = "linkedin";
     } else if (technical) {
@@ -31,7 +48,6 @@
     }
 
     function animateLoadingPhase() {
-
         gsap.to('.button-inner-text', {
             display: 'none',
             duration: 0,
@@ -84,17 +100,39 @@
             opacity: 0.2,
         })
     }
+
+    onMount(() => {
+        let proshowTimeline = gsap.timeline({
+            onComplete: () => {
+                proshowTimeline.play(0)
+            },
+            onReverseComplete: () => {
+                setTimeout(() => {
+                    proshowTimeline.play(0)
+                }, 2000)
+            },
+        });
+
+    })
 </script>
 
 <div class="h-fit w-full flex flex-col relative">
     <div class="h-[85vh] w-full flex flex-row px-5 lg:px-36 flex-nowrap overflow-x-scroll gap-2 no-scrollbar relative event-carousel-1 lg:gap-10">
-        <div class="w-full h-full sm:w-[75%] relative text-on-surface flex-shrink-0 image-div-event-1 {gradientClass}">
+        <div class="w-full h-full sm:w-[75%] relative text-on-surface flex-shrink-0 image-div-event-1 {gradientClass} overflow-hidden">
             <!--            priority of standup-->
             {#if priority === 1}
-                <!--                <img src="{standupHidden}" alt=""-->
-                <!--                     class="h-full w-full object-cover inline-block display-image absolute top-0 bottom-0 z-0">-->
-                <video src="{standupHidden}" class="h-full w-full object-cover inline-block absolute top-0 bottom-0 z-0"
-                       autoplay muted loop></video>
+                <img src="{akashGupta}" alt=""
+                     class="h-full w-full object-contain inline-block display-image absolute top-0 bottom-0 z-0">
+                <!--                <video src="{standupHidden}" class="h-full w-full object-cover inline-block absolute top-0 bottom-0 z-0"-->
+                <!--                       autoplay muted loop></video>-->
+            {:else if priority === 2}
+                <img src="{nikhil}" alt=""
+                     class="h-full w-full object-contain inline-block display-image absolute top-0 bottom-0 z-0 scale-[1.3] nikhil-image">
+                <img src="{vani}" alt=""
+                     class="h-full w-full object-contain inline-block display-image absolute top-0 bottom-0 z-0 -translate-x-[25%] vani-image">
+            {:else if priority === 3}
+                <img src="{dj}" alt=""
+                     class="h-full w-full object-contain inline-block display-image absolute top-0 bottom-0 z-0">
             {/if}
             <div class="absolute bottom-2 left-2 h-fit w-[75%] flex flex-col items-start justify-center p-5 bg-surface gap-1">
                 <div class="brand-font text-4xl sm:text-5xl tracking-wide text-on-surface leading-[1] h-fit max-w-prose relative">
@@ -102,48 +140,97 @@
                     <div class="absolute bottom-0 h-[10px] w-full bg-primary/70"></div>
                 </div>
                 <p class="brand-font text-2xl lg:text-3xl tracking-wide text-on-surface/80">{taglineHere}</p>
-                <!--{#if !isRegistered}-->
-                <!--    <form action="?/registerEvent"-->
-                <!--          use:enhance={(async ({formData}) => {-->
-                <!--              formData.set('priority', priority);-->
-                <!--              return async ({result}) => {-->
-                <!--                  location.reload();-->
-                <!--              }-->
-                <!--          })}-->
-                <!--          method="post" class="h-full w-full">-->
-                <!--        <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"-->
-                <!--                type="submit"-->
-                <!--                bind:this={registerButton}-->
-                <!--                on:click={-->
-                <!--                () => {-->
-                <!--                    $beforeFormSubmissionPositionEvents = window.scrollY;-->
-                <!--                    console.log(window.scrollY);-->
-                <!--                    //registerButton.disabled = true;-->
-                <!--                    animateLoadingPhase();-->
-                <!--                }-->
-                <!--            }>-->
-                <!--            <p class="button-inner-text">Register</p>-->
-                <!--            <div class="h-full w-full flex-col items-center justify-center loader-buy hidden scale-0">-->
-                <!--                <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>-->
-                <!--            </div>-->
-                <!--        </button>-->
-                <!--    </form>-->
-                <!--{/if}-->
-                <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
-                        type="button"
-                        bind:this={registerButton}
-                >
-                    Coming Soon!
-                </button>
+                {#if !isRegistered}
+                    <!--                    <form action="?/registerEvent"-->
+                    <!--                          use:enhance={(async ({formData}) => {-->
+                    <!--                              formData.set('priority', priority);-->
+                    <!--                              return async ({result}) => {-->
+                    <!--                                  location.reload();-->
+                    <!--                              }-->
+                    <!--                          })}-->
+                    <!--                          method="post" class="h-full w-full">-->
+                    {#if includedWith === "Esports" && priority > 3}
+                        {#if hasEsports}
+                            <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
+                                    bind:this={registerButton}
+                                    on:click={
+                                () => {
+                                    //$beforeFormSubmissionPositionEvents = window.scrollY;
+                                    //console.log(window.scrollY);
+                                    //registerButton.disabled = true;
+                                    animateLoadingPhase();
+                                    goto('/events/compete');
+                                }
+                            }>
+                                <p class="button-inner-text">Register</p>
+                                <div class="h-full w-full flex-col items-center justify-center loader-buy hidden scale-0">
+                                    <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>
+                                </div>
+                            </button>
+                        {:else}
+                            <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
+                                    on:click={() => goto('/passes')}>
+                                Buy The ESPORTS Pass
+                            </button>
+                        {/if}
+                        <!--                    </form>-->
+                    {:else if includedWith === "Flagship" && priority > 3}
+                        {#if hasFlagship}
+                            <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
+                                    on:click={() => {animateLoadingPhase(); goto('/events/compete')}}
+                                    bind:this={registerButton}>
+                                <p class="button-inner-text">Register</p>
+                                <div class="h-full w-full flex-col items-center justify-center loader-buy hidden scale-0">
+                                    <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>
+                                </div>
+                            </button>
+                        {:else}
+                            <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
+                                    on:click={() => goto('/passes')}>
+                                Buy The FLAGSHIP Pass
+                            </button>
+                        {/if}
+                    {/if}
+                    <!--                <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"-->
+                    <!--                        type="button"-->
+                    <!--                        bind:this={registerButton}-->
+                    <!--                >-->
+                    <!--                    Coming Soon!-->
+                    <!--                </button>-->
+                {/if}
             </div>
-            {#if isRegistered && (priority !== 1 && priority !== 2)}
+            {#if isRegistered && (priority !== 1 && priority !== 2 && priority !== 3)}
                 <div class="absolute flex top-5 right-5 items-center text-2xl h-fit w-fit bg-surface px-2 py-1 brand-font text-success">
                     Registered!
                 </div>
             {:else if priority === 1}
                 <div class="absolute flex top-6 right-3 sm:right-5 items-center text-3xl h-fit w-fit bg-surface px-2 py-1 style-font text-on-surface">
-                    <p class="glitch" data-glitch="A$@QF G$%@!">
-                        A$@QF G$%@!
+                    <p class="glitch" data-glitch="AKASH GUPTA">
+                        Akash Gupta
+                    </p>
+                </div>
+            {:else if priority === 2}
+                <div class="absolute flex flex-col top-6 right-3 sm:right-5 items-center text-3xl h-fit w-fit bg-surface px-2 py-1 style-font text-on-surface">
+                    <p class="glitch" data-glitch="Nikhil D Souza">
+                        Nikhil D Souza
+                    </p>
+                    <p class="glitch" data-glitch="&">
+                        &
+                    </p>
+                    <p class="glitch" data-glitch="Vani Bhasin">
+                        Vani Bhasin
+                    </p>
+                </div>
+            {:else if priority === 3}
+                <div class="absolute flex flex-col top-6 right-3 sm:right-5 items-center text-3xl h-fit w-fit bg-surface px-2 py-1 style-font text-on-surface">
+                    <p class="glitch" data-glitch="Kunal Gaur">
+                        Kunal Gaur
+                    </p>
+                    <p class="glitch" data-glitch="AKA">
+                        AKA
+                    </p>
+                    <p class="glitch" data-glitch="DJ Suit Up">
+                        DJ Suit Up
                     </p>
                 </div>
             {/if}
@@ -151,7 +238,8 @@
                 <button class="on-left-indicator"
                         on:mousedown={() => moveCarouselRight("event-carousel-1", "description-div-event-1")}
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-primary h-full w-full"
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                         class="fill-primary h-full w-full"
                          viewBox="0 0 24 24">
                         <path d="M12.068.016l-3.717 3.698 5.263 5.286h-13.614v6h13.614l-5.295 5.317 3.718 3.699 11.963-12.016z"/>
                     </svg>
@@ -199,7 +287,8 @@
                                     <div class="w-full h-full absolute bg-primary top-0"></div>
                                 </div>
                             {:else}
-                                <p class="brand-font text-2xl sm:text-3xl lg:text-4xl  text-on-surface/80">₹{first}</p>
+                                <p class="brand-font text-2xl sm:text-3xl lg:text-4xl  text-on-surface/80">
+                                    ₹{first}</p>
                             {/if}
                         </div>
                         <div class="h-fit w-fit flex flex-row items-center justify-center gap-2">
@@ -210,7 +299,8 @@
                                     <div class="w-full h-full absolute bg-primary top-0"></div>
                                 </div>
                             {:else}
-                                <p class="brand-font text-2xl sm:text-3xl lg:text-4xl  text-on-surface/80">₹{second}</p>
+                                <p class="brand-font text-2xl sm:text-3xl lg:text-4xl  text-on-surface/80">
+                                    ₹{second}</p>
                             {/if}
                         </div>
                         <div class="h-fit w-fit flex flex-row items-center justify-center gap-2">
@@ -221,7 +311,8 @@
                                     <div class="w-full h-full absolute bg-primary top-0"></div>
                                 </div>
                             {:else}
-                                <p class="brand-font text-2xl sm:text-3xl lg:text-4xl  text-on-surface/80">₹{third}</p>
+                                <p class="brand-font text-2xl sm:text-3xl lg:text-4xl  text-on-surface/80">
+                                    ₹{third}</p>
                             {/if}
                         </div>
                     </div>
@@ -240,7 +331,7 @@
             </div>
         </div>
     </div>
-<!--    scroll buttons on top-->
+    <!--    scroll buttons on top-->
     <div class="absolute flex sm:flex -top-2 w-fit h-fit left-1/2 -translate-x-1/2 flex-row items-center justify-center gap-2 bg-surface border-[1px] border-on-surface p-2">
         <button class="h-3 w-3 rounded-full {gradientClass} on-left-indicator"
                 on:mousedown={() => moveCarouselLeft("event-carousel-1", "image-div-event-1")}
