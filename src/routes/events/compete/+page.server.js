@@ -10,6 +10,7 @@ export const load = async (event) => {
     if (!session?.user) {
         redirect(302, '/events?signedOut');
     }
+    redirect(302, '/events');
 
     let foundRegistrationsWhereOwnerOrSolo = await registrations.find({
         email: session.user.email,
