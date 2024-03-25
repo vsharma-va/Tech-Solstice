@@ -59,7 +59,7 @@
         <div class="w-full h-fit flex flex-row items-center justify-between">
             <form action="?/checkPaymentStatus" method="post">
                 <button class="px-2 py-1 bg-primary brand-font text-on-primary text-2xl tracking-wide" type="submit">
-                    CHECK PAYMENT STATUS
+                    CLICK HERE TO GET YOUR PASS
                 </button>
             </form>
             <button class="px-2 py-1 bg-primary brand-font text-on-primary text-2xl tracking-wide" on:click={
