@@ -14,8 +14,8 @@ const user = userDatabase.collection("us_user_data");
 
 const currentPasses = {
     flagship: {
-        includes: ['All Events'],
-        excluded: ['Esports', 'Hackathon'],
+        includes: ['All Events', 'Hackathon (MAHE)'],
+        excluded: ['Esports'],
         cost: 699,
         token: {
             includes: ['All Events'],
@@ -42,11 +42,11 @@ const currentPasses = {
         dbName: 'esports__v2'
     },
     Hackathon: {
-        includes: ['Premier Hackathon Event'],
+        includes: ['Hackathon', 'FOR NON MAHE ONLY'],
         excluded: ['Rest Of The Events'],
         cost: '@1x',
         token: {
-            includes: ['Hackathon'],
+            includes: ['Hackathon For NON MAHE'],
             excluded: ['Rest Of The Events'],
             cost: '@1x',
             dbName: 'hackathon__v2',
