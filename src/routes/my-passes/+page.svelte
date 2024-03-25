@@ -4,6 +4,7 @@
     import {gsap} from "gsap/dist/gsap";
     import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
     import PassCard from "$lib/Passes/PassCard.svelte";
+    import {ScrollToPlugin} from "gsap/dist/ScrollToPlugin";
     import Loader from "$lib/common/Loader.svelte";
     import {dragscroll} from "@svelte-put/dragscroll";
     import {goto} from "$app/navigation";
@@ -48,6 +49,7 @@
         }
 
         gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(ScrollToPlugin);
 
         let onLoadTimeline = gsap.timeline({
             onStart: () => {
