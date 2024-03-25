@@ -11,6 +11,7 @@
     export let buttonBgColorClass;
     export let buttonTextColorClass;
     export let isTeam;
+    export let joinCode;
     export let isTeamLeader;
 </script>
 
@@ -19,17 +20,18 @@
         {eventName}
         <div class="h-[10px] w-full absolute bottom-0 {headingTextUnderlineColorClass}"></div>
     </div>
-    <div class="h-full w-full brand-font text-4xl {entryTextColorClass} flex flex-col items-start justify-between gap-4">
+    <div class="h-full w-full brand-font text-3xl {entryTextColorClass} flex flex-col items-start justify-between gap-4">
         {#if isTeam}
             <div class="h-full w-full flex flex-col items-center justify-center gap-4">
                 {teamName}
-                <div class="h-fit w-full brand-font text-3xl {entryTextColorClass} flex flex-col items-center justify-center">
+                <div class="h-fit w-full brand-font text-2xl {entryTextColorClass} flex flex-col items-center justify-center">
                     <p>Number Of Members: {teamMemberCount}</p>
                     <p>Max Members: {maxTeamMembers}</p>
+                    <p class="select-text">Join Code: {joinCode}</p>
                 </div>
             </div>
         {:else}
-            <div class="h-full w-full brand-font text-4xl {entryTextColorClass} flex flex-col items-center justify-center">
+            <div class="h-full w-full brand-font text-3xl {entryTextColorClass} flex flex-col items-center justify-center">
                 Solo Event
             </div>
         {/if}
@@ -40,6 +42,10 @@
             {#if isTeam && isTeamLeader}
                 <p class="brand-font text-3xl {entryTextColorClass}">
                     Team Leader
+                </p>
+            {:else if isTeam && !isTeamLeader}
+                <p class="brand-font text-3xl {entryTextColorClass}">
+                    Team Member
                 </p>
             {/if}
         </div>

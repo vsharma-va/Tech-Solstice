@@ -2,6 +2,7 @@
     import Navbar from "$lib/common/Navbar.svelte";
     import {gsap} from "gsap/dist/gsap";
     import {TextPlugin} from "gsap/dist/TextPlugin";
+    import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
     import {onMount} from "svelte";
     import {enhance} from "$app/forms";
     import {dragscroll} from "@svelte-put/dragscroll";
@@ -18,6 +19,8 @@
     let teamName;
     let maxTeamLength;
     let eventName;
+    let teamJoinCode;
+    let showJoinCodeSubmit = false;
 
     let cardColorPallets = [{
         cardBackgroundColorClass: "bg-on-surface",
@@ -54,23 +57,111 @@
         })).json()).data
 
         gsap.registerPlugin(TextPlugin);
-        let onLoadTimeline = gsap.timeline();
-        onLoadTimeline.to('.on-load-replace-text', {
-            text: "EVENTS PORTAL",
-            duration: 1,
-        })
+        gsap.registerPlugin(ScrollTrigger);
+
+        let onLoadTimeline = gsap.timeline({
+            onStart: () => {
+                gsap.set('.letter-down', {
+                    clearProps: true,
+                })
+            }
+        });
+        onLoadTimeline.to(".letter-down", {
+            y: 0,
+        }, ">");
+        // onLoadTimeline.to(window, {
+        //     scrollTo: 100,
+        // }, ">")
+        onLoadTimeline.to('.passes-div', {
+            x: 0,
+            ease: "back.out(1.7)",
+            duration: 1.25,
+        }, ">");
+        onLoadTimeline.to('.typewriter-1', {
+            opacity: 1,
+            duration: 0.25,
+        }, ">");
+        onLoadTimeline.to('.typewriter-2', {
+            opacity: 1,
+            duration: 0.25,
+        }, ">");
+        onLoadTimeline.to('.typewriter-3', {
+            opacity: 1,
+            duration: 0.25,
+        }, ">");
+        onLoadTimeline.to('.typewriter-4', {
+            opacity: 1,
+            duration: 0.25,
+        });
+        onLoadTimeline.to('.typewriter-5', {
+            opacity: 1,
+            duration: 0.25,
+        });
+        onLoadTimeline.to('.typewriter-6', {
+            opacity: 1,
+            duration: 0.25,
+        });
+        onLoadTimeline.to('.typewriter-7', {
+            opacity: 1,
+            duration: 0.25,
+        });
+        onLoadTimeline.to('.typewriter-8', {
+            opacity: 1,
+            duration: 0.25,
+        });
+        onLoadTimeline.to('.typewriter-9', {
+            opacity: 1,
+            duration: 0.25,
+        });
+
+        let eventsBannerTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.pass-trigger',
+                start: 'top top',
+                end: 'top -60%',
+                scrub: true,
+                markers: false,
+            }
+        });
+        eventsBannerTl.to('.intro-banner', {
+            opacity: 0.25,
+            filter: "blur(5px)",
+            scale: 0.75,
+            yPercent: 10,
+        });
     })
 
     function displayRegistrationForm() {
         gsap.to('.registration-form', {
-            y: 0,
+            x: 0,
             ease: "power4.out",
         })
     }
+
     function hideRegistrationForm() {
+        if(form?.success) {
+            form.success = false;
+        }
         gsap.to('.registration-form', {
-            y: "100%",
+            x: "-100%",
             ease: "power4.out"
+        })
+    }
+
+    function displayExistingRegistrationForm() {
+        gsap.to('.existing-registration-form', {
+            x: 0,
+            ease: "power4.out",
+        })
+    }
+
+    function hideExistingRegistrationForm() {
+        if(form?.success) {
+            form.success = false;
+        }
+        gsap.to('.existing-registration-form', {
+            x: "-100%",
+            ease: "power4.out",
         })
     }
 
@@ -94,6 +185,18 @@
         }
     }
 
+    function joinCodeCheck() {
+        if(form?.errorExisting) {
+            form.errorExisting = false;
+        }
+
+        if (teamJoinCode) {
+            showJoinCodeSubmit = true;
+        } else {
+            showJoinCodeSubmit = false;
+        }
+    }
+
     function attemptEventRegistration({formData}) {
         formData.set('selectedEventPriority', selectedEvent);
         formData.set('isTeam', isTeam);
@@ -101,12 +204,17 @@
         formData.set('maxTeamLength', maxTeamLength);
         formData.set('eventName', eventName);
     }
+
+    function attemptExistingEventRegistration({formData}) {
+        formData.set('teamJoinCode', teamJoinCode);
+    }
 </script>
 
 <div class="min-h-screen max-h-fit w-full bg-surface relative">
     <Navbar/>
-    <div class="absolute top-0 h-screen w-full backdrop-blur-3xl translate-y-[100%] z-[3] flex items-center justify-center registration-form">
-        <button class="h-screen w-full bg-transparent absolute top-0" on:click={() => {hideRegistrationForm()}}></button>
+    <div class="absolute top-0 h-screen w-full backdrop-blur-3xl -translate-x-[100%] z-[3] flex items-center justify-center registration-form">
+        <button class="h-screen w-full bg-transparent absolute top-0"
+                on:click={() => {hideRegistrationForm()}}></button>
         <div class="h-fit w-fit relative border-2 border-on-surface bg-surface flex flex-col items-start justify-center z-[6] px-5 py-5 gap-5">
             <div class="h-fit w-fit flex flex-col gap-1">
                 <form action="?/registerForEvent" method="post" use:enhance={(event) => {
@@ -116,6 +224,9 @@
                         REGISTER!</p>
                     {#if form?.error}
                         <p class="regular-font text-error text-xl text-center mt-5">{form.detail}</p>
+                    {/if}
+                    {#if form?.success}
+                        <p class="regular-font text-success text-xl text-center mt-5">Successfully Registered</p>
                     {/if}
                     <!--                <p class="regular-font text-on-primary-container/70 text-lg leading-5 tracking-wide text-left mt-1">Your-->
                     <!--                    details will be used for event registeration</p>-->
@@ -159,19 +270,102 @@
                                 </button>
                             {/if}
                         {/if}
+                        <div class="regular-font text-lg text-primary">Click Outside To Close</div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <div class="h-fit w-full flex flex-col items-center justify-center pt-16">
-        <p class="brand-font text-7xl text-on-surface on-load-replace-text">
-            P&%$! E%$#^*
+    <div class="absolute top-0 h-screen w-full backdrop-blur-3xl -translate-x-[100%] z-[3] flex items-center justify-center existing-registration-form">
+        <button class="h-screen w-full bg-transparent absolute top-0"
+                on:click={() => {hideExistingRegistrationForm()}}></button>
+        <div class="h-fit w-fit relative border-2 border-on-surface bg-surface flex flex-col items-start justify-center z-[6] px-5 py-5 gap-5">
+            <div class="h-fit w-fit flex flex-col gap-1">
+                <form action="?/registerExistingEvent" method="post" use:enhance={(event) => {
+                    attemptExistingEventRegistration(event);
+                }}>
+                    <p class="brand-font text-primary text-[40px] leading-8 tracking-wide">
+                        SELECT AN EVENT TO REGISTER!
+                    </p>
+                    {#if form?.errorExisting}
+                        <p class="regular-font text-error text-xl text-center mt-5">{form.details}</p>
+                    {/if}
+                    {#if form?.success}
+                        <p class="regular-font text-success text-xl text-center mt-5">Successfully joined a team</p>
+                    {/if}
+                    <!--                <p class="regular-font text-on-primary-container/70 text-lg leading-5 tracking-wide text-left mt-1">Your-->
+                    <!--                    details will be used for event registeration</p>-->
+                    <div class="flex flex-col h-fit w-full gap-2 items-center justify-center">
+                        <div class="form__group field mt-9">
+                            <input type="text" class="form__field regular-font" placeholder="Join Code" required=""
+                                   bind:value={teamJoinCode} on:input={joinCodeCheck}>
+                            <label for="name" class="form__label regular-font">Join Code</label>
+                        </div>
+                        {#if showJoinCodeSubmit}
+                            <button class="bg-primary text-on-primary px-2 py-1 brand-font text-2xl w-full mt-2">
+                                Submit
+                            </button>
+                        {/if}
+                        <div class="regular-font text-lg text-primary">Click Outside To Close</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="h-[90vh] w-full flex flex-col items-center justify-center intro-banner sticky top-0">
+        <div class="flex flex-row w-fit h-fit items-center justify-center gap-5 px-5">
+            <button class="bg-primary text-on-primary text-2xl sm:text-3xl brand-font tracking-wide px-2 py-1 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(97,44,138,1)] transition-all duration-300"
+                    on:click={() => {displayRegistrationForm()}}>REGISTER FOR AN EVENT
+            </button>
+            <button class="bg-primary text-on-primary text-2xl sm:text-3xl brand-font tracking-wide px-2 py-1 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(97,44,138,1)] transition-all duration-300"
+                    on:click={() => {displayExistingRegistrationForm()}}>JOIN A TEAM
+            </button>
+        </div>
+        <div class="h-fit w-full flex flex-col overflow-hidden">
+            <div
+                    class="pt-14 px-5 brand-font text-left h-fit w-full -translate-x-9 font-bold flex flex-row items-center justify-center text-6xl sm:text-7xl lg:text-9xl text-on-surface overflow-y-clip">
+                <span class="letter-down -translate-y-[70px]">E</span>
+                <span class="letter-down -translate-y-[90px]">V</span>
+                <span class="letter-down -translate-y-[110px]">E</span>
+                <span class="letter-down -translate-y-[130px]">N</span>
+                <span class="letter-down -translate-y-[150px]">T</span>
+                <span class="letter-down -translate-y-[170px]">S</span>
+                <span class="letter-down -translate-y-[190px]">&nbsp;</span>
+
+            </div>
+            <div
+                    class="px-5 brand-font text-right h-fit w-full translate-x-9 lg:translate-x-24 font-bold flex flex-row items-center justify-center text-6xl sm:text-7xl lg:text-9xl text-on-surface overflow-y-clip">
+                <span class="letter-down -translate-y-[260px]">P</span>
+                <span class="letter-down -translate-y-[280px]">O</span>
+                <span class="letter-down -translate-y-[300px]">R</span>
+                <span class="letter-down -translate-y-[320px]">T</span>
+                <span class="letter-down -translate-y-[340px]">A</span>
+                <span class="letter-down -translate-y-[360px]">L</span>
+            </div>
+        </div>
+        <div class="h-fit w-full flex flex-col items-center justify-center px-5 mt-24">
+            <p class="brand-font text-3xl sm:text-4xl lg:text-5xl text-primary tracking-wide text-center">
+                <span class="typewriter-1 opacity-0">SECURE</span>
+                <span class="typewriter-2 opacity-0">YOUR</span>
+                <span class="typewriter-3 opacity-0">TECH</span>
+                <span class="typewriter-4 opacity-0">VOYAGE: </span>
+                <span class="typewriter-5 opacity-0">PASSES</span>
+                <span class="typewriter-6 opacity-0">FOR</span>
+                <span class="typewriter-7 opacity-0">LIMITLESS</span>
+                <span class="typewriter-8 opacity-0">FESTIVAL</span>
+                <span class="typewriter-9 opacity-0">THRILLS!</span>
+            </p>
+        </div>
+    </div>
+    <div class="flex flex-row items-start justify-start h-fit w-full px-6">
+        <p class="brand-font text-4xl brand-font text-on-surface text-center">
+            USER-LED OR SOLO EVENTS
         </p>
     </div>
-    <div class="h-[60vh] w-full overflow-x-hidden">
-        <div class="h-[60vh] relative pl-5 py-[10px]">
-            {#if data?.registrations.teamOrSolo.length > 0}
+    {#if data?.registrations.teamOrSolo.length > 0}
+        <div class="h-[60vh] w-full overflow-x-hidden">
+            <div class="h-[60vh] relative pl-5 py-[10px]">
                 <div
                         class="w-full h-full flex flex-row items-center justify-start lg:justify-start flex-shrink-0 flex-nowrap gap-0 px-5 py-9 overflow-x-scroll no-scrollbar"
                         use:dragscroll>
@@ -187,6 +381,7 @@
                                      buttonTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonTextColorClass}"
                                      rotateClass="rotate-[8deg]"
                                      isTeam="{reg.is_team}"
+                                     joinCode="{reg.join_code}"
                                      isTeamLeader="{true}"
                             />
                         {:else}
@@ -200,20 +395,36 @@
                                      buttonTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonTextColorClass}"
                                      rotateClass="-rotate-[4deg]"
                                      isTeam="{reg.is_team}"
+                                     joinCode="{reg.join_code}"
                                      isTeamLeader="{true}"
                             />
                         {/if}
                     {/each}
                 </div>
-            {/if}
-            {#if data?.registrations.teamMember.length > 0}
+
+            </div>
+        </div>
+    {:else}
+        <p class="brand-font text-4xl text-primary text-center mt-5 px-5">
+            NO DATA FOUND
+        </p>
+    {/if}
+    <div class="flex flex-row items-start justify-start h-fit w-full px-6">
+        <p class="brand-font text-4xl brand-font text-on-surface text-center">
+            Teams Joined By User
+        </p>
+    </div>
+    {#if data?.registrations.teamMember.length > 0}
+        <div class="h-[60vh] w-full overflow-x-hidden">
+            <div class="h-[60vh] relative pl-5 py-[10px]">
                 <div
-                        class="relative w-full h-full flex flex-row items-center justify-start lg:justify-center flex-nowrap box-border gap-0 px-5 horizontal-scroll-element overflow-x-scroll py-9 no-scrollbar"
+                        class="relative w-full h-full flex flex-row items-center justify-start lg:justify-start flex-nowrap box-border gap-0 px-5 horizontal-scroll-element overflow-x-scroll py-9 no-scrollbar"
                         use:dragscroll>
                     {#each data?.registrations.teamMember as reg, index}
                         {#if (index + 1) % 2 === 0}
                             <RegCard eventName="{reg.event_name}" teamName="{reg.team_name}"
-                                     teamMemberCount="{reg.team_member_count}" maxTeamMembers="{reg.max_team_members}"
+                                     teamMemberCount="{reg.team_member_count}"
+                                     maxTeamMembers="{reg.max_team_members}"
                                      cardBackgroundColorClass="{cardColorPallets[index%(cardColorPallets.length)].cardBackgroundColorClass}"
                                      headingTextUnderlineColorClass="{cardColorPallets[index%(cardColorPallets.length)].headingTextUnderlineColorClass}"
                                      headingTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].headingTextColorClass}"
@@ -221,10 +432,14 @@
                                      buttonBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonBgColorClass}"
                                      buttonTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonTextColorClass}"
                                      rotateClass="rotate-[8deg]"
+                                     isTeam="{reg.is_team}"
+                                     joinCode="{reg.join_code}"
+                                     isTeamLeader="{false}"
                             />
                         {:else}
                             <RegCard eventName="{reg.event_name}" teamName="{reg.team_name}"
-                                     teamMemberCount="{reg.team_member_count}" maxTeamMembers="{reg.max_team_members}"
+                                     teamMemberCount="{reg.team_member_count}"
+                                     maxTeamMembers="{reg.max_team_members}"
                                      cardBackgroundColorClass="{cardColorPallets[index%(cardColorPallets.length)].cardBackgroundColorClass}"
                                      headingTextUnderlineColorClass="{cardColorPallets[index%(cardColorPallets.length)].headingTextUnderlineColorClass}"
                                      headingTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].headingTextColorClass}"
@@ -232,19 +447,20 @@
                                      buttonBgColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonBgColorClass}"
                                      buttonTextColorClass="{cardColorPallets[index%(cardColorPallets.length)].buttonTextColorClass}"
                                      rotateClass="-rotate-[4deg]"
+                                     isTeam="{reg.is_team}"
+                                     joinCode="{reg.join_code}"
+                                     isTeamLeader="{false}"
                             />
                         {/if}
                     {/each}
                 </div>
-            {/if}
+            </div>
         </div>
-    </div>
-    <div class="h-fit w-full flex flex-col items-center justify-center group">
-        <button class="px-2 py-1 h-fit w-fit flex items-center justify-center bg-primary text-on-primary text-3xl brand-font tracking-wide transition-all duration-300 group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:shadow-[5px_5px_0px_0px_rgba(97,44,138,1)]"
-        on:click={() => {displayRegistrationForm()}}>
-            ADD NEW REGISTRATION
-        </button>
-    </div>
+    {:else}
+        <p class="brand-font text-4xl text-primary mt-5 px-5 text-center">
+            NO DATA FOUND
+        </p>
+    {/if}
 </div>
 
 <style>
