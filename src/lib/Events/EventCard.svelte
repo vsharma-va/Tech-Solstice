@@ -223,12 +223,6 @@
                 </div>
             {:else if priority === 3}
                 <div class="absolute flex flex-col top-6 right-3 sm:right-5 items-center text-3xl h-fit w-fit bg-surface px-2 py-1 style-font text-on-surface">
-                    <p class="glitch" data-glitch="Kunal Gaur">
-                        Kunal Gaur
-                    </p>
-                    <p class="glitch" data-glitch="AKA">
-                        AKA
-                    </p>
                     <p class="glitch" data-glitch="DJ Suit Up">
                         DJ Suit Up
                     </p>

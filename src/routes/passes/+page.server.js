@@ -102,7 +102,7 @@ export const actions = {
     },
     registerUserAndProceed: async (event) => {
         const session = await event.locals.getSession();
-        if (!session) {
+        if (!session?.user) {
             redirect(302, '/?signedOut');
         } else {
             let errors = {userNameError: '', userPhoneNumberError: '', userLearnerIdError: ''};
