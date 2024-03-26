@@ -346,15 +346,11 @@
         </div>
         <div class="h-fit w-full flex flex-col items-center justify-center px-5 mt-24">
             <p class="brand-font text-3xl sm:text-4xl lg:text-5xl text-primary tracking-wide text-center">
-                <span class="typewriter-1 opacity-0">SECURE</span>
-                <span class="typewriter-2 opacity-0">YOUR</span>
-                <span class="typewriter-3 opacity-0">TECH</span>
-                <span class="typewriter-4 opacity-0">VOYAGE: </span>
-                <span class="typewriter-5 opacity-0">PASSES</span>
-                <span class="typewriter-6 opacity-0">FOR</span>
-                <span class="typewriter-7 opacity-0">LIMITLESS</span>
-                <span class="typewriter-8 opacity-0">FESTIVAL</span>
-                <span class="typewriter-9 opacity-0">THRILLS!</span>
+                <span class="typewriter-1 opacity-0">SIGN</span>
+                <span class="typewriter-2 opacity-0">UP</span>
+                <span class="typewriter-3 opacity-0">FOR</span>
+                <span class="typewriter-4 opacity-0">EVENTS</span>
+                <span class="typewriter-5 opacity-0">NOW!</span>
             </p>
         </div>
     </div>
@@ -383,6 +379,7 @@
                                      isTeam="{reg.is_team}"
                                      joinCode="{reg.join_code}"
                                      isTeamLeader="{true}"
+                                     eventPriority="{reg.event_priority}"
                             />
                         {:else}
                             <RegCard eventName="{reg.event_name}" teamName="{reg.team_name}"

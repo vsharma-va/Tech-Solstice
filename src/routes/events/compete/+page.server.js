@@ -136,6 +136,10 @@ export const actions = {
             return fail(400, {errorExisting: true, details: 'Invalid Join Code'});
         }
 
+        if(foundEvent.email === session.user.email || foundEvent.team_members.includes(session.user.email)) {
+            return fail(400, {errorExisting: true, details: 'Already A Member!'})
+        }
+
         if (foundEvent.max_team_members > foundEvent.team_member_count) {
             await registrations.updateOne({
                 join_code: joinCode,
