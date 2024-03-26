@@ -24,7 +24,6 @@ export async function POST(event) {
     if (!foundUser) {
         redirect(302, '/passes?invalidToken');
     }
-    console.log(foundUser);
     let pageNumber = jsonData.currentPageNumber;
     let resultPage = await fetchPaymentLogs(pageNumber);
     const totalPages = resultPage.data.totalPages;
