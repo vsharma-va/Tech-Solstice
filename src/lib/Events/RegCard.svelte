@@ -36,9 +36,12 @@
             </div>
         {/if}
         <div class="h-fit w-full flex flex-row items-center justify-between">
-            <button class="h-fit w-fit flex flex-col items-center text-3xl px-2 py-1 justify-center {buttonBgColorClass} {buttonTextColorClass}">
-                Details
-            </button>
+<!--            <button class="h-fit w-fit flex flex-col items-center text-3xl px-2 py-1 justify-center {buttonBgColorClass} {buttonTextColorClass}"-->
+<!--                on:click={() => {-->
+<!--                    -->
+<!--                }}>-->
+<!--                Details-->
+<!--            </button>-->
             {#if isTeam && isTeamLeader}
                 <p class="brand-font text-3xl {entryTextColorClass}">
                     Team Leader

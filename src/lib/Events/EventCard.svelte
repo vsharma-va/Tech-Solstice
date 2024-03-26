@@ -1,10 +1,5 @@
 <script>
     import {gsap} from "gsap/dist/gsap";
-    // import standupHidden from "$lib/assets/images/standupHidden.webm";
-    import akashGupta from "$lib/assets/images/akash_gupta_banner.png";
-    import nikhil from "$lib/assets/images/Nikhil_D_Souza.png";
-    import vani from "$lib/assets/images/Vani_Bhasin.png";
-    import dj from "$lib/assets/images/dj.png";
     import {goto} from "$app/navigation";
     import {onMount} from "svelte";
 
@@ -40,7 +35,7 @@
     let registerButton;
 
     if (flagship) {
-        gradientClass = "bg-gradient-to-br from-[#d3d8de] to-[#cfd6dc]";
+        gradientClass = "flagship-gradient";
     } else if (esports) {
         gradientClass = "linkedin";
     } else if (technical) {
@@ -121,18 +116,41 @@
         <div class="w-full h-full sm:w-[75%] relative text-on-surface flex-shrink-0 image-div-event-1 {gradientClass} overflow-hidden">
             <!--            priority of standup-->
             {#if priority === 1}
-                <img src="{akashGupta}" alt=""
-                     class="h-full w-full object-contain inline-block display-image absolute top-0 bottom-0 z-0">
+                <div class="h-full w-full overflow-hidden relative">
+                    <iframe width="560" height="315" class="h-full w-full"
+                            src="https://www.youtube-nocookie.com/embed/KBZfnt80s54?si=ysh0XXcmIFlgLKw1&amp;controls=0&amp;start=201&amp;end=207&amp;autoplay=1&amp;showinfo=0&amp;loop=1&amp;mute=1&amp;playlist=KBZfnt80s54"
+                            title="YouTube video player" frameborder="0"
+                            allow="autoplay; clipboard-write; encrypted-media; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    <div class="absolute top-0 h-full w-full bg-transparent"></div>
+                </div>
+                <!--                <img src="{akashGupta}" alt=""-->
+                <!--                     class="h-full w-full object-contain inline-block display-image absolute top-0 bottom-0 z-0">-->
                 <!--                <video src="{standupHidden}" class="h-full w-full object-cover inline-block absolute top-0 bottom-0 z-0"-->
                 <!--                       autoplay muted loop></video>-->
             {:else if priority === 2}
-                <img src="{nikhil}" alt=""
-                     class="h-full w-full object-contain inline-block display-image absolute top-0 bottom-0 z-0 scale-[1.3] nikhil-image">
-                <img src="{vani}" alt=""
-                     class="h-full w-full object-contain inline-block display-image absolute top-0 bottom-0 z-0 -translate-x-[25%] vani-image">
+                <div class="h-full w-full overflow-hidden relative">
+                    <iframe width="560" height="315" class="h-full w-full"
+                            src="https://www.youtube.com/embed/vaPJveQ9sWM?si=KV--Py8MHK5TTAaV,eWavfMSj03c&amp;controls=0&amp;autoplay=1&amp;showinfo=0&amp;loop=1&amp;mute=1&amp;"
+                            title="YouTube video player" frameborder="0"
+                            allow="autoplay; clipboard-write; encrypted-media; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    <div class="absolute top-0 h-full w-full bg-transparent"></div>
+                </div>
+                <!--                <img src="{nikhil}" alt=""-->
+                <!--                     class="h-full w-full object-contain inline-block display-image absolute top-0 bottom-0 z-0 scale-[1.3] nikhil-image">-->
+                <!--                <img src="{vani}" alt=""-->
+                <!--                     class="h-full w-full object-contain inline-block display-image absolute top-0 bottom-0 z-0 -translate-x-[25%] vani-image">-->
             {:else if priority === 3}
-                <img src="{dj}" alt=""
-                     class="h-full w-full object-contain inline-block display-image absolute top-0 bottom-0 z-0">
+                <div class="h-full w-full overflow-hidden relative">
+                    <iframe width="560" height="315" class="h-full w-full" src="https://www.youtube.com/embed/GKFgUf6AwcU?si=Gjz3Nr4NcMxFZwfj&amp;controls=0&amp;autoplay=1&amp;showinfo=0&amp;loop=1&amp;mute=1&amp;"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="absolute top-0 h-full w-full bg-transparent"></div>
+                </div>
+                <!--                <img src="{dj}" alt=""-->
+                <!--                     class="h-full w-full object-contain inline-block display-image absolute top-0 bottom-0 z-0">-->
             {/if}
             <div class="absolute bottom-2 left-2 h-fit w-[75%] flex flex-col items-start justify-center p-5 bg-surface gap-1">
                 <div class="brand-font text-4xl sm:text-5xl tracking-wide text-on-surface leading-[1] h-fit max-w-prose relative">
@@ -434,5 +452,9 @@
         71% {
             transform: skewX(10deg) skewY(-10deg);
         }
+    }
+
+    *{
+        -webkit-overflow-scrolling: touch;
     }
 </style>
