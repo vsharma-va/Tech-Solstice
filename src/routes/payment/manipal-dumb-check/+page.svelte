@@ -61,6 +61,7 @@
                     currentPageNumber = jsonResponse.currentPageNumber + 1;
                 }
             } else if (jsonResponse.generatedPasses === true) {
+                document.cookie = "triedPaying=true; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
                 if(jsonResponse.semi) {
                     replaceTextSemiSuccess();
                     setTimeout(() => {

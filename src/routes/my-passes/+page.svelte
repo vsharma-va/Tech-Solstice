@@ -145,6 +145,12 @@
                     <span class="letter-down -translate-y-[270px]">S</span>
                 </div>
             </div>
+            <div class="w-full h-fit flex items-center justify-center pt-5">
+                <button class="px-2 py-1 bg-primary text-on-primary text-3xl lg:text-5xl brand-font transition-all duration-300 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(97,44,138,1)]"
+                        on:click={() => goto('/payment/manipal-dumb-check')}>
+                    CHECK PAYMENT AND GENERATE PASS
+                </button>
+            </div>
             <div class="h-fit w-full flex flex-col items-center justify-center px-5 mt-24">
                 <p class="brand-font text-3xl sm:text-4xl lg:text-5xl text-primary tracking-wide text-center">
                     <span class="typewriter-1 opacity-0">YOUR</span>
