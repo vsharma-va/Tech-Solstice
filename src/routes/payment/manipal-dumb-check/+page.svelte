@@ -114,7 +114,7 @@
             }>GO BACK
             </button>
         </div>
-        <div class="h-[8px] self-start w-0 flex items-center justify-center bg-gradient-to-r from-[#490f72] to-[#e1b6ff]"
+        <div class="h-[8px] self-start w-0 flex items-center justify-center bg-gradient-to-r from-[#490f72] to-[#e1b6ff] transition-all duration-400"
              style="width: {progressPercentage}%"></div>
     </div>
 </div>
