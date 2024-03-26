@@ -1,3 +1,7 @@
+export const config = {
+    runtime: 'edge'
+}
+
 import {MongoClient} from "mongodb";
 import * as dotenv from 'dotenv';
 import {redirect} from "@sveltejs/kit";

@@ -23,6 +23,7 @@
 		"@auth/sveltekit": "^0.13.0",
 		"@studio-freight/lenis": "^1.0.39",
 		"@svelte-put/dragscroll": "^3.0.0",
+		"@sveltejs/adapter-vercel": "^5.2.0",
 		"dotenv": "^16.4.5",
 		"gsap": "^3.12.5",
 		"jsonwebtoken": "^9.0.2",
