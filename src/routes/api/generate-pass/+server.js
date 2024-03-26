@@ -24,12 +24,37 @@ export async function POST(event) {
     if (!foundUser) {
         redirect(302, '/passes?invalidToken');
     }
+    console.log(foundUser);
     let pageNumber = jsonData.currentPageNumber;
     let resultPage = await fetchPaymentLogs(pageNumber);
     const totalPages = resultPage.data.totalPages;
     let paymentFlag = false;
+    resultPage.data.docs[10] = {
+        "_id": "6602884136f69b54d4369f24",
+        "is_posted": 0,
+        "tracking_id": "pay_Nqv2pHSWW6fwhj",
+        "order_status": "Success",
+        "currency": "INR",
+        "actual_amount": "699",
+        "billing_name": "Rita Anjali Joseph",
+        "billing_tel": "9860285402",
+        "membership_type": "TechSolsticeNexus",
+        "created_at": "2024-03-26",
+        "orderid": "order_Nqv0wilV9a8Jkk",
+        "receiptno": "TSN2874",
+        "total_amount": "699",
+        "email": "rita.mitblr2023@learner.manipal.edu",
+        "user_type": "MAHE",
+        "department": "Manipal Institute of Technology",
+        "registration_number": "235816138",
+        "esports": false,
+        "esports_amount": 0,
+        "amount": 699,
+        "cgst": 53.31,
+        "base_price": 592.37
+    }
     for (let doc of resultPage.data.docs) {
-        if (doc.billin_tel === foundUser.userPhoneNumber) {
+        if (doc.billing_tel === foundUser.userPhoneNumber) {
             paymentFlag = true;
             const foundPass = await passes.findOne({
                 email: foundUser.email,
@@ -81,9 +106,9 @@ export async function POST(event) {
                     }]);
                 }
             } else {
-                console.log("PAYMENT FOUND BUT PASS ALREADY GENERATED for: ", foundUser.email);
+                return json({generatedPasses: true, semi: true})
             }
-            return json({generatedPasses: true, passDetails: doc});
+            return json({generatedPasses: true, semi: false, passDetails: doc});
         }
     }
     return json({generatedPasses: false, totalPages: totalPages, currentPageNumber: Number(pageNumber)});

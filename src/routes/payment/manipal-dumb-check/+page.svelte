@@ -50,6 +50,7 @@
     async function onClickCheckPayment() {
         while (true) {
             let jsonResponse = await fetchPaymentLogs();
+            console.log(jsonResponse.generatedPasses);
             totalNumberOfPages = jsonResponse.totalPages;
             if (jsonResponse.generatedPasses === false) {
                 if (jsonResponse.currentPageNumber === jsonResponse.totalPages) {
@@ -60,12 +61,27 @@
                     currentPageNumber = jsonResponse.currentPageNumber + 1;
                 }
             } else if (jsonResponse.generatedPasses === true) {
+                if(jsonResponse.semi) {
+                    replaceTextSemiSuccess();
+                    setTimeout(() => {
+                        goto('/my-passes')
+                    }, 4000);
+                    break;
+                }
                 replaceTextSuccess();
                 setTimeout(() => {
                     goto('/my-passes')
                 }, 4000);
+                break;
             }
         }
+    }
+
+    function replaceTextSemiSuccess() {
+        gsap.to('.heading-text', {
+            text: "PASS ALREADY EXISTS!",
+            duration: 1,
+        })
     }
 
     function replaceTextSuccess() {
