@@ -19,6 +19,7 @@
     export let isRegistered;
     export let priority;
     export let userPasses;
+    export let date;
 
     let hasEsports = false;
     let hasFlagship = false;
@@ -143,7 +144,8 @@
                 <!--                     class="h-full w-full object-contain inline-block display-image absolute top-0 bottom-0 z-0 -translate-x-[25%] vani-image">-->
             {:else if priority === 3}
                 <div class="h-full w-full overflow-hidden relative">
-                    <iframe width="560" height="315" class="h-full w-full" src="https://www.youtube.com/embed/GKFgUf6AwcU?si=Gjz3Nr4NcMxFZwfj&amp;controls=0&amp;autoplay=1&amp;showinfo=0&amp;loop=1&amp;mute=1&amp;"
+                    <iframe width="560" height="315" class="h-full w-full"
+                            src="https://www.youtube.com/embed/GKFgUf6AwcU?si=Gjz3Nr4NcMxFZwfj&amp;controls=0&amp;autoplay=1&amp;showinfo=0&amp;loop=1&amp;mute=1&amp;"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -151,6 +153,11 @@
                 </div>
                 <!--                <img src="{dj}" alt=""-->
                 <!--                     class="h-full w-full object-contain inline-block display-image absolute top-0 bottom-0 z-0">-->
+            {/if}
+            {#if priority > 3}
+                <div class="brand-font text-3xl text-on-surface h-fit w-fit bg-surface absolute top-2 left-2 p-2">
+                    <p class="">On {new Date(date).toLocaleDateString()}</p>
+                </div>
             {/if}
             <div class="absolute bottom-2 left-2 h-fit w-[75%] flex flex-col items-start justify-center p-5 bg-surface gap-1">
                 <div class="brand-font text-4xl sm:text-5xl tracking-wide text-on-surface leading-[1] h-fit max-w-prose relative">
@@ -454,7 +461,7 @@
         }
     }
 
-    *{
+    * {
         -webkit-overflow-scrolling: touch;
     }
 </style>

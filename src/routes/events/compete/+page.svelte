@@ -395,6 +395,7 @@
                                      isTeam="{reg.is_team}"
                                      joinCode="{reg.join_code}"
                                      isTeamLeader="{true}"
+                                     eventPriority="{reg.event_priority}"
                             />
                         {/if}
                     {/each}
@@ -404,9 +405,9 @@
         </div>
     {:else}
         <p class="brand-font text-4xl text-primary text-center mt-5 px-5">
-            NO DATA FOUND (RE-REGISTER YOUR TEAMS)
+            NO DATA FOUND
             <br>
-            TEAM MANAGEMENT COMING SOON!
+            RE-REGISTER YOUR TEAMS
         </p>
     {/if}
     <div class="flex flex-row items-start justify-start h-fit w-full px-6">
@@ -458,9 +459,9 @@
         </div>
     {:else}
         <p class="brand-font text-4xl text-primary mt-5 px-5 text-center">
-            NO DATA FOUND (RE-REGISTER YOUR TEAMS)
+            NO DATA FOUND
             <br>
-            TEAM MANAGEMENT COMING SOON!
+            RE-REGISTER YOUR TEAMS
         </p>
     {/if}
 </div>

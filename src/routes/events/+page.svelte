@@ -33,7 +33,6 @@
                 let foundFlag = false;
                 for (let event of data.data) {
                     if (festEvent.attributes.EventPriority === event.event_priority) {
-                        console.log(event.event_priority);
                         festEvent.attributes.isRegistered = true;
                         foundFlag = true;
                         break;
@@ -71,8 +70,6 @@
         gsap.registerPlugin(ScrollTrigger);
         gsap.registerPlugin(TextPlugin);
         gsap.registerPlugin(ScrollToPlugin);
-
-
 
         let onLoadTimeline = gsap.timeline({
             onStart: () => {
@@ -231,7 +228,7 @@
                 </div>
                 <div class="w-full h-fit flex items-center justify-center pt-5">
                     <button class="px-2 py-1 bg-primary text-on-primary text-3xl lg:text-5xl brand-font transition-all duration-300 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_rgba(97,44,138,1)]"
-                    on:click={() => goto('/events/compete')}>
+                            on:click={() => goto('/events/compete')}>
                         GO TO COMPETE PORTAL
                     </button>
                 </div>
@@ -267,7 +264,8 @@
                            second="{festEvent.attributes.SecondPrize}" third="{festEvent.attributes.ThirdPrize}"
                            handbookLink="{festEvent.attributes.RulebookGDriveLink}" technical="{true}"
                            isRegistered="{festEvent.attributes.isRegistered}"
-                           priority="{festEvent.attributes.EventPriority}" userPasses="{data.userPasses}"/>
+                           priority="{festEvent.attributes.EventPriority}" userPasses="{data.userPasses}"
+                           date="{festEvent.attributes.EventStartDateTime}"/>
             {/each}
         {/if}
         <div class="h-[90vh] w-full starting-esports-events"></div>
@@ -279,7 +277,8 @@
                            second="{festEvent.attributes.SecondPrize}" third="{festEvent.attributes.ThirdPrize}"
                            handbookLink="{festEvent.attributes.RulebookGDriveLink}" esports="{true}"
                            isRegistered="{festEvent.attributes.isRegistered}"
-                           priority="{festEvent.attributes.EventPriority}" userPasses="{data.userPasses}"/>
+                           priority="{festEvent.attributes.EventPriority}" userPasses="{data.userPasses}"
+                           date="{festEvent.attributes.EventStartDateTime}"/>
             {/each}
         {/if}
     </div>

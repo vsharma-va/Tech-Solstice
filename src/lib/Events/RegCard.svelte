@@ -1,4 +1,6 @@
 <script>
+    import {goto} from "$app/navigation";
+
     export let eventName;
     export let teamName;
     export let teamMemberCount;
@@ -13,6 +15,7 @@
     export let isTeam;
     export let joinCode;
     export let isTeamLeader;
+    export let eventPriority;
 </script>
 
 <div class="w-[81%] min-[410px]:w-[71%] min-[500px]:w-[56%] min-[600px]:w-[45%] sm:w-[43%] md:w-[34%] lg:w-[23%] xl:w-[19%] h-full flex-shrink-0 flex flex-col items-start justify-start border-2 border-surface pass-1 p-5 hover:-translate-y-[8px] hover:scale-[1.01] transition-all duration-300 {cardBackgroundColorClass} {rotateClass}">
@@ -24,10 +27,10 @@
         {#if isTeam}
             <div class="h-full w-full flex flex-col items-center justify-center gap-4">
                 {teamName}
-                <div class="h-fit w-full brand-font text-2xl {entryTextColorClass} flex flex-col items-center justify-center">
-                    <p>Number Of Members: {teamMemberCount}</p>
+                <div class="h-fit w-full regular-font text-xl {entryTextColorClass} flex flex-col items-center justify-center">
+                    <p>Member Count: {teamMemberCount}</p>
                     <p>Max Members: {maxTeamMembers}</p>
-                    <p class="select-text">Join Code: {joinCode}</p>
+                    <p class="select-text regular-font cursor-text">Join Code: {joinCode}</p>
                 </div>
             </div>
         {:else}
@@ -36,12 +39,14 @@
             </div>
         {/if}
         <div class="h-fit w-full flex flex-row items-center justify-between">
-<!--            <button class="h-fit w-fit flex flex-col items-center text-3xl px-2 py-1 justify-center {buttonBgColorClass} {buttonTextColorClass}"-->
-<!--                on:click={() => {-->
-<!--                    -->
-<!--                }}>-->
-<!--                Details-->
-<!--            </button>-->
+            {#if isTeam}
+                <button class="h-fit w-fit flex flex-col items-center text-3xl px-2 py-1 justify-center {buttonBgColorClass} {buttonTextColorClass}"
+                        on:click={() => {
+                    goto(`/events/compete/manage/${joinCode}`)
+                }}>
+                    Manage
+                </button>
+            {/if}
             {#if isTeam && isTeamLeader}
                 <p class="brand-font text-3xl {entryTextColorClass}">
                     Team Leader
@@ -49,6 +54,10 @@
             {:else if isTeam && !isTeamLeader}
                 <p class="brand-font text-3xl {entryTextColorClass}">
                     Team Member
+                </p>
+            {:else}
+                <p class="brand-font w-full text-end text-3xl {entryTextColorClass}">
+                    Thank You!
                 </p>
             {/if}
         </div>
