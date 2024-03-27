@@ -404,7 +404,9 @@
         </div>
     {:else}
         <p class="brand-font text-4xl text-primary text-center mt-5 px-5">
-            NO DATA FOUND
+            NO DATA FOUND (RE-REGISTER YOUR TEAMS)
+            <br>
+            TEAM MANAGEMENT COMING SOON!
         </p>
     {/if}
     <div class="flex flex-row items-start justify-start h-fit w-full px-6">
@@ -456,7 +458,9 @@
         </div>
     {:else}
         <p class="brand-font text-4xl text-primary mt-5 px-5 text-center">
-            NO DATA FOUND
+            NO DATA FOUND (RE-REGISTER YOUR TEAMS)
+            <br>
+            TEAM MANAGEMENT COMING SOON!
         </p>
     {/if}
 </div>
