@@ -184,20 +184,20 @@ export const actions = {
         }
 
         let hasRequiredPass = false;
-        if ("non_mahe" in foundUser && Number(selectedEventPriority) === 1001) {
+        if ("non_mahe" in foundUser && foundEvent.event_priority === 1001) {
             let passFound = await passes.findOne({ email: session.user.email, pass_name: 'hackathon__v1' });
             if (passFound) {
                 hasRequiredPass = true;
             }
         } else {
             // check for hackathon (non mahe), esports and normal flagship events
-            if (Number(selectedEventPriority) >= 1001 && Number(selectedEventPriority) <= 2000) {
+            if (foundEvent.event_priority >= 1001 && foundEvent.event_priority <= 2000) {
                 let passFound = await passes.findOne({ email: session.user.email, pass_name: "flagship__v2", banned: false });
                 if (passFound) {
                     hasRequiredPass = true;
                 }
             }
-            if (Number(selectedEventPriority) > 2000) {
+            if (foundEvent.event_priority > 2000) {
                 let passFound = await passes.findOne({ email: session.user.email, pass_name: "esports__v2", banned: false });
                 if (passFound) {
                     hasRequiredPass = true;
