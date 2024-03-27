@@ -176,6 +176,13 @@ export const actions = {
             return fail(400, { errorExisting: true, details: 'Already A Member!' })
         }
 
+        let foundUser = await users.findOne({
+            email: session.user.email
+        })
+        if (!foundUser) {
+            return fail(400, { error: true, detail: "User Not Registered" });
+        }
+
         let hasRequiredPass = false;
         if ("non_mahe" in foundUser && Number(selectedEventPriority) === 1001) {
             let passFound = await passes.findOne({ email: session.user.email, pass_name: 'hackathon__v1' });

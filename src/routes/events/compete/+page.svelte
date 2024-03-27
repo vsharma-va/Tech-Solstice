@@ -221,7 +221,8 @@
                     attemptEventRegistration(event);
                 }}>
                     <p class="brand-font text-primary text-[40px] leading-8 tracking-wide">SELECT AN EVENT TO
-                        REGISTER!</p>
+                        REGISTER!
+                    </p>
                     {#if form?.error}
                         <p class="regular-font text-error text-xl text-center mt-5">{form.detail}</p>
                     {/if}
