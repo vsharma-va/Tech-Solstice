@@ -323,13 +323,14 @@
                             {/if}
                         </div>
                         <div class="h-fit w-fit flex flex-row items-center justify-center gap-2">
-                            <div class="h-3 w-3 rounded-full bg-yellow-950"></div>
-                            {#if third === -1}
-                                <div class="brand-font text-2xl sm:text-3xl lg:text-4xl blur-sm text-on-surface/80 relative">
+                            {#if !third || third === -1}
+                                <div class="h-3 w-3 rounded-full bg-yellow-950 hidden"></div>
+                                <div class="brand-font text-2xl sm:text-3xl lg:text-4xl blur-sm text-on-surface/80 relative hidden">
                                     <p>PrizePool</p>
                                     <div class="w-full h-full absolute bg-primary top-0"></div>
                                 </div>
                             {:else}
+                                <div class="h-3 w-3 rounded-full bg-yellow-950"></div>
                                 <p class="brand-font text-2xl sm:text-3xl lg:text-4xl  text-on-surface/80">
                                     ₹{third}</p>
                             {/if}
