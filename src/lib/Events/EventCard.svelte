@@ -345,7 +345,11 @@
                 </div>
                 <div class="w-full h-fit flex flex-row">
                     <div class="w-fit h-fit bg-on-surface sm:text-2xl flex flex-row px-3 py-1">
-                        <p class="brand-font text-2xl lg:text-4xl text-surface">{includedWith}</p>
+                        {#if eventName == "HackNXS"}
+                            <p class="brand-font text-2xl lg:text-4xl text-surface">{includedWith} + Hackathon</p>
+                        {:else}
+                            <p class="brand-font text-2xl lg:text-4xl text-surface">{includedWith}</p>
+                        {/if}
                     </div>
                 </div>
             </div>
