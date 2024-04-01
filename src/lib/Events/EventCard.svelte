@@ -23,12 +23,28 @@
 
     let hasEsports = false;
     let hasFlagship = false;
+    let hasHackathon = false;
+    let isMahe;
 
     for (let pass of userPasses) {
-        if (pass.pass_name === 'esports__v2') {
-            hasEsports = true;
-        } else if (pass.pass_name === 'flagship__v2') {
+        if ("is_mahe" in pass && pass.is_mahe === false) {
+            isMahe = false;
             hasFlagship = true;
+            if (pass.pass_name === "esports__v2") {
+                hasEsports = true;
+            }
+            if (pass.pass_name === "hackathon__v1") {
+                hasHackathon = true;
+            }
+        }
+        if ("is_mahe" in pass && pass.is_mahe === true || !("is_mahe" in pass)) {
+            isMahe = true;
+            if (pass.pass_name === 'esports__v2') {
+                hasEsports = true;
+            }
+            if (pass.pass_name === 'flagship__v2') {
+                hasFlagship = true;
+            }
         }
     }
 
@@ -174,7 +190,7 @@
                     <!--                              }-->
                     <!--                          })}-->
                     <!--                          method="post" class="h-full w-full">-->
-                    {#if includedWith === "Esports" && priority > 3}
+                    {#if includedWith === "Esports" && priority > 3 && priority !== 1001}
                         {#if hasEsports}
                             <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
                                     bind:this={registerButton}
@@ -199,8 +215,8 @@
                             </button>
                         {/if}
                         <!--                    </form>-->
-                    {:else if includedWith === "Flagship" && priority > 3}
-                        {#if hasFlagship}
+                    {:else if includedWith === "Flagship" && priority > 3 && priority !== 1001}
+                        {#if hasFlagship || !isMahe}
                             <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
                                     on:click={() => {animateLoadingPhase(); goto('/events/compete')}}
                                     bind:this={registerButton}>
@@ -210,6 +226,27 @@
                                 </div>
                             </button>
                         {:else}
+                            <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
+                                    on:click={() => goto('/passes')}>
+                                Buy The FLAGSHIP Pass
+                            </button>
+                        {/if}
+                    {:else if priority === 1001}
+                        {#if !isMahe && hasHackathon || isMahe && hasFlagship}
+                            <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
+                                    on:click={() => {animateLoadingPhase(); goto('/events/compete')}}
+                                    bind:this={registerButton}>
+                                <p class="button-inner-text">Register</p>
+                                <div class="h-full w-full flex-col items-center justify-center loader-buy hidden scale-0">
+                                    <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>
+                                </div>
+                            </button>
+                        {:else if !isMahe && !hasHackathon}
+                            <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
+                                    on:click={() => goto('/passes')}>
+                                Buy The HACKATHON Pass
+                            </button>
+                        {:else if isMahe && !hasFlagship}
                             <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
                                     on:click={() => goto('/passes')}>
                                 Buy The FLAGSHIP Pass
@@ -339,19 +376,21 @@
                 </div>
             {/if}
             <div class="w-full h-fit flex flex-col gap-3 lg:gap-4">
-                <div class="brand-font text-4xl sm:text-5xl lg:text-6xl text-on-surface h-fit w-fit relative">
-                    <p>Included With</p>
-                    <div class="absolute bottom-0 w-full bg-primary/70 h-[10px]"></div>
-                </div>
-                <div class="w-full h-fit flex flex-row">
-                    <div class="w-fit h-fit bg-on-surface sm:text-2xl flex flex-row px-3 py-1">
-                        {#if eventName == "HackNXS"}
-                            <p class="brand-font text-2xl lg:text-4xl text-surface">{includedWith} + Hackathon</p>
-                        {:else}
-                            <p class="brand-font text-2xl lg:text-4xl text-surface">{includedWith}</p>
-                        {/if}
+                {#if priority !== 1 && priority !== 2 && priority !== 3}
+                    <div class="brand-font text-4xl sm:text-5xl lg:text-6xl text-on-surface h-fit w-fit relative">
+                        <p>Included With</p>
+                        <div class="absolute bottom-0 w-full bg-primary/70 h-[10px]"></div>
                     </div>
-                </div>
+                    <div class="w-full h-fit flex flex-row">
+                        <div class="w-fit h-fit bg-on-surface sm:text-2xl flex flex-row px-3 py-1">
+                            {#if eventName == "HackNXS"}
+                                <p class="brand-font text-2xl lg:text-4xl text-surface">{includedWith} + Hackathon</p>
+                            {:else}
+                                <p class="brand-font text-2xl lg:text-4xl text-surface">{includedWith}</p>
+                            {/if}
+                        </div>
+                    </div>
+                {/if}
             </div>
         </div>
     </div>
