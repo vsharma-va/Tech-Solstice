@@ -1,6 +1,6 @@
-import { fail, redirect } from "@sveltejs/kit";
-import { MongoClient } from "mongodb";
-import { v4 as uuidv4 } from "uuid";
+import {fail, redirect} from "@sveltejs/kit";
+import {MongoClient} from "mongodb";
+import {v4 as uuidv4} from "uuid";
 
 const client = new MongoClient(process.env.MONGO_URL);
 const moneyDatabase = client.db("Money");
@@ -17,11 +17,11 @@ export const load = async (event) => {
 
     let foundRegistrationsWhereOwnerOrSolo = await registrations.find({
         email: session.user.email,
-    }, { projection: { _id: 0 } }).toArray();
+    }, {projection: {_id: 0}}).toArray();
     let foundRegistrationsWhereNotOwner = await registrations.find({
         team_members: session.user.email,
-        email: { $ne: session.user.email },
-    }, { projection: { _id: 0 } }).toArray();
+        email: {$ne: session.user.email},
+    }, {projection: {_id: 0}}).toArray();
     let totalRegistrations = {
         teamOrSolo: foundRegistrationsWhereOwnerOrSolo,
         teamMember: foundRegistrationsWhereNotOwner
@@ -30,7 +30,7 @@ export const load = async (event) => {
     console.log(totalRegistrations.teamMember);
     console.log("teamorsolo");
     console.log(totalRegistrations.teamOrSolo);
-    return { registrations: totalRegistrations };
+    return {registrations: totalRegistrations};
 }
 
 export const actions = {
@@ -39,7 +39,7 @@ export const actions = {
         if (!session?.user) {
             redirect(302, '/?signedOut')
         } else {
-            let errors = { selectedEventError: '', teamNameError: '' };
+            let errors = {selectedEventError: '', teamNameError: ''};
             const formData = await event.request.formData();
             const selectedEventPriority = formData.get('selectedEventPriority');
             const isTeam = formData.get('isTeam');
@@ -63,25 +63,51 @@ export const actions = {
                 email: session.user.email
             })
             if (!foundUser) {
-                return fail(400, { error: true, detail: "User Not Registered" });
+                return fail(400, {error: true, detail: "User Not Registered"});
             }
 
             let hasRequiredPass = false;
-            if ("non_mahe" in foundUser && Number(selectedEventPriority) === 1001) {
-                let passFound = await passes.findOne({ email: session.user.email, pass_name: 'hackathon__v1' });
-                if (passFound) {
+            if ("is_mahe" in foundUser && foundUser.is_mahe === false) {
+                if (Number(selectedEventPriority) === 1001) {
+                    let passFound = await passes.findOne({
+                        email: session.user.email,
+                        pass_name: 'hackathon__v1',
+                        banned: false
+                    });
+                    if (passFound) {
+                        hasRequiredPass = true;
+                    }
+                } else if (Number(selectedEventPriority) > 2000) {
+                    let passFound = await passes.findOne({
+                        email: session.user.email,
+                        pass_name: 'esports__v2',
+                        banned: false
+                    });
+                    if (passFound) {
+                        hasRequiredPass = true;
+                    }
+                } else if (Number(selectedEventPriority) > 1001 && Number(selectedEventPriority) <= 2000) {
                     hasRequiredPass = true;
                 }
-            } else {
+                // fucked up due to last moment changes
+            } else if ("is_mahe" in foundUser && foundUser.is_mahe === true || !("is_mahe" in foundUser)) {
                 // check for hackathon (non mahe), esports and normal flagship events
                 if (Number(selectedEventPriority) >= 1001 && Number(selectedEventPriority) <= 2000) {
-                    let passFound = await passes.findOne({ email: session.user.email, pass_name: "flagship__v2", banned: false });
+                    let passFound = await passes.findOne({
+                        email: session.user.email,
+                        pass_name: "flagship__v2",
+                        banned: false
+                    });
                     if (passFound) {
                         hasRequiredPass = true;
                     }
                 }
                 if (Number(selectedEventPriority) > 2000) {
-                    let passFound = await passes.findOne({ email: session.user.email, pass_name: "esports__v2", banned: false });
+                    let passFound = await passes.findOne({
+                        email: session.user.email,
+                        pass_name: "esports__v2",
+                        banned: false
+                    });
                     if (passFound) {
                         hasRequiredPass = true;
                     }
@@ -120,9 +146,9 @@ export const actions = {
                             team_members: [session.user.email],
                             event_priority: Number(selectedEventPriority),
                         })
-                        return { success: true }
+                        return {success: true}
                     } else {
-                        return fail(400, { error: true, detail: 'User Already Registered' });
+                        return fail(400, {error: true, detail: 'User Already Registered'});
                     }
                 } else {
                     let reg = await registrations.findOne({
@@ -137,13 +163,13 @@ export const actions = {
                             is_team: false,
                             event_priority: Number(selectedEventPriority),
                         })
-                        return { success: true }
+                        return {success: true}
                     } else {
-                        return fail(400, { error: true, detail: 'User Already Registered' })
+                        return fail(400, {error: true, detail: 'User Already Registered'})
                     }
                 }
             } else {
-                return fail(400, { error: true, detail: 'Please Buy The Required Pass!' });
+                return fail(400, {error: true, detail: 'Please Buy The Required Pass!'});
             }
         }
     },
@@ -153,7 +179,7 @@ export const actions = {
             redirect(302, '/event/compete?signedOut');
         }
 
-        let errors = { joinCodeError: '' };
+        let errors = {joinCodeError: ''};
         const formData = await event.request.formData();
         let joinCode = formData.get('teamJoinCode');
         console.log(joinCode);
@@ -163,42 +189,68 @@ export const actions = {
         }
 
         if (errors.joinCodeError) {
-            return fail(302, { errorExisting: true, details: errors.joinCodeError })
+            return fail(302, {errorExisting: true, details: errors.joinCodeError})
         }
         let foundEvent = await registrations.findOne({
             join_code: joinCode,
         });
         if (!foundEvent) {
-            return fail(400, { errorExisting: true, details: 'Invalid Join Code' });
+            return fail(400, {errorExisting: true, details: 'Invalid Join Code'});
         }
 
         if (foundEvent.email === session.user.email || foundEvent.team_members.includes(session.user.email)) {
-            return fail(400, { errorExisting: true, details: 'Already A Member!' })
+            return fail(400, {errorExisting: true, details: 'Already A Member!'})
         }
 
         let foundUser = await users.findOne({
             email: session.user.email
         })
         if (!foundUser) {
-            return fail(400, { error: true, detail: "User Not Registered" });
+            return fail(400, {error: true, detail: "User Not Registered"});
         }
 
         let hasRequiredPass = false;
-        if ("non_mahe" in foundUser && foundEvent.event_priority === 1001) {
-            let passFound = await passes.findOne({ email: session.user.email, pass_name: 'hackathon__v1' });
-            if (passFound) {
+        if ("is_mahe" in foundUser && foundUser.is_mahe === false) {
+            if (foundUser.event_priority === 1001) {
+                let passFound = await passes.findOne({
+                    email: session.user.email,
+                    pass_name: 'hackathon__v1',
+                    banned: false
+                });
+                if (passFound) {
+                    hasRequiredPass = true;
+                }
+            } else if (foundUser.event_priority > 2000) {
+                let passFound = await passes.findOne({
+                    email: session.user.email,
+                    pass_name: 'esports__v2',
+                    banned: false
+                });
+                if (passFound) {
+                    hasRequiredPass = true;
+                }
+            } else if (foundUser.event_priority > 1001 && foundUser.event_priority <= 2000) {
                 hasRequiredPass = true;
             }
-        } else {
+            // fucked up due to last moment changes
+        } else if ("is_mahe" in foundUser && foundUser.is_mahe === true || !("is_mahe" in foundUser)) {
             // check for hackathon (non mahe), esports and normal flagship events
-            if (foundEvent.event_priority >= 1001 && foundEvent.event_priority <= 2000) {
-                let passFound = await passes.findOne({ email: session.user.email, pass_name: "flagship__v2", banned: false });
+            if (foundUser.event_priority >= 1001 && foundUser.event_priority <= 2000) {
+                let passFound = await passes.findOne({
+                    email: session.user.email,
+                    pass_name: "flagship__v2",
+                    banned: false
+                });
                 if (passFound) {
                     hasRequiredPass = true;
                 }
             }
-            if (foundEvent.event_priority > 2000) {
-                let passFound = await passes.findOne({ email: session.user.email, pass_name: "esports__v2", banned: false });
+            if (foundUser.event_priority > 2000) {
+                let passFound = await passes.findOne({
+                    email: session.user.email,
+                    pass_name: "esports__v2",
+                    banned: false
+                });
                 if (passFound) {
                     hasRequiredPass = true;
                 }
@@ -210,12 +262,12 @@ export const actions = {
                 await registrations.updateOne({
                     join_code: joinCode,
                 }, {
-                    $push: { 'team_members': session.user.email },
-                    $inc: { 'team_member_count': 1 },
+                    $push: {'team_members': session.user.email},
+                    $inc: {'team_member_count': 1},
                 })
-                return { success: true }
+                return {success: true}
             } else {
-                return fail(400, { errorExisting: true, details: 'Team Full' })
+                return fail(400, {errorExisting: true, details: 'Team Full'})
             }
         } else {
             return fail(400, {errorExisting: true, details: 'Please Buy The Required Pass!'})

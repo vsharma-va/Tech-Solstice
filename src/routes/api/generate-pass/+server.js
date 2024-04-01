@@ -31,13 +31,13 @@ export async function POST(event) {
     for (let doc of resultPage.data.docs) {
         if (doc.billing_tel === foundUser.userPhoneNumber) {
             paymentFlag = true;
-            const foundPass = await passes.findOne({
-                email: foundUser.email,
-                pass_name: 'flagship__v2',
-                banned: false
-            });
-            if (!foundPass) {
-                if (doc.user_type === 'NONMAHE') {
+            if (doc.user_type === 'NONMAHE') {
+                const foundHackathonPass = passes.findOne({
+                    email: session.user.email,
+                    pass_name: 'hackathon__v1',
+                    banned: false,
+                })
+                if (!foundHackathonPass) {
                     let generatedTokenForPass;
                     while (true) {
                         generatedTokenForPass = uuidv4().toString().slice(29, 35);
@@ -81,56 +81,67 @@ export async function POST(event) {
                             banned: false,
                         }]);
                     }
+                } else {
+                    return json({generatedPasses: true, semi: true})
                 }
-                if (doc.user_type === 'MAHE') {
-                    let generatedTokenForPass;
-                    while (true) {
-                        generatedTokenForPass = uuidv4().toString().slice(29, 35);
-                        let foundToken = await passes.findOne({
-                            token: generatedTokenForPass,
-                        })
-                        if (!foundToken) {
-                            break;
-                        }
-                    }
-                    if (!doc.esports) {
-                        await passes.insertOne({
-                            email: foundUser.email,
-                            token: generatedTokenForPass,
-                            pass_name: 'flagship__v2',
-                            payment_id: doc.tracking_id,
-                            banned: false,
-                        })
-                    } else {
-                        let generatedTokenForEsports;
-                        while (true) {
-                            generatedTokenForEsports = uuidv4().toString().slice(29, 35);
-                            let foundToken = await passes.findOne({
-                                token: generatedTokenForEsports,
-                            })
-                            if (!foundToken) {
-                                break;
-                            }
-                        }
-                        await passes.insertMany([{
-                            email: foundUser.email,
-                            token: generatedTokenForEsports,
-                            pass_name: 'esports__v2',
-                            payment_id: doc.tracking_id,
-                            banned: false,
-                        }, {
-                            email: foundUser.email,
-                            token: generatedTokenForPass,
-                            pass_name: 'flagship__v2',
-                            payment_id: doc.tracking_id,
-                            banned: false,
-                        }]);
-                    }
-                }
-            } else {
-                return json({generatedPasses: true, semi: true})
+                return json({generatedPasses: true, semi: false, passDetails: doc});
             }
-            return json({generatedPasses: true, semi: false, passDetails: doc});
+
+            if (doc.user_type === 'MAHE') {
+                const foundPass = await passes.findOne({
+                    email: foundUser.email,
+                    pass_name: 'flagship__v2',
+                    banned: false
+                });
+                if (!foundPass) {
+                    let generatedTokenForPass;
+                    while (true) {
+                        generatedTokenForPass = uuidv4().toString().slice(29, 35);
+                        let foundToken = await passes.findOne({
+                            token: generatedTokenForPass,
+                        })
+                        if (!foundToken) {
+                            break;
+                        }
+                    }
+                    if (!doc.esports) {
+                        await passes.insertOne({
+                            email: foundUser.email,
+                            token: generatedTokenForPass,
+                            pass_name: 'flagship__v2',
+                            payment_id: doc.tracking_id,
+                            banned: false,
+                        })
+                    } else {
+                        let generatedTokenForEsports;
+                        while (true) {
+                            generatedTokenForEsports = uuidv4().toString().slice(29, 35);
+                            let foundToken = await passes.findOne({
+                                token: generatedTokenForEsports,
+                            })
+                            if (!foundToken) {
+                                break;
+                            }
+                        }
+                        await passes.insertMany([{
+                            email: foundUser.email,
+                            token: generatedTokenForEsports,
+                            pass_name: 'esports__v2',
+                            payment_id: doc.tracking_id,
+                            banned: false,
+                        }, {
+                            email: foundUser.email,
+                            token: generatedTokenForPass,
+                            pass_name: 'flagship__v2',
+                            payment_id: doc.tracking_id,
+                            banned: false,
+                        }]);
+                    }
+                } else {
+                    return json({generatedPasses: true, semi: true})
+                }
+                return json({generatedPasses: true, semi: false, passDetails: doc});
+            }
         }
     }
     return json({generatedPasses: false, totalPages: totalPages, currentPageNumber: Number(pageNumber)});
