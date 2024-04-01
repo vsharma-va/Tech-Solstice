@@ -119,6 +119,12 @@ export const actions = {
             if (userPhoneNumber.length !== 10 || userPhoneNumber.toString() === 'undefined') {
                 errors.userPhoneNumberError = 'Please enter a valid phone number';
             }
+            let found = await user.findOne({
+                userPhoneNumber: userPhoneNumber,
+            })
+            if(found) {
+                errors.userPhoneNumberError = "Mobile Number Already Registered!";
+            }
             if(!userLearnerId.includes('@learner.manipal.edu')){
                 console.log("SOMETHING");
                 errors.userLearnerIdError = 'Please enter a valid learner id';
