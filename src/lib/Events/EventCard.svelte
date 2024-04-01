@@ -20,15 +20,21 @@
     export let priority;
     export let userPasses;
     export let date;
+    export let userData;
 
     let hasEsports = false;
     let hasFlagship = false;
     let hasHackathon = false;
-    let isMahe;
+    let isMahe = undefined;
+
+    if ("is_mahe" in userData && userData.is_mahe === false) {
+        isMahe = false;
+    } else if ("is_mahe" in userData && userData.is_mahe === true || !("is_mahe" in userData)) {
+        isMahe = true;
+    }
 
     for (let pass of userPasses) {
-        if ("is_mahe" in pass && pass.is_mahe === false) {
-            isMahe = false;
+        if (!isMahe) {
             hasFlagship = true;
             if (pass.pass_name === "esports__v2") {
                 hasEsports = true;
@@ -36,9 +42,9 @@
             if (pass.pass_name === "hackathon__v1") {
                 hasHackathon = true;
             }
-        }
-        if ("is_mahe" in pass && pass.is_mahe === true || !("is_mahe" in pass)) {
+        } else {
             isMahe = true;
+            console.log(isMahe);
             if (pass.pass_name === 'esports__v2') {
                 hasEsports = true;
             }
@@ -216,7 +222,7 @@
                         {/if}
                         <!--                    </form>-->
                     {:else if includedWith === "Flagship" && priority > 3 && priority !== 1001}
-                        {#if hasFlagship || !isMahe}
+                        {#if hasFlagship || isMahe === false}
                             <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
                                     on:click={() => {animateLoadingPhase(); goto('/events/compete')}}
                                     bind:this={registerButton}>
@@ -232,7 +238,7 @@
                             </button>
                         {/if}
                     {:else if priority === 1001}
-                        {#if !isMahe && hasHackathon || isMahe && hasFlagship}
+                        {#if isMahe === false && hasHackathon || isMahe && hasFlagship}
                             <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
                                     on:click={() => {animateLoadingPhase(); goto('/events/compete')}}
                                     bind:this={registerButton}>
@@ -241,7 +247,12 @@
                                     <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>
                                 </div>
                             </button>
-                        {:else if !isMahe && !hasHackathon}
+                        {:else if isMahe === undefined}
+                            <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
+                                    on:click={() => goto('/passes')}>
+                                Buy The REQUIRED Pass
+                            </button>
+                        {:else if isMahe === false && !hasHackathon}
                             <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
                                     on:click={() => goto('/passes')}>
                                 Buy The HACKATHON Pass

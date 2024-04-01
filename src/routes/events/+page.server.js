@@ -9,6 +9,7 @@ const moneyDatabase = client.db("Money");
 const passes = moneyDatabase.collection('mo_passes');
 const userDatabase = client.db("User");
 const registeredEvents = userDatabase.collection("us_events_registrations");
+const user = userDatabase.collection("us_user_data");
 
 export const load = async (event) => {
     const session = await event.locals.getSession();
@@ -20,7 +21,10 @@ export const load = async (event) => {
             email: session.user.email,
             banned: false,
         }, {projection: {_id: 0}}).toArray();
-        return {isRegisteredForAtLeastOne: true, data: userEvents, userPasses: userPasses};
+        let userData = await user.findOne({
+            email: session.user.email,
+        }, {projection: {_id: 0}})
+        return {isRegisteredForAtLeastOne: true, data: userEvents, userPasses: userPasses, userData: userData};
     } else {
         return {isRegisteredForAtLeastOne: false, userPasses: []};
     }

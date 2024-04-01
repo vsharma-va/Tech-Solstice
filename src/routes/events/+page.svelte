@@ -252,7 +252,8 @@
                            includedWith="Flagship" showPrizePool="{false}" flagship="{true}"
                            isRegistered="{festEvent.attributes.isRegistered}"
                            priority="{festEvent.attributes.EventPriority}"
-                           userPasses="{data.userPasses}"/>
+                           userPasses="{data.userPasses}"
+                           userData="{data.userData}"/>
             {/each}
         {/if}
         <div class="h-[90vh] w-full starting-cultural-events"></div>
@@ -265,7 +266,8 @@
                            handbookLink="{festEvent.attributes.RulebookGDriveLink}" technical="{true}"
                            isRegistered="{festEvent.attributes.isRegistered}"
                            priority="{festEvent.attributes.EventPriority}" userPasses="{data.userPasses}"
-                           date="{festEvent.attributes.EventStartDateTime}"/>
+                           date="{festEvent.attributes.EventStartDateTime}"
+                           userData="{data.userData}"/>
             {/each}
         {/if}
         <div class="h-[90vh] w-full starting-esports-events"></div>
@@ -278,7 +280,8 @@
                            handbookLink="{festEvent.attributes.RulebookGDriveLink}" esports="{true}"
                            isRegistered="{festEvent.attributes.isRegistered}"
                            priority="{festEvent.attributes.EventPriority}" userPasses="{data.userPasses}"
-                           date="{festEvent.attributes.EventStartDateTime}"/>
+                           date="{festEvent.attributes.EventStartDateTime}"
+                           userData="{data.userData}"/>
             {/each}
         {/if}
     </div>
