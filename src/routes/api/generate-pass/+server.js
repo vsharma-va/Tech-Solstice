@@ -37,48 +37,95 @@ export async function POST(event) {
                 banned: false
             });
             if (!foundPass) {
-                let generatedTokenForPass;
-                while (true) {
-                    generatedTokenForPass = uuidv4().toString().slice(29, 35);
-                    let foundToken = await passes.findOne({
-                        token: generatedTokenForPass,
-                    })
-                    if (!foundToken) {
-                        break;
-                    }
-                }
-                if (!doc.esports) {
-                    await passes.insertOne({
-                        email: foundUser.email,
-                        token: generatedTokenForPass,
-                        pass_name: 'flagship__v2',
-                        payment_id: doc.tracking_id,
-                        banned: false,
-                    })
-                } else {
-                    let generatedTokenForEsports;
+                if (doc.user_type === 'NONMAHE') {
+                    let generatedTokenForPass;
                     while (true) {
-                        generatedTokenForEsports = uuidv4().toString().slice(29, 35);
+                        generatedTokenForPass = uuidv4().toString().slice(29, 35);
                         let foundToken = await passes.findOne({
-                            token: generatedTokenForEsports,
+                            token: generatedTokenForPass,
                         })
                         if (!foundToken) {
                             break;
                         }
                     }
-                    await passes.insertMany([{
-                        email: foundUser.email,
-                        token: generatedTokenForEsports,
-                        pass_name: 'esports__v2',
-                        payment_id: doc.tracking_id,
-                        banned: false,
-                    }, {
-                        email: foundUser.email,
-                        token: generatedTokenForPass,
-                        pass_name: 'flagship__v2',
-                        payment_id: doc.tracking_id,
-                        banned: false,
-                    }]);
+                    if (!doc.esports) {
+                        await passes.insertOne({
+                            email: foundUser.email,
+                            token: generatedTokenForPass,
+                            pass_name: 'hackathon__v1',
+                            payment_id: doc.tracking_id,
+                            banned: false,
+                        })
+                    } else {
+                        let generatedTokenForEsports;
+                        while (true) {
+                            generatedTokenForEsports = uuidv4().toString().slice(29, 35);
+                            let foundToken = await passes.findOne({
+                                token: generatedTokenForEsports,
+                            })
+                            if (!foundToken) {
+                                break;
+                            }
+                        }
+                        await passes.insertMany([{
+                            email: foundUser.email,
+                            token: generatedTokenForEsports,
+                            pass_name: 'esports__v2',
+                            payment_id: doc.tracking_id,
+                            banned: false,
+                        }, {
+                            email: foundUser.email,
+                            token: generatedTokenForPass,
+                            pass_name: 'hackathon__v1',
+                            payment_id: doc.tracking_id,
+                            banned: false,
+                        }]);
+                    }
+                }
+                if (doc.user_type === 'MAHE') {
+                    let generatedTokenForPass;
+                    while (true) {
+                        generatedTokenForPass = uuidv4().toString().slice(29, 35);
+                        let foundToken = await passes.findOne({
+                            token: generatedTokenForPass,
+                        })
+                        if (!foundToken) {
+                            break;
+                        }
+                    }
+                    if (!doc.esports) {
+                        await passes.insertOne({
+                            email: foundUser.email,
+                            token: generatedTokenForPass,
+                            pass_name: 'flagship__v2',
+                            payment_id: doc.tracking_id,
+                            banned: false,
+                        })
+                    } else {
+                        let generatedTokenForEsports;
+                        while (true) {
+                            generatedTokenForEsports = uuidv4().toString().slice(29, 35);
+                            let foundToken = await passes.findOne({
+                                token: generatedTokenForEsports,
+                            })
+                            if (!foundToken) {
+                                break;
+                            }
+                        }
+                        await passes.insertMany([{
+                            email: foundUser.email,
+                            token: generatedTokenForEsports,
+                            pass_name: 'esports__v2',
+                            payment_id: doc.tracking_id,
+                            banned: false,
+                        }, {
+                            email: foundUser.email,
+                            token: generatedTokenForPass,
+                            pass_name: 'flagship__v2',
+                            payment_id: doc.tracking_id,
+                            banned: false,
+                        }]);
+                    }
                 }
             } else {
                 return json({generatedPasses: true, semi: true})

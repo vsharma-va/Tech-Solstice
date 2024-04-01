@@ -10,7 +10,6 @@
     import {enhance} from "$app/forms";
     import {clickedPassRedirectToken} from "../../store.js";
     import {dragscroll} from '@svelte-put/dragscroll';
-    import Footer from "$lib/common/Footer.svelte";
 
     export let data;
     export let form;
@@ -19,11 +18,13 @@
     let refreshStatusButton;
     let submitFormButton;
     let cancelPaymentButton;
+    let showLearnerId;
+    let isMahe;
     let userName;
     let userLearnerId;
     let userPhoneNumber;
 
-    let errors = {userNameError: '', userPhoneNumberError: '', userLearnerIdError: ''};
+    let errors = {userNameError: '', userPhoneNumberError: '', userLearnerIdError: '', isMaheError: ''};
 
     let flagshipCardTimeline;
     let flagshipBuyTimeline;
@@ -218,6 +219,7 @@
         formData.set('userName', userName);
         formData.set('userPhoneNumber', userPhoneNumber);
         formData.set('userLearnerId', userLearnerId);
+        formData.set("isMahe", isMahe);
         let redirectToken = $clickedPassRedirectToken;
         formData.set('redirectToken', redirectToken);
     }
@@ -243,6 +245,14 @@
             errors.userLearnerIdError = '';
         } else {
             errors.userLearnerIdError = 'Please enter a valid learner id';
+        }
+    }
+
+    function checkMahe() {
+        if (isMahe === 'true') {
+            showLearnerId = true;
+        } else {
+            showLearnerId = false;
         }
     }
 
@@ -311,19 +321,42 @@
                         {/if}
                         <p class="text-sm text-error regular-font">{errors.userPhoneNumberError}</p>
                     </div>
-                    <div class="form__group field">
-                        <input type="email" class="form__field regular-font" placeholder="Learner Email Id" required=""
-                               bind:value={userLearnerId} on:input={checkLearnerId}>
-                        <label for="name" class="form__label regular-font">Learner Email Idr</label>
-                        {#if form?.userLearnerId}
-                            <p class="text-sm text-error regular-font">{form.userLearnerId}</p>
+                    <div class="form__group field mt-2 mb-2">
+                        <select class="form__field regular-font bg-surface text-on-surface border-2 border-on-surface"
+                                type="input"
+                                required=""
+                                bind:value={isMahe} on:change={checkMahe}>
+                            <option value="-1" class="bg-surface text-on-surface" selected disabled>Are You A MAHE
+                                Student?
+                            </option>
+                            <option value="false" class="bg-surface text-on-surface">NO</option>
+                            <option value="true" class="bg-surface text-on-surface">YES</option>
+                        </select>
+                        <label for="name" class="form__label regular-font">MAHE Student?</label>
+                        {#if form?.isMaheError}
+                            <p class="text-sm text-error regular-font">{form.isMaheError}</p>
                         {/if}
-                        <p class="text-sm text-error regular-font">{errors.userLearnerIdError}</p>
+                        <p class="text-sm text-error regular-font">{errors.isMaheError}</p>
                     </div>
-                    <button class="w-full h-fit bg-primary text-on-primary text-3xl py-1 brand-font mt-4" type="submit">
-                        Submit
-                    </button>
-                    <p class="text-lg regular-font text-primary/70 text-center">Click Outside To Close</p>
+                    {#if showLearnerId}
+                        <div class="form__group field">
+                            <input type="email" class="form__field regular-font" placeholder="Learner Email Id"
+                                   required=""
+                                   bind:value={userLearnerId} on:input={checkLearnerId}>
+                            <label for="name" class="form__label regular-font">Learner Email Id</label>
+                            {#if form?.userLearnerIdError}
+                                <p class="text-sm text-error regular-font">{form.userLearnerIdError}</p>
+                            {/if}
+                            <p class="text-sm text-error regular-font">{errors.userLearnerIdError}</p>
+                        </div>
+                    {/if}
+                    {#if isMahe !== "-1" && isMahe !== undefined}
+                        <button class="w-full h-fit bg-primary text-on-primary text-3xl py-1 brand-font mt-4"
+                                type="submit">
+                            Submit
+                        </button>
+                        <p class="text-lg regular-font text-primary/70 text-center">Click Outside To Close</p>
+                    {/if}
                 </form>
             </div>
         </div>
