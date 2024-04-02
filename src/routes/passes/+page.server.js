@@ -111,6 +111,7 @@ export const actions = {
             const userPhoneNumber = formData.get('userPhoneNumber');
             const userLearnerId = formData.get('userLearnerId');
             const isMahe = formData.get('isMahe');
+            const redirectToEvents = formData.get('redirectToEvents');
             const redirectToken = formData.get('redirectToken');
             if (userName.length >= 2 && userName?.match(/^[A-Za-z\s]*$/) && userName !== 'undefined') {
                 errors.userNameError = '';
@@ -160,10 +161,18 @@ export const actions = {
                             is_mahe: isMahe === 'true',
                         })
                     }
-                    redirect(302, '/payment/disclaimer');
+                    if(redirectToEvents === 'true'){
+                        redirect(302, '/events/compete')
+                    } else {
+                        redirect(302, '/payment/disclaimer');
+                    }
                     // redirect(302, `/payment/${redirectToken}`);
                 } else {
-                    redirect(302, '/payment/disclaimer');
+                    if(redirectToEvents === 'true') {
+                        redirect(302, '/events/compete')
+                    } else {
+                        redirect(302, '/payment/disclaimer');
+                    }
                     // redirect(302, `/payment/${redirectToken}`);
                 }
             }

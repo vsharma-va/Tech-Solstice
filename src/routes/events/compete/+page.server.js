@@ -63,7 +63,7 @@ export const actions = {
                 email: session.user.email
             })
             if (!foundUser) {
-                return fail(400, {error: true, detail: "User Not Registered"});
+                redirect(302, '/passes?register=true');
             }
 
             let hasRequiredPass = false;
@@ -205,20 +205,21 @@ export const actions = {
             email: session.user.email
         })
         if (!foundUser) {
-            return fail(400, {errorExisting: true, details: "User Not Registered"});
+            redirect(302, '/passes?register=true');
         }
 
         let hasRequiredPass = false;
         if ("is_mahe" in foundUser && foundUser.is_mahe === false) {
             if (foundEvent.event_priority === 1001) {
-                let passFound = await passes.findOne({
-                    email: session.user.email,
-                    pass_name: 'hackathon__v1',
-                    banned: false
-                });
-                if (passFound) {
-                    hasRequiredPass = true;
-                }
+                // let passFound = await passes.findOne({
+                //     email: session.user.email,
+                //     pass_name: 'hackathon__v1',
+                //     banned: false
+                // });
+                // if (passFound) {
+                //     hasRequiredPass = true;
+                // }
+                hasRequiredPass = true;
             } else if (foundEvent.event_priority > 2000) {
                 let passFound = await passes.findOne({
                     email: session.user.email,

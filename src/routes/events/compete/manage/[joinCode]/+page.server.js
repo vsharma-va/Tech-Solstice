@@ -86,6 +86,6 @@ export const actions = {
             event_priority: Number(eventPriority),
             join_code: joinCode,
         })
-        redirect(302, '/event/compete');
+        redirect(302, '/events/compete');
     }
 }

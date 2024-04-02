@@ -33,6 +33,7 @@
     let onPrimaryContainer = "#612c8a";
     let surface = "#1d1b1e";
     let onSurface = "#e7e1e5";
+    let showRegisterFormAndRedirect = false;
 
     let cardColorPallets = [{
         cardBackgroundColorClass: "bg-on-surface",
@@ -66,6 +67,11 @@
     onMount(() => {
         gsap.registerPlugin(ScrollTrigger);
         gsap.registerPlugin(ScrollToPlugin);
+
+        if($page.url.searchParams.get("register")) {
+            showRegisterFormAndRedirect = true;
+            showDataForm();
+        }
 
         let tl = gsap.timeline();
         tl.to('.login-notif', {
@@ -220,6 +226,7 @@
         formData.set('userPhoneNumber', userPhoneNumber);
         formData.set('userLearnerId', userLearnerId);
         formData.set("isMahe", isMahe);
+        formData.set("redirectToEvents", showRegisterFormAndRedirect);
         let redirectToken = $clickedPassRedirectToken;
         formData.set('redirectToken', redirectToken);
     }
@@ -277,6 +284,17 @@
         });
         dataTimeline.to('.data-form', {
             display: 'none',
+        });
+    }
+    function showDataForm() {
+        let dataTimeline = gsap.timeline();
+        dataTimeline.to('.data-form', {
+            display: 'flex',
+        });
+        dataTimeline.to('.data-form', {
+            top: 0,
+            duration: 0.5,
+            ease: "power4.out",
         });
     }
 </script>
