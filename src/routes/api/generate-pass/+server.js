@@ -32,7 +32,7 @@ export async function POST(event) {
         if (doc.billing_tel === foundUser.userPhoneNumber) {
             paymentFlag = true;
             if (doc.user_type === 'NONMAHE') {
-                const foundHackathonPass = passes.findOne({
+                const foundHackathonPass = await passes.findOne({
                     email: session.user.email,
                     pass_name: 'hackathon__v1',
                     banned: false,
