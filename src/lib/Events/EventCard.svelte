@@ -26,33 +26,38 @@
     let hasFlagship = false;
     let hasHackathon = false;
     let isMahe = undefined;
+    let isLoggedIn = false;
 
-    if ("is_mahe" in userData && userData.is_mahe === false) {
-        isMahe = false;
-    } else if ("is_mahe" in userData && userData.is_mahe === true || !("is_mahe" in userData)) {
-        isMahe = true;
-    }
-
-    for (let pass of userPasses) {
-        if (!isMahe) {
-            hasFlagship = true;
-            if (pass.pass_name === "esports__v2") {
-                hasEsports = true;
-            }
-            if (pass.pass_name === "hackathon__v1") {
-                hasHackathon = true;
-            }
-        } else {
+    if (userData) {
+        isLoggedIn = true;
+        if ("is_mahe" in userData && userData.is_mahe === false) {
+            isMahe = false;
+        } else if ("is_mahe" in userData && userData.is_mahe === true || !("is_mahe" in userData)) {
             isMahe = true;
-            console.log(isMahe);
-            if (pass.pass_name === 'esports__v2') {
-                hasEsports = true;
-            }
-            if (pass.pass_name === 'flagship__v2') {
+        }
+
+        for (let pass of userPasses) {
+            if (!isMahe) {
                 hasFlagship = true;
+                if (pass.pass_name === "esports__v2") {
+                    hasEsports = true;
+                }
+                if (pass.pass_name === "hackathon__v1") {
+                    hasHackathon = true;
+                }
+            } else {
+                isMahe = true;
+                console.log(isMahe);
+                if (pass.pass_name === 'esports__v2') {
+                    hasEsports = true;
+                }
+                if (pass.pass_name === 'flagship__v2') {
+                    hasFlagship = true;
+                }
             }
         }
     }
+
 
     let gradientClass;
     let registerButton;
@@ -214,6 +219,10 @@
                                     <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>
                                 </div>
                             </button>
+                        {:else if !isLoggedIn}
+                            <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2">
+                                Login
+                            </button>
                         {:else}
                             <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
                                     on:click={() => goto('/passes')}>
@@ -231,6 +240,10 @@
                                     <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>
                                 </div>
                             </button>
+                        {:else if !isLoggedIn}
+                            <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2">
+                                Login
+                            </button>
                         {:else}
                             <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
                                     on:click={() => goto('/passes')}>
@@ -246,6 +259,10 @@
                                 <div class="h-full w-full flex-col items-center justify-center loader-buy hidden scale-0">
                                     <div class="rounded-full bg-on-primary h-8 w-8 loader"></div>
                                 </div>
+                            </button>
+                        {:else if !isLoggedIn}
+                            <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2">
+                                Login
                             </button>
                         {:else if isMahe === undefined}
                             <button class="px-4 py-1 bg-primary w-full text-center flex items-center justify-center text-on-primary brand-font text-2xl sm:text-3xl mt-2"
