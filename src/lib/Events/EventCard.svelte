@@ -183,7 +183,7 @@
             {/if}
             {#if priority > 3}
                 <div class="brand-font text-3xl text-on-surface h-fit w-fit bg-surface absolute top-2 left-2 p-2">
-                    <p class="">On {new Date(date).toLocaleDateString()}</p>
+                    <p class="">On {new Date(date).toDateString().replace(" 2024", "")}</p>
                 </div>
             {/if}
             <div class="absolute bottom-2 left-2 h-fit w-[75%] flex flex-col items-start justify-center p-5 bg-surface gap-1">
