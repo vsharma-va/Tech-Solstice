@@ -62,32 +62,66 @@
                 }
             } else if (jsonResponse.generatedPasses === true) {
                 document.cookie = "triedPaying=true; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-                if(jsonResponse.semi) {
-                    replaceTextSemiSuccess();
+                if(jsonResponse.userType === "MAHE") {
+                    if(jsonResponse.flagshipGenerated && jsonResponse.esportsGenerated) {
+                        replaceTextVariable("FLAGSHIP AND ESPORTS PASS GENERATED!!");
+                    } else if (jsonResponse.flagshipGenerated && !jsonResponse.esportsGenerated) {
+                        replaceTextVariable("FLAGSHIP PASS GENERATED!!");
+                    } else if(!jsonResponse.flagshipGenerated && jsonResponse.esportsGenerated) {
+                        replaceTextVariable("ESPORTS PASS GENERATED!!");
+                    } else {
+                        if(jsonResponse.flagshipAlreadyExists && jsonResponse.esportsAlreadyExists){
+                            replaceTextVariable("FLAGSHIP AND ESPORTS PASS ALREADY EXIST");
+                        } else if (jsonResponse.flagshipAlreadyExists && !jsonResponse.esportsAlreadyExists) {
+                            replaceTextVariable("FLAGSHIP PASS ALREADY EXISTS");
+                        } else if (!jsonResponse.flagshipAlreadyExists && jsonResponse.esportsAlreadyExists) {
+                            replaceTextVariable("ESPORTS PASS ALREADY EXISTS");
+                        }
+                    }
+                    setTimeout(() => {
+                        goto('/my-passes')
+                    }, 4000);
+                    break;
+                } else if (jsonResponse.userType === 'NONMAHE') {
+                    if(jsonResponse.hackathonGenerated && jsonResponse.esportsGenerated) {
+                        replaceTextVariable("HACKATHON AND ESPORTS PASS GENERATED!!");
+                    } else if(jsonResponse.hackathonGenerated && !jsonResponse.esportsGenerated) {
+                        replaceTextVariable("HACKATHON PASS GENERATED!!");
+                    } else if(!jsonResponse.hackathonGenerated && jsonResponse.esportsGenerated) {
+                        replaceTextVariable("ESPORTS PASS GENERATED!!");
+                    } else {
+                        if(jsonResponse.hackathonAlreadyExists && jsonResponse.esportsAlreadyExists){
+                            replaceTextVariable("HACKATHON AND ESPORTS PASS ALREADY EXIST");
+                        } else if (jsonResponse.hackathonAlreadyExists && !jsonResponse.esportsAlreadyExists) {
+                            replaceTextVariable("HACKATHON PASS ALREADY EXISTS");
+                        } else if (!jsonResponse.hackathonAlreadyExists && jsonResponse.esportsAlreadyExists) {
+                            replaceTextVariable("ESPORTS PASS ALREADY EXISTS");
+                        }
+                    }
                     setTimeout(() => {
                         goto('/my-passes')
                     }, 4000);
                     break;
                 }
-                replaceTextSuccess();
-                setTimeout(() => {
-                    goto('/my-passes')
-                }, 4000);
-                break;
+                // if(jsonResponse.semi) {
+                //     replaceTextSemiSuccess();
+                //     setTimeout(() => {
+                //         goto('/my-passes')
+                //     }, 4000);
+                //     break;
+                // }
+                // replaceTextSuccess();
+                // setTimeout(() => {
+                //     goto('/my-passes')
+                // }, 4000);
+                // break;
             }
         }
     }
 
-    function replaceTextSemiSuccess() {
+    function replaceTextVariable(value) {
         gsap.to('.heading-text', {
-            text: "PASS ALREADY EXISTS!",
-            duration: 1,
-        })
-    }
-
-    function replaceTextSuccess() {
-        gsap.to('.heading-text', {
-            text: "PASS GENERATED!!",
+            text: value,
             duration: 1,
         })
     }
