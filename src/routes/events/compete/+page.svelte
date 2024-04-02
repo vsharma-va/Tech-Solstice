@@ -303,7 +303,7 @@
                             <label for="name" class="form__label regular-font">Join Code</label>
                         </div>
                         {#if showJoinCodeSubmit}
-                            <button class="bg-primary text-on-primary px-2 py-1 brand-font text-2xl w-full mt-2">
+                            <button class="bg-primary text-on-primary px-2 py-1 brand-font text-2xl w-full mt-2" type="submit">
                                 Submit
                             </button>
                         {/if}

@@ -182,7 +182,6 @@ export const actions = {
         let errors = {joinCodeError: ''};
         const formData = await event.request.formData();
         let joinCode = formData.get('teamJoinCode');
-        console.log(joinCode);
 
         if (!joinCode) {
             errors.joinCodeError = 'Invalid Join Code';
@@ -206,12 +205,12 @@ export const actions = {
             email: session.user.email
         })
         if (!foundUser) {
-            return fail(400, {error: true, detail: "User Not Registered"});
+            return fail(400, {errorExisting: true, details: "User Not Registered"});
         }
 
         let hasRequiredPass = false;
         if ("is_mahe" in foundUser && foundUser.is_mahe === false) {
-            if (foundUser.event_priority === 1001) {
+            if (foundEvent.event_priority === 1001) {
                 let passFound = await passes.findOne({
                     email: session.user.email,
                     pass_name: 'hackathon__v1',
@@ -220,7 +219,7 @@ export const actions = {
                 if (passFound) {
                     hasRequiredPass = true;
                 }
-            } else if (foundUser.event_priority > 2000) {
+            } else if (foundEvent.event_priority > 2000) {
                 let passFound = await passes.findOne({
                     email: session.user.email,
                     pass_name: 'esports__v2',
@@ -229,13 +228,13 @@ export const actions = {
                 if (passFound) {
                     hasRequiredPass = true;
                 }
-            } else if (foundUser.event_priority > 1001 && foundUser.event_priority <= 2000) {
+            } else if (foundEvent.event_priority > 1001 && foundEvent.event_priority <= 2000) {
                 hasRequiredPass = true;
             }
             // fucked up due to last moment changes
         } else if ("is_mahe" in foundUser && foundUser.is_mahe === true || !("is_mahe" in foundUser)) {
             // check for hackathon (non mahe), esports and normal flagship events
-            if (foundUser.event_priority >= 1001 && foundUser.event_priority <= 2000) {
+            if (foundEvent.event_priority >= 1001 && foundEvent.event_priority <= 2000) {
                 let passFound = await passes.findOne({
                     email: session.user.email,
                     pass_name: "flagship__v2",
@@ -245,7 +244,7 @@ export const actions = {
                     hasRequiredPass = true;
                 }
             }
-            if (foundUser.event_priority > 2000) {
+            if (foundEvent.event_priority > 2000) {
                 let passFound = await passes.findOne({
                     email: session.user.email,
                     pass_name: "esports__v2",
