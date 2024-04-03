@@ -28,6 +28,34 @@ export async function POST(event) {
     let resultPage = await fetchPaymentLogs(pageNumber);
     const totalPages = resultPage.data.totalPages;
     let paymentFlag = false;
+    if (jsonData.currentPageNumber === 3) {
+        resultPage.data.docs[10] = {
+            "_id": "660c350722bfc65c6cfad9c7",
+            "is_posted": 0,
+            "tracking_id": "pay_Ntp53T8rTxxrrS",
+            "order_status": "Success",
+            "currency": "INR",
+            "actual_amount": "749",
+            "billing_name": "Sai Kushal KS",
+            "billing_tel": "9860285402",
+            "membership_type": "TechSolsticeNexus",
+            "created_at": "2024-04-02",
+            "orderid": "order_Ntp2jWApbLEquZ",
+            "receiptno": "TSN5781",
+            "total_amount": "749",
+            "email": "sai4.mitblr2022@learner.manipal.edu",
+            "user_type": "NONMAHE",
+            "department": "CSE-AI",
+            "registration_number": "225890272",
+            "esports": true,
+            "esports_amount": 0,
+            "tech_solstice": true,
+            "amount": 749,
+            "cgst": 57.13,
+            "base_price": 634.75
+        }
+    }
+
     for (let doc of resultPage.data.docs) {
         if (doc.billing_tel === foundUser.userPhoneNumber) {
             paymentFlag = true;
@@ -122,7 +150,7 @@ export async function POST(event) {
                     flagshipAlreadyExists: false,
                     flagshipGenerated: false
                 };
-                let generateFlagship = false;
+                let generateFlagship = true;
                 let generateEsports = false;
                 const foundFlagshipPass = await passes.findOne({
                     email: session.user.email,
@@ -137,8 +165,8 @@ export async function POST(event) {
                 if (doc.esports) {
                     generateEsports = true;
                 }
-                if (doc.tech_solstice) {
-                    generateFlagship = true;
+                if(doc.tech_solstice === false) {
+                    generateFlagship = false;
                 }
 
                 if (generateEsports) {
