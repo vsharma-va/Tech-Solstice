@@ -130,7 +130,7 @@ export const actions = {
             }
 
             if (isMahe === 'true') {
-                if (!userLearnerId.includes('@learner.manipal.edu')) {
+                if (!userLearnerId.includes('manipal.edu')) {
                     console.log("SOMETHING");
                     errors.userLearnerIdError = 'Please enter a valid learner id';
                 }

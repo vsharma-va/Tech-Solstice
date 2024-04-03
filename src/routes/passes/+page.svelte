@@ -248,7 +248,7 @@
     }
 
     function checkLearnerId() {
-        if (userLearnerId.includes('@learner.manipal.edu')) {
+        if (userLearnerId.includes('manipal.edu')) {
             errors.userLearnerIdError = '';
         } else {
             errors.userLearnerIdError = 'Please enter a valid learner id';
