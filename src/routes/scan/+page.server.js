@@ -129,6 +129,30 @@ export const actions = {
             } else {
                 return fail(400, {error: true, detail: "Pass ID is Wrong"})
             }
+        } else if (Number(selectedEventPriority) === 1 || Number(selectedEventPriority) === 2 || Number(selectedEventPriority) === 3) {
+            const foundFlagship = await passes.findOne({
+                token: passId,
+                pass_name: 'flagship__v2'
+            })
+            if (foundFlagship) {
+                const previousMarking = await markings.findOne({
+                    email: foundFlagship.email,
+                    event_priority: Number(selectedEventPriority),
+                    event_name: eventName,
+                });
+                if (!previousMarking) {
+                    await markings.insertOne({
+                        email: session.user.email,
+                        event_priority: Number(selectedEventPriority),
+                        event_name: eventName,
+                    })
+                    return fail(400, {success: true, detail: "User Marked Successfully"})
+                } else {
+                    return fail(400, {error: true, detail: "User Already Marked"})
+                }
+            } else {
+                return fail(400, {error: true, detail: "Pass ID is Wrong"})
+            }
         }
     }
 }
