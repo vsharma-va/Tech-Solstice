@@ -16,7 +16,7 @@ export const load = async (event) => {
 
     let foundPermissions = await permissions.findOne({email: session.user.email}, {projection: {_id: 0}});
     if (!foundPermissions) {
-        redirect(320, '/?unauthorised');
+        redirect(302, '/?unauthorised');
     }
 
     let contentStrapiUrl = "https://content.mitblrfest.in"
