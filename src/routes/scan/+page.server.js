@@ -68,7 +68,7 @@ export const actions = {
                 });
                 if (!previousMarking) {
                     await markings.insertOne({
-                        email: session.user.email,
+                        email: foundFlagship.email,
                         event_priority: Number(selectedEventPriority),
                         event_name: eventName,
                     })
@@ -92,7 +92,7 @@ export const actions = {
                 });
                 if (!previousMarking) {
                     await markings.insertOne({
-                        email: session.user.email,
+                        email: foundEsports.email,
                         event_priority: Number(selectedEventPriority),
                         event_name: eventName,
                     })
@@ -117,7 +117,7 @@ export const actions = {
                 });
                 if (!previousMarking) {
                     await markings.insertOne({
-                        email: session.user.email,
+                        email: foundHackathon.email,
                         event_priority: Number(selectedEventPriority),
                         event_name: eventName,
                     })
@@ -130,19 +130,22 @@ export const actions = {
                 return fail(400, {error: true, detail: "Pass ID is Wrong"})
             }
         } else if (Number(selectedEventPriority) === 1 || Number(selectedEventPriority) === 2 || Number(selectedEventPriority) === 3) {
+            console.log("FOUND")
             const foundFlagship = await passes.findOne({
                 token: passId,
                 pass_name: 'flagship__v2'
             })
+            console.log(foundFlagship);
             if (foundFlagship) {
+                console.log(Number(selectedEventPriority));
                 const previousMarking = await markings.findOne({
                     email: foundFlagship.email,
                     event_priority: Number(selectedEventPriority),
-                    event_name: eventName,
                 });
+                console.log(previousMarking)
                 if (!previousMarking) {
                     await markings.insertOne({
-                        email: session.user.email,
+                        email: foundFlagship.email,
                         event_priority: Number(selectedEventPriority),
                         event_name: eventName,
                     })
