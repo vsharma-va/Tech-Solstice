@@ -256,11 +256,7 @@
     }
 
     function checkMahe() {
-        if (isMahe === 'true') {
-            showLearnerId = true;
-        } else {
-            showLearnerId = false;
-        }
+        showLearnerId = isMahe === 'true';
     }
 
     function clearFormErrorName() {
